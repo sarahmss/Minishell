@@ -53,6 +53,8 @@ typedef struct s_list
 	struct s_list	*next;
 }	t_list;
 
+void	ft_check_error(int err, char *msg);
+
 char	*ft_strjoinchar(char *str, char c);
 
 int		get_next_line(int fd, char **line);

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+         #
+#    By: smodesto <smodesto@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/11 17:02:33 by smodesto          #+#    #+#              #
-#    Updated: 2021/11/14 12:47:28 by smodesto         ###   ########.fr        #
+#    Updated: 2021/11/18 20:52:29 by smodesto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,8 @@ SRC_PATH		= ./source/
 INCLUDES_PATH	= ./includes/
 OBJS_PATH		= ./objects/
 
-SRCS_FILES =	main.c
+SRCS_FILES =	main.c \
+				ut_check_error.c
 
 SRCS = $(addprefix $(SRC_PATH), $(SRCS_FILES))
 

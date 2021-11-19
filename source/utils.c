@@ -1,18 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smodesto <smodesto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/19 09:53:26 by smodesto          #+#    #+#             */
-/*   Updated: 2021/11/19 09:55:27 by smodesto         ###   ########.fr       */
+/*   Created: 2021/11/19 09:46:52 by smodesto          #+#    #+#             */
+/*   Updated: 2021/11/19 09:50:06 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Minishell.h"
 
-int main(void)
+// print current directory
+void    printDir()
 {
-    readline()
+    char    cwd[1024];
+    
+    getcwd(cwd, sizeof(cwd));
+    printf("\n%s > ", cwd);
 }
+
+char    *read_line
