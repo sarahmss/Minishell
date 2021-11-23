@@ -60,6 +60,7 @@ SRCS_B = ft_lstnew.c		\
 		ft_lstclear.c		\
 		ft_lstiter.c		\
 		ft_lstmap.c			\
+		ft_lstdoubly.c		\
 		$(SRCS)
 #.c.o
 OBJ	=		$(SRCS:%.c=%.o)

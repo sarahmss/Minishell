@@ -21,40 +21,7 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <sys/fcntl.h>
-
-//printf
-typedef struct s_format
-{
-	va_list	args;
-	char	*temp;
-	int		printed;
-}			t_format;
-
-typedef struct s_positions
-{
-	size_t	i;
-	size_t	j;
-	size_t	k;
-	int		sign;
-	char	*stemp;
-}	t_positions;
-
-typedef struct s_conversion
-{
-	int						i;
-	long int				numb;
-	char					*hex;
-	char					*str;
-}	t_conversion;
-
-typedef struct s_list
-{
-	void			*content;
-	struct s_list	*next;
-}	t_list;
-
-void	ft_check_error(int err, char *msg);
-
+# include "structs_lft.h"
 char	*ft_strjoinchar(char *str, char c);
 
 int		get_next_line(int fd, char **line);
@@ -163,20 +130,25 @@ char	*ft_strcdup(const char *src, char c);
 
 int		ft_putnbruns_fd(unsigned int n, int fd);
 
-int		ft_intlen(long numb);
-
-int		ft_numblen(long numb, int base);
-
 char	*ft_itoa_bases(long long int value, int base, char x);
 
 char	*ft_strchr2(const char *str, int c, int c2);
 
 void	free_array(void **matrix, int i);
 
+//math
 float	mod(float a);
-
 float	max(float a, float b);
-
 float	min(float a, float b);
+int		ft_intlen(long numb);
+int		ft_numblen(long numb, int base);
+
+
+// lst doubly
+void	stack_del(t_node **head, t_node *del);
+t_node	*ft_get_new_node(int data);
+t_node	*ft_insert_at_head(int data, t_node *head);
+void	ft_insert_at_foot(int data, t_node *head);
+void	ft_free_list(t_node *head);
 
 #endif

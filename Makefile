@@ -6,21 +6,23 @@
 #    By: smodesto <smodesto@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/11 17:02:33 by smodesto          #+#    #+#              #
-#    Updated: 2021/11/18 20:52:29 by smodesto         ###   ########.fr        #
+#    Updated: 2021/11/23 11:00:34 by smodesto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= Minishell
 LIBFT	= libft.a
+READLINE = -lreadline -lncurses
 
 LIBFT_PATH		= ./libraries/libft/
 SRC_PATH		= ./source/
 INCLUDES_PATH	= ./includes/
 OBJS_PATH		= ./objects/
 
-SRCS_FILES =	main.c \
-				ut_check_error.c
-
+SRCS_FILES =	main.c	\
+				prompt.c \
+				init.c 
+				
 SRCS = $(addprefix $(SRC_PATH), $(SRCS_FILES))
 
 OBJS_FILES	= $(patsubst %.c, %.o, $(SRCS_FILES))
@@ -31,8 +33,8 @@ HEADER_FILES	=	Minishell.h	\
 HEADERS = $(addprefix $(INCLUDES_PATH), $(HEADER_FILES))
 
 CC			= gcc
-FLAGS		= -Wall -Wextra -g
-LIBRARIES	= -L$(LIBFT_PATH) -lft
+FLAGS		= -Wall -Wextra -g 
+LIBRARIES	= -L$(LIBFT_PATH) -lft $(READLINE)
 INCLUDES	= -I$(INCLUDES_PATH) -I$(LIBFT_PATH)
 
 all:		$(NAME)
@@ -58,5 +60,8 @@ clean:
 fclean:		clean
 			@rm -f $(NAME)
 re: fclean all
+
+install:
+	sudo apt-get install libreadline-dev
 
 .PHONY: all clean fclean re

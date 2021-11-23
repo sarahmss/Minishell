@@ -29,3 +29,20 @@ void	ft_lstclear(t_list **lst, void (*del)(void *))
 	}
 	*lst = NULL;
 }
+
+/*
+	Delete a node del in the stack
+*/
+void	stack_del(t_node **head, t_node *del)
+{
+	if (*head == NULL || del == NULL)
+		return ;
+	if (*head == del)
+		*head = del->next;
+	if (del->next != NULL)
+		del->next->prev = del->prev;
+	if (del->prev != NULL)
+		del->prev->next = del->next;
+	free(del);
+	return ;
+}

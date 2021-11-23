@@ -5,23 +5,52 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: smodesto <smodesto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/18 08:51:24 by smodesto          #+#    #+#             */
-/*   Updated: 2021/11/23 18:03:50 by smodesto         ###   ########.fr       */
+/*   Created: 2021/11/23 19:11:44 by smodesto          #+#    #+#             */
+/*   Updated: 2021/11/23 19:22:24 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STRUCTS_H
-# define STRUCTS_H
+#ifndef STRUCTS_LFT_H
+# define STRUCTS_LFT_H
 
-#define CLEAR "\033[H\033[J"
-#define CAPACITY 50000
+#include "libft.h"
 
-// store the commands that will be executed.
-typedef struct s_command_table
+typedef struct s_format
 {
-    char   **command_splitted;
-    char    *history;
-} t_command_table;
+	va_list	args;
+	char	*temp;
+	int		printed;
+}			t_format;
 
+typedef struct s_positions
+{
+	size_t	i;
+	size_t	j;
+	size_t	k;
+	int		sign;
+	char	*stemp;
+}	t_positions;
+
+typedef struct s_conversion
+{
+	int						i;
+	long int				numb;
+	char					*hex;
+	char					*str;
+}	t_conversion;
+
+typedef struct s_list
+{
+	void			*content;
+	struct s_list	*next;
+}	t_list;
+
+typedef struct s_node
+{
+	int				data;
+	int				index;
+	struct s_node	*next;
+	struct s_node	*prev;
+}	t_node;
 
 #endif
