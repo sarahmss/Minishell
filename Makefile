@@ -6,7 +6,7 @@
 #    By: smodesto <smodesto@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/11 17:02:33 by smodesto          #+#    #+#              #
-#    Updated: 2021/11/23 11:00:34 by smodesto         ###   ########.fr        #
+#    Updated: 2021/11/25 18:15:32 by smodesto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,11 @@ OBJS_PATH		= ./objects/
 
 SRCS_FILES =	main.c	\
 				prompt.c \
-				init.c 
+				init.c 	\
+				ft_lstdoubly.c	\
+				hash_table_ut.c	\
+				hash_table.c	\
+				ht_collisions.c
 				
 SRCS = $(addprefix $(SRC_PATH), $(SRCS_FILES))
 

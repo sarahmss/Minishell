@@ -6,12 +6,11 @@
 /*   By: smodesto <smodesto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 13:50:38 by smodesto          #+#    #+#             */
-/*   Updated: 2021/11/23 10:16:16 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/11/24 11:33:47 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Minishell.h"
-
 
 // returns the current workind directory use mod == 0 unless in prompt funcition
 char    *working_directory(int  mod)
@@ -27,7 +26,7 @@ char    *working_directory(int  mod)
     return (cwd);
 }
 
-void    create_prompt(t_command_table *table)
+void    create_prompt(t_cmd_tab*table)
 {
     char    *user;
     char    *prompt;
@@ -40,7 +39,7 @@ void    create_prompt(t_command_table *table)
     command_line = readline(prompt);
     if (strlen(command_line) != 0)
         add_history(command_line);
-    table->command_splitted = ft_split(command_line, ' ');
+    table->cmd_splitted = ft_split(command_line, ' ');
     free(user);
     free(cwd);
     free(prompt);

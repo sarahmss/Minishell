@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 08:51:24 by smodesto          #+#    #+#             */
-/*   Updated: 2021/11/23 18:03:50 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/11/24 11:30:40 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@
 #define CLEAR "\033[H\033[J"
 #define CAPACITY 50000
 
-// store the commands that will be executed.
-typedef struct s_command_table
+// store the cmds that will be executed.
+typedef struct s_cmd_tab
 {
-    char   **command_splitted;
+    char   **cmd_splitted;
     char    *history;
-} t_command_table;
+} t_cmd_tab;
 
 
 #endif
