@@ -6,30 +6,11 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 13:53:35 by smodesto          #+#    #+#             */
-/*   Updated: 2021/11/27 11:42:34 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/11/27 14:29:47 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Minishell.h"
-
-// Greeting shell during startup
-static void	init_shell(void)
-{
-	char	*username;
-
-	printf(CLEAR);
-	printf("\n\n\n\n******************"
-		"************************");
-	printf("\n\n\n\t****MINISHELL****");
-	printf("\n\n\t-USE AT YOUR OWN RISK-");
-	printf("\n\n\n\n*******************"
-		"***********************");
-	username = getenv("USER");
-	printf("\n\n\nUSER is: @%s", username);
-	printf("\n");
-	sleep(3);
-	printf(CLEAR);
-}
 
 t_cmd_tab	*init_cmd_tab(void)
 {
@@ -42,7 +23,6 @@ t_cmd_tab	*init_cmd_tab(void)
 	table->cmd_splitted = NULL;
 	table->history = NULL;
 	table->status = 0;
-	init_shell();
 	return (table);
 }
 

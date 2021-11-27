@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 09:53:26 by smodesto          #+#    #+#             */
-/*   Updated: 2021/11/27 11:42:07 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/11/27 14:15:05 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,12 @@
 
 int	main(void)
 {
-	t_cmd_tab	*table;
+	t_cmd_tab	*tb;
 
-	table = init_cmd_tab();
+	tb = init_cmd_tab();
 	while (1)
 	{
-		ft_read_line(table);
+		ft_read_line(tb);
+		tb->cmd_splitted = ft_split_cmd(tb->cmd_line, ' ', tb);
 	}
 }

@@ -6,7 +6,7 @@
 #    By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/11 17:02:33 by smodesto          #+#    #+#              #
-#    Updated: 2021/11/27 11:39:10 by smodesto         ###   ########.fr        #
+#    Updated: 2021/11/27 14:13:16 by smodesto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,16 +19,19 @@ SRC_PATH		= ./source/
 INCLUDES_PATH	= ./includes/
 OBJS_PATH		= ./objects/
 
-SRCS_FILES =	init/init_shell.c	\
-				init/prompt.c		\
-				init/ft_read_line.c	\
-				init/init_struct.c 	\
-				ht/ft_lstdoubly.c	\
-				ht/ht_insert.c		\
-				ht/ht_search.c		\
-				ht/ht_delete.c		\
-				ht/hash_table.c		\
-				ht/ht_collisions.c
+SRCS_FILES =	init/init_shell.c		\
+				init/init_struct.c		\
+				cmd_line/prompt.c		\
+				cmd_line/ft_read_line.c	\
+				ht/ft_lstdoubly.c		\
+				ht/ht_insert.c			\
+				ht/ht_search.c			\
+				ht/ht_delete.c			\
+				ht/hash_table.c			\
+				ht/ht_collisions.c		\
+				token/ft_strtok.c		\
+				token/ft_split_cmd.c
+
 
 SRCS = $(addprefix $(SRC_PATH), $(SRCS_FILES))
 
@@ -53,6 +56,8 @@ $(OBJS_PATH)%.o : $(SRC_PATH)%.c $(HEADERS)
 			@mkdir -p objects
 			@mkdir -p objects/ht
 			@mkdir -p objects/init
+			@mkdir -p objects/cmd_line
+			@mkdir -p objects/token
 			$(CC) $(FLAGS) -c $(INCLUDES) $< -o $@
 
 $(LIBFT):

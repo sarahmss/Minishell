@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtok.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seulogin <seue-mail@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 13:21:29 by smodesto          #+#    #+#             */
-/*   Updated: 2021/11/26 14:19:00 by seulogin         ###   ########.fr       */
+/*   Updated: 2021/11/27 14:48:28 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,12 @@ char	*ft_strtok(char *str, char delimiter)
 	int			i;
 
 	i = 0;
-	input = NULL;
 	if (str != NULL)
 		input = str;
+	if (input == NULL)
+		return (NULL);
 	result = aux_strtok(input);
-	while (input[i] != "\0")
+	while (input[i] != '\0')
 	{
 		if (input[i] != delimiter)
 			result[i] = input[i];
