@@ -6,7 +6,7 @@
 #    By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/11 17:02:33 by smodesto          #+#    #+#              #
-#    Updated: 2021/11/27 10:13:33 by smodesto         ###   ########.fr        #
+#    Updated: 2021/11/27 11:39:10 by smodesto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ OBJS_PATH		= ./objects/
 
 SRCS_FILES =	init/init_shell.c	\
 				init/prompt.c		\
+				init/ft_read_line.c	\
 				init/init_struct.c 	\
 				ht/ft_lstdoubly.c	\
 				ht/ht_insert.c		\

@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 13:53:35 by smodesto          #+#    #+#             */
-/*   Updated: 2021/11/27 10:43:10 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/11/27 11:42:34 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,17 @@ static void	init_shell(void)
 	printf(CLEAR);
 }
 
-t_cmd_tab	*init_command_table(void)
+t_cmd_tab	*init_cmd_tab(void)
 {
 	t_cmd_tab	*table;
 
 	table = (t_cmd_tab *)malloc(sizeof(t_cmd_tab));
 	if (!table)
 		ft_check_error(-1, "Initing structure", table);
+	table->cmd_line = NULL;
 	table->cmd_splitted = NULL;
 	table->history = NULL;
+	table->status = 0;
 	init_shell();
 	return (table);
 }
@@ -49,6 +51,8 @@ t_cmd_tab	*init_command_table(void)
 */
 void	before_living(t_cmd_tab *table)
 {
+	if (table->cmd_line != NULL)
+		free(table->cmd_line);
 	if (table->history != NULL)
 		free(table->history);
 	if (table->cmd_splitted != NULL)

@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 10:12:52 by smodesto          #+#    #+#             */
-/*   Updated: 2021/11/27 10:38:44 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/11/27 11:41:16 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void	ht_delete(t_ht_tab *ht, char *key, t_cmd_tab *tab)
 		else if (head != NULL)
 		{
 			if (ft_strncmp(item->key, key, ft_strlen(key)) == 0)
-				return (colision(ht, head, item, index));
+				return (colision(ht, head, index, tab));
 			search_to_del(ht, head, key, index);
 		}
 	}

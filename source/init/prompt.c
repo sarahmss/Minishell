@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 13:50:38 by smodesto          #+#    #+#             */
-/*   Updated: 2021/11/27 10:44:04 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/11/27 11:39:55 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,22 +26,17 @@ char	*working_directory(int mod)
 	return (cwd);
 }
 
-void	create_prompt(t_cmd_tab*table)
+char	*create_prompt(void)
 {
 	char	*user;
 	char	*prompt;
-	char	*command_line;
 	char	*cwd;
 
 	user = ft_strjoin(getenv("USER"), ":");
 	cwd = working_directory(1);
 	prompt = ft_strjoin(user, cwd);
-	command_line = readline(prompt);
-	if (strlen(command_line) != 0)
-		add_history(command_line);
-	table->cmd_splitted = ft_split(command_line, ' ');
 	free(user);
 	free(cwd);
-	free(prompt);
-	free(command_line);
+	return (prompt);
 }
+

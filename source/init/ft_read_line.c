@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   structs.h                                          :+:      :+:    :+:   */
+/*   ft_read_line.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/18 08:51:24 by smodesto          #+#    #+#             */
-/*   Updated: 2021/11/27 11:29:55 by smodesto         ###   ########.fr       */
+/*   Created: 2021/11/27 11:22:40 by smodesto          #+#    #+#             */
+/*   Updated: 2021/11/27 11:58:25 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STRUCTS_H
-# define STRUCTS_H
-# define CLEAR "\033[H\033[J"
-# define CAPACITY 50000
+#include "../includes/Minishell.h"
 
-// store the cmds that will be executed.
-typedef struct s_cmd_tab
+void	ft_read_line(t_cmd_tab* tb)
 {
-	char	*cmd_line;
-	char	**cmd_splitted;
-	char	*history;
-	int		status;
+	char	*prompt;
 
-}	t_cmd_tab;
-
-#endif
+	prompt = create_prompt();
+	tb->cmd_line = readline(prompt);
+	if (tb->cmd_line == NULL)
+		ft_check_error(0, "EOF", tb);
+	if (strlen(tb->cmd_line) != 0)
+		add_history(tb->cmd_line);
+	free(prompt);
+}

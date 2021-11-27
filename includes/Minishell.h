@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seulogin <seue-mail@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 18:56:26 by smodesto          #+#    #+#             */
-/*   Updated: 2021/11/27 09:56:59 by seulogin         ###   ########.fr       */
+/*   Updated: 2021/11/27 11:40:07 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,12 @@
 # include <readline/history.h>
 
 //prompt
-void			create_prompt(t_cmd_tab *table);
+char			*create_prompt(void);
 char			*working_directory(int mod);
+
+// Read line
+void			ft_read_line(t_cmd_tab* tb);
+
 
 // init
 t_cmd_tab		*init_cmd_tab(void);
