@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   structs.h                                          :+:      :+:    :+:   */
+/*   tk_eval_1.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seulogin <seue-mail@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/18 08:51:24 by smodesto          #+#    #+#             */
-/*   Updated: 2021/11/27 09:56:07 by seulogin         ###   ########.fr       */
+/*   Created: 2021/11/26 13:21:29 by smodesto          #+#    #+#             */
+/*   Updated: 2021/11/26 13:59:34 by seulogin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STRUCTS_H
-# define STRUCTS_H
-# define CLEAR "\033[H\033[J"
-# define CAPACITY 50000
+#include "../includes/Minishell.h"
 
-// store the cmds that will be executed.
-typedef struct s_cmd_tab
+/*
+	Returns 1 if the character is delimiter and 0 if it is not
+*/
+int	ft_is_delimiter(char ch)
 {
-	char	**cmd_splitted;
-	char	*history;
-}	t_cmd_tab;
-
-#endif
+	if (ch == ' ' || ch == '+' || ch == '-' || ch == '*' ||
+		ch == '/' || ch == ',' || ch == ';' || ch == '>' ||
+		ch == '<' || ch == '=' || ch == '(' || ch == ')' ||
+		ch == '[' || ch == ']' || ch == '{' || ch == '}')
+		return (1);
+	return (0);
+}

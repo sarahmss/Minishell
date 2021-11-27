@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstdoubly.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smodesto <smodesto@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 09:58:24 by smodesto          #+#    #+#             */
-/*   Updated: 2021/11/25 18:08:40 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/11/27 10:06:12 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ t_linkdlst	*ft_insert_at_head(t_ht_item *item, t_linkdlst *head)
 */
 t_ht_item	*node_del(t_linkdlst **head, t_linkdlst *del)
 {
-	t_ht_item *item;
-	
+	t_ht_item	*item;
+
 	item = NULL;
 	if (*head == NULL || del == NULL)
 		return (NULL);
@@ -63,9 +63,9 @@ t_ht_item	*node_del(t_linkdlst **head, t_linkdlst *del)
 		del->next->prev = del->prev;
 	if (del->prev != NULL)
 		del->prev->next = del->next;
-	ft_memcpy(item, del->item, sizeof(t_ht_item));	
+	ft_memcpy(item, del->item, sizeof(t_ht_item));
 	free_ht_item(del->item);
-	return (item) ;
+	return (item);
 }
 
 /*

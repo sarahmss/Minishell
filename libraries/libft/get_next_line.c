@@ -17,7 +17,7 @@ char	*ft_extra_strdup_g(const char *src, char c, int src_len)
 	char	*new_str;
 	int		i;
 
-	new_str = malloc((sizeof (char)) * src_len + 1 );
+	new_str = malloc((sizeof (char)) * src_len + 1);
 	if (new_str == NULL)
 		return (NULL);
 	i = 0;

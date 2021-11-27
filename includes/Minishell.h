@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smodesto <smodesto@student.42.fr>          +#+  +:+       +#+        */
+/*   By: seulogin <seue-mail@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 18:56:26 by smodesto          #+#    #+#             */
-/*   Updated: 2021/11/25 18:06:39 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/11/27 09:56:59 by seulogin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,15 @@
 # include <signal.h>
 # include <dirent.h>
 # include <errno.h>
-#include <readline/readline.h>
-#include <readline/history.h>
+# include <readline/readline.h>
+# include <readline/history.h>
 
-//prompt 
-void            create_prompt(t_cmd_tab *table);
-char            *working_directory(int  mod);
+//prompt
+void			create_prompt(t_cmd_tab *table);
+char			*working_directory(int mod);
 
 // init
-t_cmd_tab *init_cmd_tab();
-void             before_living(t_cmd_tab *table);
-void	         ft_check_error(int err, char *msg, t_cmd_tab *table);
+t_cmd_tab		*init_cmd_tab(void);
+void			before_living(t_cmd_tab *table);
+void			ft_check_error(int err, char *msg, t_cmd_tab *table);
 #endif

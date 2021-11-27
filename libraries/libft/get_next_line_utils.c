@@ -42,7 +42,7 @@ char	*ft_strdup_g(const char *src, char c)
 	src_len = 0;
 	while (src[src_len] != c)
 		src_len++;
-	new_str = malloc((sizeof (char)) * src_len + 1 );
+	new_str = malloc((sizeof (char)) * src_len + 1);
 	if (new_str == NULL)
 		return (NULL);
 	i = 0;

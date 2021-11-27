@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   structs_lft.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smodesto <smodesto@student.42.fr>          +#+  +:+       +#+        */
+/*   By: seulogin <seue-mail@student.42sp.org.br    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 19:11:44 by smodesto          #+#    #+#             */
-/*   Updated: 2021/11/24 11:39:06 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/11/27 09:52:22 by seulogin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_LFT_H
 # define STRUCTS_LFT_H
 
-#include "libft.h"
+# include "libft.h"
 
 typedef struct s_format
 {

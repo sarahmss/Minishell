@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: smodesto <smodesto@student.42.fr>          +#+  +:+       +#+         #
+#    By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/11 17:02:33 by smodesto          #+#    #+#              #
-#    Updated: 2021/11/25 20:14:47 by smodesto         ###   ########.fr        #
+#    Updated: 2021/11/27 10:13:33 by smodesto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,10 +23,12 @@ SRCS_FILES =	init/init_shell.c	\
 				init/prompt.c		\
 				init/init_struct.c 	\
 				ht/ft_lstdoubly.c	\
-				ht/hash_table_ut.c	\
+				ht/ht_insert.c		\
+				ht/ht_search.c		\
+				ht/ht_delete.c		\
 				ht/hash_table.c		\
 				ht/ht_collisions.c
-				
+
 SRCS = $(addprefix $(SRC_PATH), $(SRCS_FILES))
 
 OBJS_FILES	= $(patsubst %.c, %.o, $(SRCS_FILES))
@@ -37,7 +39,7 @@ HEADER_FILES	=	Minishell.h	\
 HEADERS = $(addprefix $(INCLUDES_PATH), $(HEADER_FILES))
 
 CC			= gcc
-FLAGS		= -Wall -Wextra -g 
+FLAGS		= -Wall -Wextra -g
 LIBRARIES	= -L$(LIBFT_PATH) -lft $(READLINE)
 INCLUDES	= -I$(INCLUDES_PATH) -I$(LIBFT_PATH)
 
