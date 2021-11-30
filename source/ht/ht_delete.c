@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 10:12:52 by smodesto          #+#    #+#             */
-/*   Updated: 2021/11/27 11:41:16 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/11/30 11:12:25 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	sup(t_linkdlst *c, t_linkdlst *p, t_linkdlst *buck, t_linkdlst *h)
 	p->next = c->next;
 	c->next = NULL;
 	ft_free_list(c);
-	buck = h;
+	*buck = *h;
 	return ;
 }
 
@@ -49,7 +49,7 @@ static void	search_to_del(t_ht_tab *ht, t_linkdlst *head, char *key, int index)
 /*
 	No collision chain. Remove the item and set table index to NULL
  */
-static void	no_colis(t_ht_tab *ht, t_linkdlst *head, t_ht_item *item, int index)
+static void	no_colis(t_ht_tab *ht, t_ht_item *item, int index)
 {
 	ht->items[index] = NULL;
 	free(item);
@@ -92,7 +92,7 @@ void	ht_delete(t_ht_tab *ht, char *key, t_cmd_tab *tab)
 	else
 	{
 		if (head == NULL && ft_strncmp(item->key, key, ft_strlen(key)) == 0)
-			return (no_colis(ht, head, item, index));
+			return (no_colis(ht, item, index));
 		else if (head != NULL)
 		{
 			if (ft_strncmp(item->key, key, ft_strlen(key)) == 0)

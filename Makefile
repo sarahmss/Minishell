@@ -6,7 +6,7 @@
 #    By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/11 17:02:33 by smodesto          #+#    #+#              #
-#    Updated: 2021/11/27 14:13:16 by smodesto         ###   ########.fr        #
+#    Updated: 2021/11/30 10:51:47 by smodesto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ SRCS_FILES =	init/init_shell.c		\
 				ht/hash_table.c			\
 				ht/ht_collisions.c		\
 				token/ft_strtok.c		\
+				token/double_quotes.c	\
 				token/ft_split_cmd.c
 
 

@@ -87,7 +87,7 @@ void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void(*del)(void *));
 
-//math
+// math
 int		ft_atoi(const char *str);
 int		ft_atoi_base(const char *str, int str_base);
 float	mod(float a);
@@ -97,4 +97,6 @@ int		ft_intlen(long numb);
 int		ft_numblen(long numb, int base);
 char	*ft_itoa(int n);
 char	*ft_itoa_bases(long long int value, int base, char x);
+int		ft_arraylen(void **array);
+
 #endif

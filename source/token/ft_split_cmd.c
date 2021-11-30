@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 11:22:40 by smodesto          #+#    #+#             */
-/*   Updated: 2021/11/27 14:25:51 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/11/30 12:13:49 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,10 @@ static char	**make_splitted(char delimiter, t_cmd_tab *tab)
 		token = ft_strtok(NULL, delimiter);
 	}
 	tokens[pos] = NULL;
+	if (dq(tab->cmd_line) == -1)
+		ft_check_error(1, "MISSING DOUBLE QUOTES", tab);
+	else if (dq(tab->cmd_line) == 1)
+		dq_cmd_tab(tab, tab->cmd_splitted);
 	return (tab->cmd_splitted);
 }
 
@@ -54,7 +58,6 @@ static char	**ft_alocate(t_positions pos, char sep)
 		return (NULL);
 	return (splitted_matrix);
 }
-
 
 /*
 	Parse that line into a list of arguments.

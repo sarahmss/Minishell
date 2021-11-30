@@ -51,3 +51,13 @@ int	ft_numblen(long numb, int base)
 	}
 	return (len);
 }
+
+int	ft_arraylen(void **array)
+{
+	int	i;
+
+	i = 0;
+	while (array[i] != NULL)
+		i++;
+	return (i);
+}
