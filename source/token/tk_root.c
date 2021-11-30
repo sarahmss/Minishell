@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   structs.h                                          :+:      :+:    :+:   */
+/*   tk_root.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/18 08:51:24 by smodesto          #+#    #+#             */
-/*   Updated: 2021/11/30 17:15:54 by smodesto         ###   ########.fr       */
+/*   Created: 2021/11/30 16:47:37 by smodesto          #+#    #+#             */
+/*   Updated: 2021/11/30 17:32:35 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STRUCTS_H
-# define STRUCTS_H
-# define CLEAR "\033[H\033[J"
-# define CAPACITY 50000
+#include "../includes/Minishell.h"
 
-// store the cmds that will be executed.
-typedef struct s_cmd_tab
+void	tokenizer(t_cmd_tab *tab)
 {
-	char	*cmd_line;
-	char	**cmd_splitted;
-	char	*history;
-	int		status;
-}	t_cmd_tab;
+	t_token	*simple_cmd;
+	t_token	**piped_cmd;
 
-#endif
+	simple_cmd = NULL;
+	piped_cmd = NULL;
+	if (ft_strchr(tab->cmd_line, C_PIPE))
+		piped_cmd = pipe_cmd_line(tab);
+	else
+		simple_cmd = tk_split_cmd(tab->cmd_line, C_SPACE, tab);
+}

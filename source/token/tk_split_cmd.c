@@ -1,40 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_split_cmd.c                                     :+:      :+:    :+:   */
+/*   tk_split_cmd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 11:22:40 by smodesto          #+#    #+#             */
-/*   Updated: 2021/11/30 15:14:41 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/11/30 17:24:11 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Minishell.h"
 
-/*
-
-*/
-void	check_quotes(t_cmd_tab *tab)
+static void	check_quotes(char *cmd_line, t_cmd_tab *tab)
 {
 	char	quotes[2];
 
-	quotes[0] = '"';
-	quotes[1] = '\'';
-	if (dq(tab->cmd_line, quotes[0]) == -1)
+	quotes[0] = C_DQUOTE;
+	quotes[1] = C_SQUOTE;
+	if (dq(cmd_line, quotes[0]) == -1)
 		ft_check_error(1, "MISSING DOUBLE QUOTES", tab);
-	if (dq(tab->cmd_line, quotes[0]) == 1)
+	if (dq(cmd_line, quotes[0]) == 1)
 		dq_cmd_tab(tab, tab->cmd_splitted, quotes[0]);
-	if (dq(tab->cmd_line, quotes[1]) == -1)
+	if (dq(cmd_line, quotes[1]) == -1)
 		ft_check_error(1, "MISSING SINGLE QUOTES", tab);
-	if (dq(tab->cmd_line, quotes[1]) == 1)
+	if (dq(cmd_line, quotes[1]) == 1)
 		dq_cmd_tab(tab, tab->cmd_splitted, quotes[1]);
 }
 
 /*
 	Uses strtok to fill the matrix
 */
-static char	**make_splitted(char delimiter, t_cmd_tab *tab)
+static char	**make_splitted(char *cmd_line, char delimiter, t_cmd_tab *tab)
 {
 	int		pos;
 	char	*token;
@@ -42,7 +39,7 @@ static char	**make_splitted(char delimiter, t_cmd_tab *tab)
 	char	**tokens;
 
 	pos = 0;
-	line = tab->cmd_line;
+	line = ft_strtrim(cmd_line, " ");
 	token = ft_strtok(line, delimiter);
 	tokens = tab->cmd_splitted;
 	while (token != NULL)
@@ -52,7 +49,7 @@ static char	**make_splitted(char delimiter, t_cmd_tab *tab)
 		token = ft_strtok(NULL, delimiter);
 	}
 	tokens[pos] = NULL;
-	check_quotes(tab);
+	check_quotes(line, tab);
 	return (tab->cmd_splitted);
 }
 
@@ -84,9 +81,10 @@ static char	**ft_alocate(t_positions pos, char sep)
 /*
 	Main function to split the command line
 */
-char	**ft_split_cmd(char *line, char delimiter, t_cmd_tab *tab)
+t_token	*tk_split_cmd(char *line, char delimiter, t_cmd_tab *tab)
 {
 	t_positions	pos;
+	t_token		*head;
 
 	if (line == NULL)
 		return (NULL);
@@ -94,8 +92,9 @@ char	**ft_split_cmd(char *line, char delimiter, t_cmd_tab *tab)
 	tab->cmd_splitted = ft_alocate(pos, delimiter);
 	if (tab->cmd_splitted == NULL)
 		ft_check_error(1, "ALLOCATING CMD_SPLITTED", tab);
-	tab->cmd_splitted = make_splitted(delimiter, tab);
+	tab->cmd_splitted = make_splitted(line, delimiter, tab);
 	if (tab->cmd_splitted == NULL)
 		ft_check_error(1, "ALLOCATING CMD_SPLITTED", tab);
-	return (tab->cmd_splitted);
+	head = tk_create_tokens(tab, tab->cmd_splitted);
+	return (head);
 }

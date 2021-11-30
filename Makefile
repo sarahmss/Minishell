@@ -6,7 +6,7 @@
 #    By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/11 17:02:33 by smodesto          #+#    #+#              #
-#    Updated: 2021/11/30 10:51:47 by smodesto         ###   ########.fr        #
+#    Updated: 2021/11/30 17:10:46 by smodesto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,10 +29,13 @@ SRCS_FILES =	init/init_shell.c		\
 				ht/ht_delete.c			\
 				ht/hash_table.c			\
 				ht/ht_collisions.c		\
-				token/ft_strtok.c		\
-				token/double_quotes.c	\
-				token/ft_split_cmd.c
-
+				token/tk_strtok.c		\
+				token/tk_double_quotes.c\
+				token/tk_split_cmd.c	\
+				token/tk_lst.c			\
+				token/tk_pipe.c			\
+				token/tk_root.c			\
+				token/tk_create_tokens.c
 
 SRCS = $(addprefix $(SRC_PATH), $(SRCS_FILES))
 

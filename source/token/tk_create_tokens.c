@@ -1,25 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_shell.c                                       :+:      :+:    :+:   */
+/*   tk_create_tokens.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/19 09:53:26 by smodesto          #+#    #+#             */
-/*   Updated: 2021/11/30 17:05:49 by smodesto         ###   ########.fr       */
+/*   Created: 2021/11/30 08:51:53 by smodesto          #+#    #+#             */
+/*   Updated: 2021/11/30 17:42:44 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Minishell.h"
 
-int	main(void)
+/*
+	create tokens which was separated in cmd_splitted
+*/
+t_token	*tk_create_tokens(t_cmd_tab *tab, char **cmd_splitted)
 {
-	t_cmd_tab	*tb;
+	int		i;
+	t_token	*head;
 
-	tb = init_cmd_tab();
-	while (1)
+	i = 0;
+	while (cmd_splitted[i] != NULL)
 	{
-		ft_read_line(tb);
-		tokenizer(tb);
+		if (i == 0)
+			head = tk_get_new_tok(cmd_splitted[i], tab);
+		else
+			tk_insert_at_foot(cmd_splitted[i], head, tab);
+		i++;
 	}
+	free_matrix(cmd_splitted);
+	cmd_splitted = NULL;
+	return (head);
 }
