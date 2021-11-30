@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 18:56:26 by smodesto          #+#    #+#             */
-/*   Updated: 2021/11/30 12:13:35 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/11/30 14:32:16 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char			*working_directory(int mod);
 // Tokenizer
 char	*ft_strtok(char *str, char delimiter);
 char	**ft_split_cmd(char *line, char delimiter, t_cmd_tab *tab);
-void	dq_cmd_tab(t_cmd_tab *tab, char **old);
-int		dq(char	*line);
+void	dq_cmd_tab(t_cmd_tab *tab, char **old, char c);
+int		dq(char	*line, char c);
 
 #endif

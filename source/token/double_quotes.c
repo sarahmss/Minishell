@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 10:03:07 by smodesto          #+#    #+#             */
-/*   Updated: 2021/11/30 14:18:05 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/11/30 14:52:45 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,22 @@
 	-1: only one double quotes
 	1: 2 double quotes
 */
-int	dq(char	*line)
+int	dq(char	*line, char c)
 {
 	char	*dq1;
 	char	*dq2;
 	char	*temp;
 
-	dq1 = ft_strchr(line, '"');
+	dq1 = ft_strchr(line, c);
 	if (dq1 == NULL)
 		return (0);
 	temp = dq1 + 1;
-	dq2 = ft_strchr(temp, '"');
+	dq2 = ft_strchr(temp, c);
 	if (dq2 == NULL)
 		return (-1);
 	temp = dq2 + 1;
-	if (temp)
-		return(dq(temp));
+	if (*temp != '\0')
+		return(dq(temp, c));
 	return (1);
 }
 
@@ -63,7 +63,7 @@ char	*make_one(char *s1, char *s2)
 	return (sf);
 }
 
-void	dq_cmd_tab(t_cmd_tab *tab, char **old)
+void	dq_cmd_tab(t_cmd_tab *tab, char **old, char c)
 {
 	char		**new;
 	int			len;
@@ -76,7 +76,7 @@ void	dq_cmd_tab(t_cmd_tab *tab, char **old)
 	while (old[pos.i])
 	{
 		len = ft_strlen(old[pos.i + 1]) - 1;
-		if (old[pos.i][0] == '"' && old[pos.i + 1][len] == '"')
+		if (old[pos.i][0] == c && old[pos.i + 1][len] == c)
 		{
 			new[pos.j] = make_one(old[pos.i], old[pos.i + 1]);
 			pos.i++;

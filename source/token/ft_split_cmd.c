@@ -6,12 +6,30 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 11:22:40 by smodesto          #+#    #+#             */
-/*   Updated: 2021/11/30 12:13:49 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/11/30 14:52:25 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Minishell.h"
 
+/*
+
+*/
+void	check_quotes(t_cmd_tab *tab)
+{
+	if (dq(tab->cmd_line, '"') == -1)
+		ft_check_error(1, "MISSING DOUBLE QUOTES", tab);
+	if (dq(tab->cmd_line, '"') == 1)
+		dq_cmd_tab(tab, tab->cmd_splitted, '"');
+	if (dq(tab->cmd_line, '\'') == -1)
+		ft_check_error(1, "MISSING SINGLE QUOTES", tab);
+	if (dq(tab->cmd_line, '\'') == 1)
+		dq_cmd_tab(tab, tab->cmd_splitted, '\'');
+}
+
+/*
+	Uses strtok to fill the matrix
+*/
 static char	**make_splitted(char delimiter, t_cmd_tab *tab)
 {
 	int		pos;
@@ -30,13 +48,13 @@ static char	**make_splitted(char delimiter, t_cmd_tab *tab)
 		token = ft_strtok(NULL, delimiter);
 	}
 	tokens[pos] = NULL;
-	if (dq(tab->cmd_line) == -1)
-		ft_check_error(1, "MISSING DOUBLE QUOTES", tab);
-	else if (dq(tab->cmd_line) == 1)
-		dq_cmd_tab(tab, tab->cmd_splitted);
+	check_quotes(tab);
 	return (tab->cmd_splitted);
 }
 
+/*
+	Allocates space for the matrix divided by the sep delimiter
+*/
 static char	**ft_alocate(t_positions pos, char sep)
 {
 	char	**splitted_matrix;
@@ -60,7 +78,7 @@ static char	**ft_alocate(t_positions pos, char sep)
 }
 
 /*
-	Parse that line into a list of arguments.
+	Main function to split the command line
 */
 char	**ft_split_cmd(char *line, char delimiter, t_cmd_tab *tab)
 {
