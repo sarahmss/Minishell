@@ -6,13 +6,13 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 11:22:40 by smodesto          #+#    #+#             */
-/*   Updated: 2021/11/27 14:00:38 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/11/30 15:19:01 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Minishell.h"
 
-void	ft_read_line(t_cmd_tab* tb)
+void	ft_read_line(t_cmd_tab *tb)
 {
 	char	*prompt;
 

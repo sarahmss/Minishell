@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 10:03:07 by smodesto          #+#    #+#             */
-/*   Updated: 2021/11/30 14:52:45 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/11/30 15:18:44 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	dq(char	*line, char c)
 		return (-1);
 	temp = dq2 + 1;
 	if (*temp != '\0')
-		return(dq(temp, c));
+		return (dq(temp, c));
 	return (1);
 }
 

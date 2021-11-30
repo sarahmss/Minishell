@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 09:59:13 by smodesto          #+#    #+#             */
-/*   Updated: 2021/11/27 10:04:50 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/11/30 15:23:11 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,14 @@ t_ht_tab		*create_table(int size, t_cmd_tab *table);
 t_ht_item		*create_item(char *key, char *value, t_cmd_tab *table);
 
 // ht utils
-void			ht_insert(t_ht_tab *ht_tab, char *key, char *value, t_cmd_tab *table);
+void			ht_insert(t_ht_tab *ht, char *key, char *value, t_cmd_tab *tb);
 char			*ht_search(t_ht_tab *ht_tab, char *key);
 void			ht_delete(t_ht_tab *ht_tab, char *key, t_cmd_tab *tab);
 
 // colisions
 void			free_overflow_buckets(t_ht_tab *ht_tab);
 t_linkdlst		**create_overflow_buckets(t_ht_tab *ht_tab, t_cmd_tab *table);
-void			ht_collision(t_ht_tab *ht_tab, unsigned long int index, t_ht_item *item);
+void			ht_collision(t_ht_tab *ht, unsigned long int in, t_ht_item *it);
 
 // lstdoubly
 t_linkdlst		*ft_insert_at_head(t_ht_item *item, t_linkdlst *head);

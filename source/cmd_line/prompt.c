@@ -6,13 +6,15 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 13:50:38 by smodesto          #+#    #+#             */
-/*   Updated: 2021/11/27 14:30:04 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/11/30 15:20:16 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Minishell.h"
 
-// Greeting shell during startup
+/*
+	Greeting shell during startup
+*/
 static void	init_shell(void)
 {
 	char	*username;
@@ -31,8 +33,9 @@ static void	init_shell(void)
 	printf(CLEAR);
 }
 
-
-// returns the current workind directory use mod == 0 unless in prompt funcition
+/*
+	returns the current working directory use mod == 0 unless in prompt function
+*/
 char	*working_directory(int mod)
 {
 	char	*cwd;
@@ -60,4 +63,3 @@ char	*create_prompt(void)
 	free(cwd);
 	return (prompt);
 }
-
