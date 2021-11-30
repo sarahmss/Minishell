@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 10:03:07 by smodesto          #+#    #+#             */
-/*   Updated: 2021/11/30 12:24:20 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/11/30 14:18:05 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,9 @@ int	dq(char	*line)
 	dq2 = ft_strchr(temp, '"');
 	if (dq2 == NULL)
 		return (-1);
+	temp = dq2 + 1;
+	if (temp)
+		return(dq(temp));
 	return (1);
 }
 
