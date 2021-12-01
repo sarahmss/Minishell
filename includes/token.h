@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 15:42:54 by smodesto          #+#    #+#             */
-/*   Updated: 2021/11/30 17:43:53 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/01 12:13:16 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ char			*ft_strtok(char *str, char delimiter);
 t_token			*tk_split_cmd(char *line, char delimiter, t_cmd_tab *tab);
 void			dq_cmd_tab(t_cmd_tab *tab, char **old, char c);
 int				dq(char	*line, char c);
+char			*insert_spaces(char *line, t_cmd_tab *tab);
 
 // Tk lst
 t_token			*tk_get_new_tok(char *value, t_cmd_tab *tab);
