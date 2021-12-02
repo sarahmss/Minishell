@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 13:53:35 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/01 13:19:02 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/02 19:56:10 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@ t_cmd_tab	*init_cmd_tab(void)
 	table->cmd_splitted = NULL;
 	table->history = NULL;
 	table->status = 0;
-	table->piped_cmd = NULL;
-	table->simple_cmd = NULL;
 	return (table);
 }
 
@@ -39,12 +37,6 @@ void	before_living(t_cmd_tab *table)
 		free(table->history);
 	if (table->cmd_splitted != NULL)
 		free_matrix(table->cmd_splitted);
-	if (table->simple_cmd != NULL)
-		tk_free_lst(table->simple_cmd);
-	if (table->piped_cmd[0] != NULL)
-		tk_free_lst(table->simple_cmd);
-	if (table->piped_cmd[1] != NULL)
-		tk_free_lst(table->simple_cmd);
 	if (table)
 		free(table);
 }

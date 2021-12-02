@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 15:42:54 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/01 12:13:16 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/02 19:54:39 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # define C_SPACE	' '
 # define C_NULL		'\0'
 # define C_GENERAL	-1
-
+#include "./Minishell.h"
 typedef enum e_type
 {
 	T_UNDEFINED,

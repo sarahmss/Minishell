@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 16:47:37 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/01 13:19:13 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/02 19:58:51 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,12 @@
 
 void	tokenizer(t_cmd_tab *tab)
 {
+	t_token	**piped_cmd;
+	t_token	*simple_cmd;
+
 	if (ft_strchr(tab->cmd_line, C_PIPE))
-		tab->piped_cmd = pipe_cmd_line(tab);
+		piped_cmd = pipe_cmd_line(tab);
 	else
-		tab->simple_cmd = tk_split_cmd(tab->cmd_line, C_SPACE, tab);
+		simple_cmd = tk_split_cmd(tab->cmd_line, C_SPACE, tab);
+	
 }
