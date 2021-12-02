@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   double_quotes.c                                    :+:      :+:    :+:   */
+/*   tk_double_quotes.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 10:03:07 by smodesto          #+#    #+#             */
-/*   Updated: 2021/11/30 15:18:44 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/02 20:26:57 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@ int	dq(char	*line, char c)
 	char	*dq1;
 	char	*dq2;
 	char	*temp;
+	int		i;
 
+	i = 0;
 	dq1 = ft_strchr(line, c);
 	if (dq1 == NULL)
 		return (0);
@@ -32,7 +34,9 @@ int	dq(char	*line, char c)
 		return (-1);
 	temp = dq2 + 1;
 	if (*temp != '\0')
-		return (dq(temp, c));
+		i = dq(temp, c);
+	if (i == -1)
+		return (i);
 	return (1);
 }
 
@@ -73,10 +77,11 @@ void	dq_cmd_tab(t_cmd_tab *tab, char **old, char c)
 	new = (char **)(malloc(sizeof(char *) * len));
 	pos.i = 0;
 	pos.j = 0;
-	while (old[pos.i])
+	while (old[pos.i] )
 	{
 		len = ft_strlen(old[pos.i + 1]) - 1;
-		if (old[pos.i][0] == c && old[pos.i + 1][len] == c)
+		if (old[pos.i + 1] != NULL && old[pos.i][0] == c
+			&& old[pos.i + 1][len] == c)
 		{
 			new[pos.j] = make_one(old[pos.i], old[pos.i + 1]);
 			pos.i++;
