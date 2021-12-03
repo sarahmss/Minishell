@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 10:03:07 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/02 20:26:57 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/03 11:48:29 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	dq_cmd_tab(t_cmd_tab *tab, char **old, char c)
 	new = (char **)(malloc(sizeof(char *) * len));
 	pos.i = 0;
 	pos.j = 0;
-	while (old[pos.i] )
+	while (old[pos.i])
 	{
 		len = ft_strlen(old[pos.i + 1]) - 1;
 		if (old[pos.i + 1] != NULL && old[pos.i][0] == c

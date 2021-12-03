@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 17:49:11 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/02 20:49:09 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/03 11:47:54 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ char	*insert_spaces(char *line, t_cmd_tab *tab)
 	i = 0;
 	while (i < ft_strlen(operators))
 	{
-		if(new_line != NULL)
+		if (new_line != NULL)
 			temp = new_line;
 		new_line = sup_insert_spaces(temp, operators[i], tab);
 		if (temp != NULL && temp != line && temp != new_line)

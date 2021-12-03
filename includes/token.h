@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 15:42:54 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/02 19:54:39 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/03 11:47:38 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,26 +23,7 @@
 # define C_SPACE	' '
 # define C_NULL		'\0'
 # define C_GENERAL	-1
-#include "./Minishell.h"
-typedef enum e_type
-{
-	T_UNDEFINED,
-	T_WORD,
-	T_SEPARATOR,
-	T_PIPE,
-	T_END_OF_LINE,
-	T_IREDIRECT,
-	T_OREDIRECT,
-	T_OAPPEND
-}					t_type;
-
-typedef struct s_token
-{
-	char			*value;
-	t_type			type;
-	struct s_token	*prev;
-	struct s_token	*next;
-}					t_token;
+# include "./Minishell.h"
 
 // split cmd
 char			*ft_strtok(char *str, char delimiter);

@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 11:22:40 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/02 21:13:10 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/03 11:38:52 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,7 @@ static char	**make_splitted(char *cmd_line, char delimiter, t_cmd_tab *tab)
 	char	**tokens;
 
 	pos = 0;
-	line = insert_spaces(cmd_line, tab);
-	line = ft_strtrim(line, " ");
+	line = cmd_line;
 	token = ft_strtok(line, delimiter);
 	tokens = tab->cmd_splitted;
 	while (token != NULL)
@@ -73,7 +72,7 @@ static char	**ft_alocate(t_positions pos, char sep)
 		if (*pos.stemp)
 			pos.stemp++;
 	}
-	splitted_matrix = (char **)malloc((pos.k + 1) * sizeof(char *));
+	splitted_matrix = (char **)ft_calloc((pos.k + 1), sizeof(char *));
 	if (!splitted_matrix)
 		return (NULL);
 	return (splitted_matrix);
@@ -86,14 +85,21 @@ t_token	*tk_split_cmd(char *line, char delimiter, t_cmd_tab *tab)
 {
 	t_positions	pos;
 	t_token		*head;
+	char		*treated_line;
 
 	if (line == NULL)
 		return (NULL);
-	pos.stemp = (char *)line;
+	treated_line = insert_spaces(line, tab);
+	pos.stemp = treated_line;
+	treated_line = ft_strtrim(treated_line, " ");
+	if (pos.stemp != NULL && pos.stemp != treated_line
+		&& pos.stemp != line)
+		free(pos.stemp);
+	pos.stemp = treated_line;
 	tab->cmd_splitted = ft_alocate(pos, delimiter);
 	if (tab->cmd_splitted == NULL)
 		ft_check_error(1, "ALLOCATING CMD_SPLITTED", tab);
-	tab->cmd_splitted = make_splitted(line, delimiter, tab);
+	tab->cmd_splitted = make_splitted(treated_line, delimiter, tab);
 	if (tab->cmd_splitted == NULL)
 		ft_check_error(1, "ALLOCATING CMD_SPLITTED", tab);
 	head = tk_create_tokens(tab, tab->cmd_splitted);
