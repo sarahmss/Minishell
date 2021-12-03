@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 11:22:40 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/01 13:10:15 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/02 21:13:10 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ static char	**ft_alocate(t_positions pos, char sep)
 		if (*pos.stemp)
 			pos.stemp++;
 	}
-	splitted_matrix = (char **)ft_calloc((pos.k + 1), sizeof(char *));
+	splitted_matrix = (char **)malloc((pos.k + 1) * sizeof(char *));
 	if (!splitted_matrix)
 		return (NULL);
 	return (splitted_matrix);
