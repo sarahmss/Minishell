@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 08:51:53 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/03 11:13:04 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/08 19:12:28 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,7 @@ t_token	*tk_create_tokens(t_cmd_tab *tab, char **cmd_splitted)
 			tk_insert_at_foot(cmd_splitted[i], head, tab);
 		i++;
 	}
+	if (tab->cmd_splitted != NULL)
+		free_matrix(tab->cmd_splitted);
 	return (head);
 }

@@ -23,6 +23,7 @@ void	free_matrix(char **matrix)
 		i++;
 	}
 	free(matrix);
+	matrix = NULL;
 }
 
 static void	ft_strsep(char *dest, char *src, char c)

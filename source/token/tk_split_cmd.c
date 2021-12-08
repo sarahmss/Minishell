@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 11:22:40 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/08 18:32:11 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/08 18:53:23 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,7 @@ t_token	*tk_split_cmd(char *line, char delimiter, t_cmd_tab *tab)
 	treated_line = insert_spaces(line, tab);
 	pos.stemp = treated_line;
 	treated_line = ft_strtrim(treated_line, " ");
-	if (pos.stemp != NULL && pos.stemp != treated_line
-		&& pos.stemp != line)
+	if (pos.stemp != NULL && pos.stemp != treated_line && pos.stemp != line)
 		free(pos.stemp);
 	pos.stemp = treated_line;
 	tab->cmd_splitted = ft_alocate(pos, delimiter);
@@ -101,5 +100,6 @@ t_token	*tk_split_cmd(char *line, char delimiter, t_cmd_tab *tab)
 		ft_check_error(1, "ALLOCATING CMD_SPLITTED", tab);
 	tab->cmd_splitted = make_splitted(treated_line, delimiter, tab);
 	head = tk_create_tokens(tab, tab->cmd_splitted);
+	free (treated_line);
 	return (head);
 }

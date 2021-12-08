@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 13:50:38 by smodesto          #+#    #+#             */
-/*   Updated: 2021/11/30 15:20:16 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/08 19:16:01 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ char	*create_prompt(void)
 
 	user = ft_strjoin(getenv("USER"), ":");
 	cwd = working_directory(1);
-	//init_shell();
+	init_shell();
 	prompt = ft_strjoin(user, cwd);
 	free(user);
 	free(cwd);
