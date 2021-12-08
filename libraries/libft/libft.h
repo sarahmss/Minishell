@@ -40,6 +40,7 @@ char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char	*ft_strcdup(const char *src, char c);
 char	*ft_strchr2(const char *str, int c, int c2);
+int		ft_strcmp(const char *s1, const char *s2);
 
 // input/output
 int		get_next_line(int fd, char **line);

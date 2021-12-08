@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 16:47:37 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/03 11:48:16 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/08 18:10:15 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	tokenizer(t_cmd_tab *tab)
 	{
 		tab->piped_cmd = pipe_cmd_line(tab);
 		tk_print_lst(tab->piped_cmd[0]);
+		ft_putendl_fd("|", 0);
 		tk_print_lst(tab->piped_cmd[1]);
 	}
 	else

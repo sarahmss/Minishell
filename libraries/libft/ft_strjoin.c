@@ -38,3 +38,20 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	pos.stemp[pos.i] = '\0';
 	return (pos.stemp);
 }
+
+char	*ft_strjoinchar(char *str, char c)
+{
+	char	*strf;
+	int		i;
+
+	i = 0;
+	strf = (char *)ft_calloc(sizeof(char), ft_strlen(str) + 3);
+	strf[0] = c;
+	while (i < ft_strlen(str))
+	{
+		strf[i + 1] = str[i];
+		i++;
+	}
+	strf[i + 1] = c;
+	return (strf);
+}

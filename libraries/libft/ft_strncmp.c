@@ -24,3 +24,21 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 		return (0);
 	return (*(unsigned char *)s1 - *(unsigned char *)s2);
 }
+
+/*
+	1: Equal
+	0: distint
+*/
+int	ft_strcmp(const char *s1, const char *s2)
+{
+	if (ft_strlen(s1) != ft_strlen(s2))
+		return (0);
+	while (*s2)
+	{
+		if (*s1 != *s2)
+			return (0);
+		s1++;
+		s2++;
+	}
+	return (1);
+}

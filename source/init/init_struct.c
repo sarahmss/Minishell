@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 13:53:35 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/03 11:22:29 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/08 18:25:30 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	before_living(t_cmd_tab *table)
 	{
 		tk_free_lst(table->piped_cmd[0]);
 		tk_free_lst(table->piped_cmd[1]);
+		free(table->piped_cmd);
 	}
 	if (table)
 		free(table);

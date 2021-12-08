@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 11:22:40 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/03 11:38:52 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/08 18:32:11 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ static void	check_quotes(char *cmd_line, t_cmd_tab *tab)
 	if (dq(cmd_line, quotes[0]) == -1)
 		ft_check_error(1, "MISSING DOUBLE QUOTES", tab);
 	if (dq(cmd_line, quotes[0]) == 1)
-		dq_cmd_tab(tab, tab->cmd_splitted, quotes[0]);
+		dq_cmd_tab(tab, tab->cmd_splitted, quotes[0], cmd_line);
 	if (dq(cmd_line, quotes[1]) == -1)
 		ft_check_error(1, "MISSING SINGLE QUOTES", tab);
 	if (dq(cmd_line, quotes[1]) == 1)
-		dq_cmd_tab(tab, tab->cmd_splitted, quotes[1]);
+		dq_cmd_tab(tab, tab->cmd_splitted, quotes[1], cmd_line);
 }
 
 /*
@@ -100,8 +100,6 @@ t_token	*tk_split_cmd(char *line, char delimiter, t_cmd_tab *tab)
 	if (tab->cmd_splitted == NULL)
 		ft_check_error(1, "ALLOCATING CMD_SPLITTED", tab);
 	tab->cmd_splitted = make_splitted(treated_line, delimiter, tab);
-	if (tab->cmd_splitted == NULL)
-		ft_check_error(1, "ALLOCATING CMD_SPLITTED", tab);
 	head = tk_create_tokens(tab, tab->cmd_splitted);
 	return (head);
 }

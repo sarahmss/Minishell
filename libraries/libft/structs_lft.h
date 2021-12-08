@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs_lft.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seulogin <seue-mail@student.42sp.org.br    +#+  +:+       +#+        */
+/*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 19:11:44 by smodesto          #+#    #+#             */
-/*   Updated: 2021/11/27 09:52:22 by seulogin         ###   ########.fr       */
+/*   Updated: 2021/12/03 12:15:48 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,10 @@ typedef struct s_positions
 	size_t	j;
 	size_t	k;
 	int		sign;
+	int		len;
 	char	*stemp;
+	char	*dq1;
+	char	*temp;
 }	t_positions;
 
 typedef struct s_conversion
