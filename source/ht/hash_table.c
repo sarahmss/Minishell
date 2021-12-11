@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 11:08:45 by smodesto          #+#    #+#             */
-/*   Updated: 2021/11/27 10:40:26 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/10 22:13:22 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,19 @@ unsigned long	hash_function(char *str)
 	return (hash % CAPACITY);
 }
 
-t_ht_item	*create_item(char *key, char *value, t_cmd_tab *table)
+t_ht_item	*create_item(char *key, void *value)
 {
 	t_ht_item	*item;
 
 	item = (t_ht_item *)malloc(sizeof(t_ht_item));
 	if (!item)
-		ft_check_error(1, "CREATING ITEM", table);
+		ft_check_error(1, "CREATING ITEM", NULL);
 	item->key = ft_strdup(key);
 	item->value = ft_strdup(value);
 	return (item);
 }
 
-t_ht_tab	*create_table(int size, t_cmd_tab *table)
+t_ht_tab	*create_table(int size)
 {
 	t_ht_tab	*ht_tab;
 	int			i;
@@ -47,7 +47,7 @@ t_ht_tab	*create_table(int size, t_cmd_tab *table)
 	i = 0;
 	ht_tab = (t_ht_tab *)malloc(sizeof(t_ht_tab));
 	if (!ht_tab)
-		ft_check_error(1, "CREATING TABLE", table);
+		ft_check_error(1, "CREATING TABLE", NULL);
 	ht_tab->size = size;
 	ht_tab->count = 0;
 	ht_tab->items = (t_ht_item **)ft_calloc(size, (sizeof(t_ht_item *)));
@@ -56,7 +56,7 @@ t_ht_tab	*create_table(int size, t_cmd_tab *table)
 		ht_tab->items[i] = NULL;
 		i++;
 	}
-	ht_tab->overflow_buckets = create_overflow_buckets(ht_tab, table);
+	ht_tab->overflow_buckets = create_overflow_buckets(ht_tab);
 	return (ht_tab);
 }
 

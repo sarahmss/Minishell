@@ -6,7 +6,7 @@
 #    By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/11 17:02:33 by smodesto          #+#    #+#              #
-#    Updated: 2021/12/01 10:47:04 by smodesto         ###   ########.fr        #
+#    Updated: 2021/12/10 22:23:20 by smodesto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,15 +36,21 @@ SRCS_FILES =	init/init_shell.c		\
 				token/tk_pipe.c			\
 				token/tk_root.c			\
 				token/tk_insert_spaces.c\
-				token/tk_create_tokens.c
+				token/tk_create_tokens.c\
+				token/tk_lexer.c		\
+				env/env_load.c			\
+				env/env_variables.c
 
 SRCS = $(addprefix $(SRC_PATH), $(SRCS_FILES))
 
 OBJS_FILES	= $(patsubst %.c, %.o, $(SRCS_FILES))
 OBJS = $(addprefix $(OBJS_PATH), $(OBJS_FILES))
 
-HEADER_FILES	=	Minishell.h	\
-					structs.h
+HEADER_FILES	=	Minishell.h		\
+					structs.h		\
+					token.h			\
+					hash_table.h	\
+					environment.h
 HEADERS = $(addprefix $(INCLUDES_PATH), $(HEADER_FILES))
 
 CC			= gcc
@@ -63,6 +69,7 @@ $(OBJS_PATH)%.o : $(SRC_PATH)%.c $(HEADERS)
 			@mkdir -p objects/init
 			@mkdir -p objects/cmd_line
 			@mkdir -p objects/token
+			@mkdir -p objects/env
 			$(CC) $(FLAGS) -c $(INCLUDES) $< -o $@
 
 $(LIBFT):

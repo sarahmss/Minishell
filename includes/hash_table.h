@@ -6,20 +6,20 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 09:59:13 by smodesto          #+#    #+#             */
-/*   Updated: 2021/11/30 15:23:11 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/10 22:57:36 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef HASH_TABLE_H
 # define HASH_TABLE_H
 # include "./Minishell.h"
-# define CAPACITY 50000
+# define CAPACITY 1031
 
 //	Hash table item
 typedef struct s_ht_item
 {
 	char	*key;
-	char	*value;
+	void	*value;
 }	t_ht_item;
 
 //  Double linked list
@@ -43,17 +43,17 @@ typedef struct s_ht_tab
 unsigned long	hash_function(char *str);
 void			free_ht_tab(t_ht_tab *ht_tab);
 void			free_ht_item(t_ht_item *ht_item);
-t_ht_tab		*create_table(int size, t_cmd_tab *table);
-t_ht_item		*create_item(char *key, char *value, t_cmd_tab *table);
+t_ht_tab		*create_table(int size);
+t_ht_item		*create_item(char *key, void *value);
 
 // ht utils
-void			ht_insert(t_ht_tab *ht, char *key, char *value, t_cmd_tab *tb);
-char			*ht_search(t_ht_tab *ht_tab, char *key);
-void			ht_delete(t_ht_tab *ht_tab, char *key, t_cmd_tab *tab);
+void			ht_insert(t_ht_tab *ht, char *key, void *value);
+void			*ht_search(t_ht_tab *ht_tab, char *key);
+void			ht_delete(t_ht_tab *ht_tab, char *key);
 
 // colisions
 void			free_overflow_buckets(t_ht_tab *ht_tab);
-t_linkdlst		**create_overflow_buckets(t_ht_tab *ht_tab, t_cmd_tab *table);
+t_linkdlst		**create_overflow_buckets(t_ht_tab *ht_tab);
 void			ht_collision(t_ht_tab *ht, unsigned long int in, t_ht_item *it);
 
 // lstdoubly

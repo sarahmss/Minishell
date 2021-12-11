@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 15:42:54 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/08 18:19:08 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/10 11:12:00 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,6 @@ void			tk_free_lst(t_token *head);
 t_token			*tk_create_tokens(t_cmd_tab *tab, char **cmd_splitted);
 void			tokenizer(t_cmd_tab *tab);
 t_token			**pipe_cmd_line(t_cmd_tab *tab);
+void			tk_define_types(t_token *head);
+
 #endif

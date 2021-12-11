@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 13:53:35 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/08 19:12:13 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/10 21:16:40 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ void	before_living(t_cmd_tab *table)
 */
 void	ft_check_error(int err, char *msg, t_cmd_tab *table)
 {
-	before_living(table);
+	if (table != NULL)
+		before_living(table);
 	if (err == -1)
 	{
 		write(2, "Error\n", 6);

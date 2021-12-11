@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 18:56:26 by smodesto          #+#    #+#             */
-/*   Updated: 2021/11/30 16:25:41 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/10 21:22:17 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include "./structs.h"
 # include "./hash_table.h"
 # include "./token.h"
+# include "./environment.h"
 # include <unistd.h>
 # include <sys/types.h>
 # include <sys/stat.h>

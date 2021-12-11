@@ -6,13 +6,15 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 09:53:26 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/03 11:32:13 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/10 23:20:49 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Minishell.h"
 
-int	main(void)
+t_session	*g_session;
+/*
+void		loop()
 {
 	t_cmd_tab	*tb;
 
@@ -23,4 +25,20 @@ int	main(void)
 		tokenizer(tb);
 		before_living(tb);
 	}
+}*/
+
+int			main(int argc, char *argv[], char *envp[])
+{
+	t_session	*session;
+
+	(void)argv;
+	session = ft_calloc(1, sizeof(*session));
+	if (!session)
+		ft_check_error(-1, "INITIALIZING SESSION", NULL);
+	g_session = session;
+	if (argc != 1)
+		ft_check_error(-1, "USE MOOD: ./minishell", NULL);
+	session->env = load_env(envp);
+//	loop(session);
+	return (EXIT_SUCCESS);
 }

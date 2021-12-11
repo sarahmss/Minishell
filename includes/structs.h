@@ -6,25 +6,43 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 08:51:24 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/03 10:58:14 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/10 22:57:19 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
 # define CLEAR "\033[H\033[J"
-# define CAPACITY 50000
+# include "hash_table.h"
+
+typedef int bool;
+#define true 1
+#define false 0
+
+typedef struct	s_variable
+{
+	char		*value;
+	bool		env;
+}				t_variable;
+
+typedef struct s_session
+{
+	t_ht_tab	*env;
+	char		**envp;
+	size_t		envp_size;
+}	t_session;
 
 typedef enum e_type
 {
 	T_UNDEFINED,
 	T_WORD,
+	T_WORD$,
 	T_SEPARATOR,
-	T_PIPE,
-	T_END_OF_LINE,
 	T_IREDIRECT,
 	T_OREDIRECT,
-	T_OAPPEND
+	T_OAPPEND,
+	T_IREADNOHISTORY,
+	T_BUILTIN
 }					t_type;
 
 typedef struct s_token

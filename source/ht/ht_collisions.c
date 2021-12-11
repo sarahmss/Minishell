@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 19:25:09 by smodesto          #+#    #+#             */
-/*   Updated: 2021/11/30 15:24:02 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/10 22:05:30 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,14 @@ void	ht_collision(t_ht_tab *ht, unsigned long int in, t_ht_item *it)
 		ht->overflow_buckets[in] = ft_insert_at_head(it, head);
 }
 
-t_linkdlst	**create_overflow_buckets(t_ht_tab *ht_tab, t_cmd_tab *table)
+t_linkdlst	**create_overflow_buckets(t_ht_tab *ht_tab)
 {
 	int			i;
 	t_linkdlst	**buckets;
 
 	buckets = (t_linkdlst **)calloc(ht_tab->size, sizeof(t_linkdlst *));
 	if (!buckets)
-		ft_check_error(1, "CREATING BUCKETS", table);
+		ft_check_error(1, "CREATING BUCKETS", NULL);
 	i = 0;
 	while (i < ht_tab->size)
 	{

@@ -1,36 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tk_create_tokens.c                                 :+:      :+:    :+:   */
+/*   env_load.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/30 08:51:53 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/10 11:12:37 by smodesto         ###   ########.fr       */
+/*   Created: 2021/12/10 20:59:23 by smodesto          #+#    #+#             */
+/*   Updated: 2021/12/10 22:45:33 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Minishell.h"
 
 /*
-	create tokens which was separated in cmd_splitted
+	Runs through *envp[] while putting the environment variables in a hash table.
 */
-t_token	*tk_create_tokens(t_cmd_tab *tab, char **cmd_splitted)
+t_ht_tab		*load_env(char *envp[])
 {
-	int		i;
-	t_token	*head;
+	t_ht_tab	*env;
+	int			i;
 
 	i = 0;
-	while (cmd_splitted[i] != NULL)
+	env = create_table((int)HT_SIZE_ENV);
+	while (envp[i])
 	{
-		if (i == 0)
-			head = tk_get_new_tok(cmd_splitted[i], tab);
-		else
-			tk_insert_at_foot(cmd_splitted[i], head, tab);
+		set_value(env, envp[i], true);
 		i++;
 	}
-	if (tab->cmd_splitted != NULL)
-		free_matrix(tab->cmd_splitted);
-	tk_define_types(head);
-	return (head);
+	return (env);
 }

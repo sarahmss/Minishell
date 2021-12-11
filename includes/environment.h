@@ -1,34 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tk_root.c                                          :+:      :+:    :+:   */
+/*   environment.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/30 16:47:37 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/08 19:59:37 by smodesto         ###   ########.fr       */
+/*   Created: 2021/12/10 21:19:39 by smodesto          #+#    #+#             */
+/*   Updated: 2021/12/10 22:17:58 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Minishell.h"
 
-static void	tk_print_lst(t_token *lst)
-{
-	t_token	*temp;
+#ifndef ENVIRONMENT_H
+# define ENVIRONMENT_H
+# define HT_SIZE_ENV 1031
+# include "./Minishell.h"
 
-	temp = lst;
-	while (temp != NULL)
-	{
-		printf("%s\n", temp->value);
-		temp = temp->next;
-	}
-}
+//	env_variables
+char	*set_value(t_ht_tab *env, char *str, bool is_env);
+void	split_var(char *str, char *var_split[]);
 
-void	tokenizer(t_cmd_tab *tab)
-{
-	if (ft_strchr(tab->cmd_line, C_PIPE))
-		tab->piped_cmd = pipe_cmd_line(tab);
-	else
-		tab->simple_cmd = tk_split_cmd(tab->cmd_line, C_SPACE, tab);
-	return ;
-}
+//	env_load
+t_ht_tab		*load_env(char *envp[]);
+
+
+#endif

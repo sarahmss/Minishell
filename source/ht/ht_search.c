@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hash_table_ut.c                                    :+:      :+:    :+:   */
+/*   ht_search.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 11:08:45 by smodesto          #+#    #+#             */
-/*   Updated: 2021/11/27 10:12:25 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/10 22:52:45 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 /*
 	search for an intem in the hash table
+		NULL if not found
 */
-char	*ht_search(t_ht_tab *ht, char *key)
+void	*ht_search(t_ht_tab *ht, char *key)
 {
 	int			index;
 	t_ht_item	*item;

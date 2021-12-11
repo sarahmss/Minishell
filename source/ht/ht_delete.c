@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 10:12:52 by smodesto          #+#    #+#             */
-/*   Updated: 2021/11/30 11:12:25 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/10 22:06:12 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static void	no_colis(t_ht_tab *ht, t_ht_item *item, int index)
 /*
 	Remove this item and set the head of the list as the new item
 */
-static void	colision(t_ht_tab *ht, t_linkdlst *head, int index, t_cmd_tab *tab)
+static void	colision(t_ht_tab *ht, t_linkdlst *head, int index)
 {
 	t_linkdlst	*node;
 	t_ht_item	*item;
@@ -70,7 +70,7 @@ static void	colision(t_ht_tab *ht, t_linkdlst *head, int index, t_cmd_tab *tab)
 	node = head;
 	head = head->next;
 	node->next = NULL;
-	ht->items[index] = create_item(node->item->key, node->item->value, tab);
+	ht->items[index] = create_item(node->item->key, node->item->value);
 	ft_free_list(node);
 	ht->overflow_buckets[index] = head;
 }
@@ -78,7 +78,7 @@ static void	colision(t_ht_tab *ht, t_linkdlst *head, int index, t_cmd_tab *tab)
 /*
 	delete an intem in the hash table
 */
-void	ht_delete(t_ht_tab *ht, char *key, t_cmd_tab *tab)
+void	ht_delete(t_ht_tab *ht, char *key)
 {
 	int			index;
 	t_ht_item	*item;
@@ -96,7 +96,7 @@ void	ht_delete(t_ht_tab *ht, char *key, t_cmd_tab *tab)
 		else if (head != NULL)
 		{
 			if (ft_strncmp(item->key, key, ft_strlen(key)) == 0)
-				return (colision(ht, head, index, tab));
+				return (colision(ht, head, index));
 			search_to_del(ht, head, key, index);
 		}
 	}
