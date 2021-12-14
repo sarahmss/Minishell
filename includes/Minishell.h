@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 18:56:26 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/10 21:22:17 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/11 09:59:08 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 # include <readline/history.h>
 
 // init
-t_cmd_tab		*init_cmd_tab(void);
+t_cmd_tab		*init_cmd_tab(t_session *session);
 void			before_living(t_cmd_tab *table);
 void			ft_check_error(int err, char *msg, t_cmd_tab *table);
 

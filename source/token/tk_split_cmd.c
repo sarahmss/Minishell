@@ -6,26 +6,27 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 11:22:40 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/08 18:53:23 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/14 12:08:43 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Minishell.h"
 
-static void	check_quotes(char *cmd_line, t_cmd_tab *tab)
+static char	*treat_line(char *line, t_cmd_tab *tab)
 {
-	char	quotes[2];
+	char		*treated_line;
+	char		*stemp;
 
-	quotes[0] = C_DQUOTE;
-	quotes[1] = C_SQUOTE;
-	if (dq(cmd_line, quotes[0]) == -1)
-		ft_check_error(1, "MISSING DOUBLE QUOTES", tab);
-	if (dq(cmd_line, quotes[0]) == 1)
-		dq_cmd_tab(tab, tab->cmd_splitted, quotes[0], cmd_line);
-	if (dq(cmd_line, quotes[1]) == -1)
-		ft_check_error(1, "MISSING SINGLE QUOTES", tab);
-	if (dq(cmd_line, quotes[1]) == 1)
-		dq_cmd_tab(tab, tab->cmd_splitted, quotes[1], cmd_line);
+	if (line == NULL)
+		return (NULL);
+	stemp = NULL;
+	treated_line = NULL;
+	treated_line = insert_spaces(line, tab);
+	stemp = treated_line;
+	treated_line = ft_strtrim(treated_line, " ");
+	if (stemp != NULL && stemp != treated_line && stemp != line)
+		free(stemp);
+	return (treated_line);
 }
 
 /*
@@ -50,6 +51,7 @@ static char	**make_splitted(char *cmd_line, char delimiter, t_cmd_tab *tab)
 	}
 	tokens[pos] = NULL;
 	check_quotes(line, tab);
+	env_expand_var(tab->cmd_splitted, tab->session->env);
 	return (tab->cmd_splitted);
 }
 
@@ -85,21 +87,13 @@ t_token	*tk_split_cmd(char *line, char delimiter, t_cmd_tab *tab)
 {
 	t_positions	pos;
 	t_token		*head;
-	char		*treated_line;
 
-	if (line == NULL)
-		return (NULL);
-	treated_line = insert_spaces(line, tab);
-	pos.stemp = treated_line;
-	treated_line = ft_strtrim(treated_line, " ");
-	if (pos.stemp != NULL && pos.stemp != treated_line && pos.stemp != line)
-		free(pos.stemp);
-	pos.stemp = treated_line;
+	pos.stemp = treat_line(line, tab);
 	tab->cmd_splitted = ft_alocate(pos, delimiter);
 	if (tab->cmd_splitted == NULL)
 		ft_check_error(1, "ALLOCATING CMD_SPLITTED", tab);
-	tab->cmd_splitted = make_splitted(treated_line, delimiter, tab);
+	tab->cmd_splitted = make_splitted(pos.stemp, delimiter, tab);
 	head = tk_create_tokens(tab, tab->cmd_splitted);
-	free (treated_line);
+	free (pos.stemp);
 	return (head);
 }

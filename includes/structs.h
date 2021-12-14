@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 08:51:24 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/10 22:57:19 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/14 13:09:48 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,17 @@
 # define CLEAR "\033[H\033[J"
 # include "hash_table.h"
 
-typedef int bool;
-#define true 1
-#define false 0
+typedef enum e_bool
+{
+	true,
+	false
+}					t_bool;
 
-typedef struct	s_variable
+typedef struct s_variable
 {
 	char		*value;
-	bool		env;
+	char		*name;
+	t_bool		env;
 }				t_variable;
 
 typedef struct s_session
@@ -36,7 +39,6 @@ typedef enum e_type
 {
 	T_UNDEFINED,
 	T_WORD,
-	T_WORD$,
 	T_SEPARATOR,
 	T_IREDIRECT,
 	T_OREDIRECT,
@@ -53,15 +55,14 @@ typedef struct s_token
 	struct s_token	*next;
 }					t_token;
 
-// store the cmds that will be executed.
 typedef struct s_cmd_tab
 {
-	char	*cmd_line;
-	char	**cmd_splitted;
-	char	*history;
-	int		status;
-	t_token	**piped_cmd;
-	t_token	*simple_cmd;
+	t_session	*session;
+	char		*cmd_line;
+	char		**cmd_splitted;
+	char		*history;
+	t_token		**piped_cmd;
+	t_token		*simple_cmd;
 }	t_cmd_tab;
 
 #endif

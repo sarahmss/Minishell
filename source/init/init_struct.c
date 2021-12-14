@@ -6,23 +6,23 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 13:53:35 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/10 21:16:40 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/11 09:57:05 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Minishell.h"
 
-t_cmd_tab	*init_cmd_tab(void)
+t_cmd_tab	*init_cmd_tab(t_session *session)
 {
 	t_cmd_tab	*table;
 
 	table = (t_cmd_tab *)malloc(sizeof(t_cmd_tab));
 	if (!table)
 		ft_check_error(-1, "Initing structure", table);
+	table->session = session;
 	table->cmd_line = NULL;
 	table->cmd_splitted = NULL;
 	table->history = NULL;
-	table->status = 0;
 	table->piped_cmd = NULL;
 	table->simple_cmd = NULL;
 	return (table);

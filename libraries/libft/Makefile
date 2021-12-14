@@ -16,6 +16,7 @@ SRCS	=	ft_bzero.c		\
 		ft_memalloc.c		\
 		ft_strchr.c			\
 		ft_strdup.c			\
+		ft_str_replace.c	\
 		ft_strlcat.c		\
 		ft_strlcpy.c		\
 		ft_strncmp.c		\

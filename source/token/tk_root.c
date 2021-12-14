@@ -6,23 +6,11 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 16:47:37 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/08 19:59:37 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/11 10:06:04 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Minishell.h"
-
-static void	tk_print_lst(t_token *lst)
-{
-	t_token	*temp;
-
-	temp = lst;
-	while (temp != NULL)
-	{
-		printf("%s\n", temp->value);
-		temp = temp->next;
-	}
-}
 
 void	tokenizer(t_cmd_tab *tab)
 {

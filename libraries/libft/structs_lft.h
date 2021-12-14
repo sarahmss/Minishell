@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 19:11:44 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/03 12:15:48 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/14 13:11:01 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,17 @@ typedef struct s_conversion
 	char					*hex;
 	char					*str;
 }	t_conversion;
+
+typedef struct s_replace
+{
+	char	*result;
+	char	*ins;
+	char	*tmp;
+	int		len_rep;
+	int		len_with;
+	int		len_front;
+	int		count;
+}	t_replace;
 
 typedef struct s_list
 {

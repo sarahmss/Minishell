@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 15:42:54 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/10 11:12:00 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/11 10:22:39 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,14 @@
 // split cmd
 char			*ft_strtok(char *str, char delimiter);
 t_token			*tk_split_cmd(char *line, char delimiter, t_cmd_tab *tab);
-void			dq_cmd_tab(t_cmd_tab *tab, char **old, char c, char *cmd_line);
-int				dq(char	*line, char c);
 char			*insert_spaces(char *line, t_cmd_tab *tab);
 
+// quotes 1
+void			dq_cmd_tab(t_cmd_tab *tab, char **old, char c, char *cmd_line);
+
+// quotes 2
+int				dq(char	*line, char c);
+void			check_quotes(char *cmd_line, t_cmd_tab *tab);
 // Tk lst
 t_token			*tk_get_new_tok(char *value, t_cmd_tab *tab);
 void			tk_insert_at_foot(char *value, t_token *head, t_cmd_tab *tab);

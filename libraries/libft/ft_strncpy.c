@@ -35,3 +35,20 @@ char	*ft_strncpy(char *dst, const char *src, size_t len)
 	}
 	return (pointer_to_dest_start);
 }
+
+char	*ft_strcpy(char *destination, const char *source)
+{
+	char	*ptr;
+
+	if (destination == NULL)
+		return (NULL);
+	ptr = destination;
+	while (*source != '\0')
+	{
+		*destination = *source;
+		destination++;
+		source++;
+	}
+	*destination = '\0';
+	return (ptr);
+}

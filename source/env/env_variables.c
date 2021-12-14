@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 21:26:17 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/10 23:04:30 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/14 13:18:44 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,10 @@ void	split_var(char *str, char *var_split[])
 }
 
 /*
-	Creates a item to env hash table, where the key = Variable's name (ex.: PATH) and values = Variable's value (ex:. "/usr/bin")
+	Creates a item to env hash table, where the key = Variable's name
+	(ex.: PATH) and values = Variable's value (ex:. "/usr/bin")
 */
-char	*set_value(t_ht_tab *env, char *str, bool is_env)
+char	*set_value(t_ht_tab *env, char *str, t_bool is_env)
 {
 	t_variable	*variable;
 	char		*var_split[2];
@@ -56,6 +57,5 @@ char	*set_value(t_ht_tab *env, char *str, bool is_env)
 		variable->env = is_env;
 		ht_insert(env, var_split[0], variable);
 	}
-	free(var_split[0]);
 	return (var_split[1]);
 }

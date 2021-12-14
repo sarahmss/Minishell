@@ -1,44 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tk_double_quotes.c                                 :+:      :+:    :+:   */
+/*   tk_quotes1.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 10:03:07 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/08 18:29:02 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/14 12:04:27 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Minishell.h"
-
-/*
-	0: no double quotes
-	-1: only one double quotes
-	1: 2 double quotes
-*/
-int	dq(char	*line, char c)
-{
-	char	*dq1;
-	char	*dq2;
-	char	*temp;
-	int		i;
-
-	i = 0;
-	dq1 = ft_strchr(line, c);
-	if (dq1 == NULL)
-		return (0);
-	temp = dq1 + 1;
-	dq2 = ft_strchr(temp, c);
-	if (dq2 == NULL)
-		return (-1);
-	temp = dq2 + 1;
-	if (*temp != '\0')
-		i = dq(temp, c);
-	if (i == -1)
-		return (i);
-	return (1);
-}
 
 static t_positions	*init_pos(t_cmd_tab *tab, char c, char *cmd_line)
 {
@@ -59,7 +31,7 @@ static t_positions	*init_pos(t_cmd_tab *tab, char c, char *cmd_line)
 	return (pos);
 }
 
-char	*make_one(char *s1, char *s2)
+static char	*make_one(char *s1, char *s2)
 {
 	char	*sf;
 	int		i;

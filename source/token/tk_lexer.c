@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 19:18:46 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/10 11:19:14 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/14 10:37:58 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,18 +37,16 @@ void	tk_define_types(t_token *head)
 	{
 		if (tk_builtin(temp))
 			temp->type = T_BUILTIN;
-		if (ft_strcmp(">", temp->value))
+		else if (ft_strcmp(">", temp->value))
 			temp->type = T_OREDIRECT;
-		if (ft_strcmp(">>", temp->value))
+		else if (ft_strcmp(">>", temp->value))
 			temp->type = T_OAPPEND;
-		if (ft_strcmp("<", temp->value))
+		else if (ft_strcmp("<", temp->value))
 			temp->type = T_IREDIRECT;
-		if (ft_strcmp("<<", temp->value))
+		else if (ft_strcmp("<<", temp->value))
 			temp->type = T_IREADNOHISTORY;
-		if (ft_strchr(temp->value, '\''))
+		else
 			temp->type = T_WORD;
-		if (ft_strchr(temp->value, '"'))
-			temp->type = T_WORD$;
 		temp = temp->next;
 	}
 }
