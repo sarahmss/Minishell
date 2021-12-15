@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 23:05:02 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/14 13:18:00 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/14 21:36:28 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ static char	*find_var_name(char *str, int j)
 	char		*temp;
 
 	end = 0;
-	if (*str == '"' && *str + 1 == '$' || str[j] == '{' && str[j + 1] == '$')
+	if ((*str == '"' && *str + 1 == '$')
+		|| (str[j] == '{' && str[j + 1] == '$'))
 		begin = 0;
 	else
 		begin = j;
@@ -49,28 +50,36 @@ static char	*literal_value(char *str)
 	return (new_line);
 }
 
-static t_variable	*find_value(t_ht_tab *env, char *var_name)
+static char	*find_value(t_ht_tab *env, char *var_name)
 {
 	t_variable	*variable;
 
 	variable = ht_search(env, var_name);
 	if (variable)
-		return (variable);
+		return (variable->value);
 	else
 		return (NULL);
 }
 
 char	*assign_value(char *str, t_ht_tab *env, int j)
 {
-	t_variable	*variable;
 	char		*new_line;
 	char		*var_name;
 	char		*cl_var;
+	char		*value;
 
 	var_name = find_var_name(str, j);
 	cl_var = ft_strtrim(var_name, " {}$\"");
-	variable = find_value(env, cl_var);
-	new_line = str_replace(str, var_name, variable->value);
+	value = find_value(env, cl_var);
+	if (value == NULL)
+	{
+		if (var_name != str)
+			free(var_name);
+		if (cl_var)
+			free(cl_var);
+		return (str);
+	}
+	new_line = str_replace(str, var_name, value);
 	if (var_name != str)
 		free(var_name);
 	if (cl_var)

@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 08:51:24 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/14 13:09:48 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/14 21:19:53 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ typedef enum e_bool
 typedef struct s_variable
 {
 	char		*value;
-	char		*name;
 	t_bool		env;
 }				t_variable;
 

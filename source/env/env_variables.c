@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 21:26:17 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/14 13:18:44 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/14 21:24:41 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ char	*set_value(t_ht_tab *env, char *str, t_bool is_env)
 	t_variable	*variable;
 	char		*var_split[2];
 
+	variable = NULL;
 	split_var(str, var_split);
 	variable = ht_search(env, var_split[0]);
 	if (variable != NULL)
@@ -50,12 +51,13 @@ char	*set_value(t_ht_tab *env, char *str, t_bool is_env)
 	}
 	else
 	{
-		variable = malloc(sizeof(*variable));
+		variable = (t_variable *)ft_calloc(1, sizeof(*variable));
 		if (!variable)
 			return (NULL);
 		variable->value = var_split[1];
 		variable->env = is_env;
 		ht_insert(env, var_split[0], variable);
 	}
+	free (var_split[0]);
 	return (var_split[1]);
 }
