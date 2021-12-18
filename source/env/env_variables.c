@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_variables.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: smodesto <smodesto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 21:26:17 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/14 21:24:41 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/18 13:45:26 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ char	*set_value(t_ht_tab *env, char *str, t_bool is_env)
 	}
 	else
 	{
-		variable = (t_variable *)ft_calloc(1, sizeof(*variable));
+		variable = (t_variable *)ft_calloc(1, sizeof(t_variable));
 		if (!variable)
 			return (NULL);
 		variable->value = var_split[1];

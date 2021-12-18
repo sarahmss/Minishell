@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_load.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: smodesto <smodesto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 20:59:23 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/14 13:15:52 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/18 13:27:32 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 /*
 	Runs through *envp[] while putting the environment variables in a hash table.
+	echo $USER
 */
 t_ht_tab	*load_env(char *envp[])
 {
