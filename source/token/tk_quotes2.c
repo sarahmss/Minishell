@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 10:19:18 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/11 10:22:23 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/20 18:59:21 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ void	check_quotes(char *cmd_line, t_cmd_tab *tab)
 	quotes[0] = C_DQUOTE;
 	quotes[1] = C_SQUOTE;
 	if (dq(cmd_line, quotes[0]) == -1)
-		ft_check_error(1, "MISSING DOUBLE QUOTES", tab);
+		ft_check_error(-1, "MISSING DOUBLE QUOTES", tab);
 	if (dq(cmd_line, quotes[0]) == 1)
 		dq_cmd_tab(tab, tab->cmd_splitted, quotes[0], cmd_line);
 	if (dq(cmd_line, quotes[1]) == -1)
-		ft_check_error(1, "MISSING SINGLE QUOTES", tab);
+		ft_check_error(-1, "MISSING SINGLE QUOTES", tab);
 	if (dq(cmd_line, quotes[1]) == 1)
 		dq_cmd_tab(tab, tab->cmd_splitted, quotes[1], cmd_line);
 }

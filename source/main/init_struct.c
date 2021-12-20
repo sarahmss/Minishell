@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 13:53:35 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/11 09:57:05 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/20 20:35:15 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_cmd_tab	*init_cmd_tab(t_session *session)
 
 	table = (t_cmd_tab *)malloc(sizeof(t_cmd_tab));
 	if (!table)
-		ft_check_error(-1, "Initing structure", table);
+		ft_check_error(EALLOC, "Initing structure", table);
 	table->session = session;
 	table->cmd_line = NULL;
 	table->cmd_splitted = NULL;
@@ -26,48 +26,4 @@ t_cmd_tab	*init_cmd_tab(t_session *session)
 	table->piped_cmd = NULL;
 	table->simple_cmd = NULL;
 	return (table);
-}
-
-/*
-	free memory before living
-*/
-void	before_living(t_cmd_tab *table)
-{
-	if (table->cmd_line != NULL)
-		free(table->cmd_line);
-	if (table->history != NULL)
-		free(table->history);
-	if (table->simple_cmd)
-		tk_free_lst(table->simple_cmd);
-	if (table->piped_cmd)
-	{
-		tk_free_lst(table->piped_cmd[0]);
-		tk_free_lst(table->piped_cmd[1]);
-		free(table->piped_cmd);
-	}
-	if (table)
-		free(table);
-}
-
-/*
-	-1: ERROR\n
-	0: exit
-	else:-ERRO msg
-*/
-void	ft_check_error(int err, char *msg, t_cmd_tab *table)
-{
-	if (table != NULL)
-		before_living(table);
-	if (err == -1)
-	{
-		write(2, "Error\n", 6);
-		exit (0);
-	}
-	if (err == 0)
-		exit (0);
-	else
-	{
-		ft_printf("-ERRO: %s", msg);
-		exit (0);
-	}
 }

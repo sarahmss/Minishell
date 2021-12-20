@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 19:25:09 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/10 22:05:30 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/20 17:52:50 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_linkdlst	**create_overflow_buckets(t_ht_tab *ht_tab)
 
 	buckets = (t_linkdlst **)calloc(ht_tab->size, sizeof(t_linkdlst *));
 	if (!buckets)
-		ft_check_error(1, "CREATING BUCKETS", NULL);
+		ft_check_error(EALLOC, "CREATING BUCKETS", NULL);
 	i = 0;
 	while (i < ht_tab->size)
 	{

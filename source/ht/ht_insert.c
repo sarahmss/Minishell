@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 10:11:35 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/10 22:13:43 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/20 17:55:53 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	ht_insert(t_ht_tab *ht, char *key, void *value)
 	{
 		if (ht->count == ht->size)
 		{
-			ft_check_error(1, "INSERT ERROR: HASH TABLE IS FULL", NULL);
+			ft_check_error(-1, "INSERT ERROR: HASH TABLE IS FULL", NULL);
 			free_ht_item(item);
 			return ;
 		}

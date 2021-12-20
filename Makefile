@@ -6,7 +6,7 @@
 #    By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/11 17:02:33 by smodesto          #+#    #+#              #
-#    Updated: 2021/12/20 11:37:36 by smodesto         ###   ########.fr        #
+#    Updated: 2021/12/20 18:12:36 by smodesto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,8 +19,11 @@ SRC_PATH		= ./source/
 INCLUDES_PATH	= ./includes/
 OBJS_PATH		= ./objects/
 
-SRCS_FILES =	init/init_shell.c		\
-				init/init_struct.c		\
+SRCS_FILES =	main/init_shell.c		\
+				main/init_struct.c		\
+				main/error_manager.c	\
+				main/free.c				\
+				main/repl.c				\
 				cmd_line/prompt.c		\
 				cmd_line/ft_read_line.c	\
 				ht/ft_lstdoubly.c		\
@@ -43,6 +46,8 @@ SRCS_FILES =	init/init_shell.c		\
 				env/env_load.c			\
 				env/env_expansion.c		\
 				env/env_variables.c		\
+				parse/parser_process.c	\
+				parse/parser_job.c		\
 
 SRCS = $(addprefix $(SRC_PATH), $(SRCS_FILES))
 
@@ -50,10 +55,10 @@ OBJS_FILES	= $(patsubst %.c, %.o, $(SRCS_FILES))
 OBJS = $(addprefix $(OBJS_PATH), $(OBJS_FILES))
 
 HEADER_FILES	=	Minishell.h		\
-					structs.h		\
 					token.h			\
 					hash_table.h	\
-					environment.h
+					environment.h	\
+					structs.h
 HEADERS = $(addprefix $(INCLUDES_PATH), $(HEADER_FILES))
 
 CC			= gcc
@@ -69,10 +74,11 @@ $(NAME):	$(OBJS) $(LIBFT)
 $(OBJS_PATH)%.o : $(SRC_PATH)%.c $(HEADERS)
 			@mkdir -p objects
 			@mkdir -p objects/ht
-			@mkdir -p objects/init
+			@mkdir -p objects/main
 			@mkdir -p objects/cmd_line
 			@mkdir -p objects/token
 			@mkdir -p objects/env
+			@mkdir -p objects/parse
 			$(CC) $(FLAGS) -c $(INCLUDES) $< -o $@
 
 $(LIBFT):

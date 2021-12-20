@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 09:58:24 by smodesto          #+#    #+#             */
-/*   Updated: 2021/11/30 17:42:00 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/20 17:57:32 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_token	*tk_get_new_tok(char *value, t_cmd_tab *tab)
 
 	new_tok = (t_token *)malloc(sizeof(t_token));
 	if (!new_tok)
-		ft_check_error(-2, "CREATING TOKEN", tab);
+		ft_check_error(EALLOC, "CREATING TOKEN", tab);
 	new_tok->value = ft_strdup(value);
 	new_tok->prev = NULL;
 	new_tok->next = NULL;

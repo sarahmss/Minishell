@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 18:56:26 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/11 09:59:08 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/20 20:33:23 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include "../libraries/libft/libft.h"
 # include "./structs.h"
+# include "./errcode.h"
 # include "./hash_table.h"
 # include "./token.h"
 # include "./environment.h"
@@ -33,11 +34,16 @@
 // init
 t_cmd_tab		*init_cmd_tab(t_session *session);
 void			before_living(t_cmd_tab *table);
-void			ft_check_error(int err, char *msg, t_cmd_tab *table);
+void			ft_check_error(t_errcode code, char *msg, t_cmd_tab *table);
+void			repl(t_session	*session);
 
 // cmd_line
 void			ft_read_line(t_cmd_tab *tb);
 char			*create_prompt(void);
 char			*working_directory(int mod);
 
+// parse
+void			push_process(t_process **lst, t_process *new_p);
+t_job			*parser(t_cmd_tab *tb);
+t_process		*parse_command(t_token **tokens);
 #endif

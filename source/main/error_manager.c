@@ -1,26 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_read_line.c                                     :+:      :+:    :+:   */
+/*   error_manager.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/27 11:22:40 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/20 17:50:19 by smodesto         ###   ########.fr       */
+/*   Created: 2021/12/20 17:35:04 by smodesto          #+#    #+#             */
+/*   Updated: 2021/12/20 20:35:10 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Minishell.h"
 
-void	ft_read_line(t_cmd_tab *tb)
+static void	errmsg(char *str)
 {
-	char	*prompt;
+	if (str)
+		ft_putstr_fd(str, STDERR_FILENO);
+}
 
-	prompt = create_prompt();
-	tb->cmd_line = readline(prompt);
-	if (tb->cmd_line == NULL)
-		ft_check_error(SIGEXIT, "Ctrl+c", tb);
-	if (strlen(tb->cmd_line) != 0)
-		add_history(tb->cmd_line);
-	free(prompt);
+void	ft_check_error(t_errcode code, char *msg, t_cmd_tab *table)
+{
+	if (table != NULL)
+		before_living(table);
+	if (code == SIGEXIT)
+		exit (0);
+	ft_putstr_fd("minishell: ", STDERR_FILENO);
+	if ((int)code == -1)
+	{
+		errmsg(msg);
+		exit (-1);
+	}
+	else if (code > 0)
+	{
+		if (msg)
+			errmsg(msg);
+		ft_putchar_fd('\n', STDERR_FILENO);
+	}
 }

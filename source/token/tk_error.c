@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 10:17:15 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/20 12:54:52 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/20 20:40:31 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	validate_tokens(t_token *tk)
 	return (status);
 }
 
-int			token_error(t_cmd_tab *tb)
+int	token_error(t_cmd_tab *tb)
 {
 	int		status;
 	int		i;
