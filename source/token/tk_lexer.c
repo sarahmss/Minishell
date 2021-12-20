@@ -6,13 +6,13 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 19:18:46 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/14 10:37:58 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/20 12:55:42 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Minishell.h"
 
-static int	tk_builtin(t_token	*tk)
+int	tk_builtin(t_token	*tk)
 {
 	int	ret;
 

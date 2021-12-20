@@ -6,7 +6,7 @@
 #    By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/11 17:02:33 by smodesto          #+#    #+#              #
-#    Updated: 2021/12/13 09:25:56 by smodesto         ###   ########.fr        #
+#    Updated: 2021/12/20 11:37:36 by smodesto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,7 @@ SRCS_FILES =	init/init_shell.c		\
 				token/tk_lst.c			\
 				token/tk_pipe.c			\
 				token/tk_root.c			\
+				token/tk_error.c		\
 				token/tk_insert_spaces.c\
 				token/tk_create_tokens.c\
 				token/tk_lexer.c		\

@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 08:51:24 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/14 21:19:53 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/20 11:54:03 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ typedef enum e_type
 {
 	T_UNDEFINED,
 	T_WORD,
-	T_SEPARATOR,
 	T_IREDIRECT,
 	T_OREDIRECT,
 	T_OAPPEND,

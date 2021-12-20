@@ -6,30 +6,50 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 09:23:44 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/08 19:47:50 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/20 13:26:11 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Minishell.h"
 
-char	**split_pipe(char *str)
+int	count_pipes(char *str)
+{
+	int		pipes;
+	char	*temp;
+
+	pipes = 0;
+	temp = ft_strchr(str, '|');
+	while (temp)
+	{
+		temp = temp + 1;
+		temp = ft_strchr(temp, '|');
+		pipes++;
+	}
+	return (pipes);
+}
+
+char	**split_pipe(char *str, int times)
 {
 	char	**split_pipe;
+	int		i;
 
-	split_pipe = (char **)ft_calloc(sizeof(char *), 3);
+	i = 1;
+	split_pipe = (char **)ft_calloc(sizeof(char *), times);
 	if (!split_pipe)
 		return (NULL);
 	split_pipe[0] = ft_strtok(str, C_PIPE);
-	if (split_pipe[0] == NULL)
-		return (NULL);
-	split_pipe[1] = ft_strtok(NULL, C_PIPE);
-	if (split_pipe[1] == NULL)
+	while (i < times - 1)
 	{
-		if (split_pipe[0])
-			free(split_pipe[0]);
-		return (NULL);
+		split_pipe[i] = ft_strtok(NULL, C_PIPE);
+		if (split_pipe[i] == NULL)
+		{
+			if (split_pipe[i])
+				free(split_pipe[i - 1]);
+			return (NULL);
+		}
+		i++;
 	}
-	split_pipe[2] = NULL;
+	split_pipe[i] = NULL;
 	return (split_pipe);
 }
 
@@ -37,13 +57,21 @@ t_token	**pipe_cmd_line(t_cmd_tab *tab)
 {
 	char	**split;
 	t_token	**pipe;
+	int		times;
+	int		i;
 
-	pipe = (t_token **)malloc(sizeof(t_token *) * 2);
+	i = 0;
+	times = count_pipes(tab->cmd_line);
+	pipe = (t_token **)malloc(sizeof(t_token *) * times + 2);
 	if (!pipe)
 		ft_check_error(1, "CREATING PIPED CMD LINE", tab);
-	split = split_pipe(tab->cmd_line);
-	pipe[0] = tk_split_cmd(split[0], C_SPACE, tab);
-	pipe[1] = tk_split_cmd(split[1], C_SPACE, tab);
+	split = split_pipe(tab->cmd_line, times + 2);
+	while (i < times + 1)
+	{
+		pipe[i] = tk_split_cmd(split[i], C_SPACE, tab);
+		i++;
+	}
 	free_matrix(split);
+	pipe[i] = NULL;
 	return (pipe);
 }
