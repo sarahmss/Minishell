@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 20:59:23 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/21 16:31:20 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/21 17:50:21 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_ht_tab	*load_env(char *envp[])
 	env = create_table((int)HT_SIZE_ENV);
 	while (envp[i])
 	{
-		set_value(env, envp[i], true);
+		set_value(env, envp[i]);
 		i++;
 	}
 	return (env);

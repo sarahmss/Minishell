@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 10:11:35 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/20 17:55:53 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/21 17:46:58 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /*
 	insert an intem in the hash table
 */
-void	ht_insert(t_ht_tab *ht, char *key, void *value)
+void	ht_insert(t_ht_tab *ht, char *key, char *value)
 {
 	t_ht_item	*item;
 	t_ht_item	*current_item;

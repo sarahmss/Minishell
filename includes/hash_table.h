@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 09:59:13 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/10 22:57:36 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/21 17:49:39 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,19 @@
 # include "./Minishell.h"
 # define CAPACITY 1031
 
+//env
+typedef enum e_bool
+{
+	true,
+	false
+}					t_bool;
+
+// each item in ht corresponds to a variable with key=name and value
 //	Hash table item
 typedef struct s_ht_item
 {
 	char	*key;
-	void	*value;
+	char	*value;
 }	t_ht_item;
 
 //  Double linked list
@@ -44,11 +52,11 @@ unsigned long	hash_function(char *str);
 void			free_ht_tab(t_ht_tab *ht_tab);
 void			free_ht_item(t_ht_item *ht_item);
 t_ht_tab		*create_table(int size);
-t_ht_item		*create_item(char *key, void *value);
+t_ht_item		*create_item(char *key, char *value);
 
 // ht utils
-void			ht_insert(t_ht_tab *ht, char *key, void *value);
-void			*ht_search(t_ht_tab *ht_tab, char *key);
+void			ht_insert(t_ht_tab *ht, char *key, char *value);
+t_ht_item		*ht_search(t_ht_tab *ht_tab, char *key);
 void			ht_delete(t_ht_tab *ht_tab, char *key);
 
 // colisions

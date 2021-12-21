@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 17:33:48 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/21 17:06:38 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/21 17:52:57 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ void	repl(t_session	*session)
 		tb = init_cmd_tab(session);
 		ft_read_line(tb);
 		tokenizer(tb);
-/*		if (!(token_error(tb)))
+		if (!(token_error(tb)))
 		{
 			session->jobs = parser(tb);
 			execute_root(session, tb);
-		}*/
+		}
 		before_living(tb);
 	}
 }

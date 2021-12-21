@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 21:19:39 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/21 16:32:01 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/21 17:50:34 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "./Minishell.h"
 
 //	env_variables
-char		*set_value(t_ht_tab *env, char *str, t_bool is_env);
+char		*set_value(t_ht_tab *env, char *str);
 void		split_var(char *str, char *var_split[]);
 
 //	env_load

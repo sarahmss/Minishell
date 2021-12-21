@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 08:51:24 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/21 16:33:58 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/21 17:42:45 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,19 +49,6 @@ typedef enum e_index
 	I_ORED,
 	I_SIZE
 }						t_index;
-
-//env
-typedef enum e_bool
-{
-	true,
-	false
-}					t_bool;
-
-typedef struct s_variable
-{
-	char		*value;
-	t_bool		env;
-}				t_variable;
 
 // token
 typedef enum e_type

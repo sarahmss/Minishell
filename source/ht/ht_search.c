@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 11:08:45 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/10 22:52:45 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/21 17:48:43 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 	search for an intem in the hash table
 		NULL if not found
 */
-void	*ht_search(t_ht_tab *ht, char *key)
+t_ht_item	*ht_search(t_ht_tab *ht, char *key)
 {
 	int			index;
 	t_ht_item	*item;
@@ -28,7 +28,7 @@ void	*ht_search(t_ht_tab *ht, char *key)
 	while (item != NULL)
 	{
 		if (ft_strncmp(item->key, key, ft_strlen(key)) == 0)
-			return (item->value);
+			return (item);
 		if (head == NULL)
 			return (NULL);
 		item = head->item;

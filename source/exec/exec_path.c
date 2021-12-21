@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 15:28:09 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/21 16:48:27 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/21 17:51:35 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,13 @@ static t_bool	is_executable(char *path_cmd)
 
 char	*find_full_path(t_ht_tab *env, char *command)
 {
-	t_variable	*path;
+	t_ht_item	*path;
 	char		**path_split;
 	int			i;
 	char		*final_path;
 
 	i = 0;
-	path = (t_variable *)ht_search(env, "PATH");
+	path = ht_search(env, "PATH");
 	path_split = ft_split(path->value, ':');
 	while (path_split[i] != NULL)
 	{

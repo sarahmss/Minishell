@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 11:08:45 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/20 17:52:32 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/21 17:46:36 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ unsigned long	hash_function(char *str)
 	return (hash % CAPACITY);
 }
 
-t_ht_item	*create_item(char *key, void *value)
+t_ht_item	*create_item(char *key, char *value)
 {
 	t_ht_item	*item;
 
