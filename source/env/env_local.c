@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 16:20:53 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/21 16:47:44 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/21 18:14:25 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	**env_local(char **local_envp, char **envp, size_t envp_size)
 	while (local_envp[i])
 		i++;
 	i += envp_size + 1;
-	new_envp = ft_calloc(i, sizeof(char *));
+	new_envp = (char **)ft_calloc(i + 1, sizeof(char *));
 	if (!new_envp)
 		return (NULL);
 	while (envp[j])

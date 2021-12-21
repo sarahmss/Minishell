@@ -6,11 +6,23 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 17:26:31 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/21 14:35:13 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/21 18:09:49 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Minishell.h"
+
+static void	free_mat(char **matrix)
+{
+	int	i;
+
+	i = 0;
+	while (matrix[i])
+	{
+		free(matrix[i]);
+		i++;
+	}
+}
 
 static void	free_process(t_process **process)
 {
@@ -23,20 +35,25 @@ static void	free_process(t_process **process)
 	if (p->next)
 		free_process(&(p->next));
 	i = 0;
-	while ((p)->input_file[i])
+	while (p->input_file[i] != NULL)
 	{
-		free((p)->input_file[i]->path);
-		free((p)->input_file[i++]);
+		free(p->input_file[i]->path);
+		free(p->input_file[i]);
+		i++;
 	}
 	i = 0;
-	while ((p)->output_file[i])
+	while (p->output_file[i] != NULL)
 	{
-		free((p)->output_file[i]->path);
-		free((p)->output_file[i++]);
+		free(p->output_file[i]->path);
+		free(p->output_file[i]);
+		i++;
 	}
-	free_matrix((p)->local_env);
-	free_matrix((p)->argv);
-	free(p->command);
+	if (p->local_env[0] != NULL)
+		free_mat(p->local_env);
+	if (p->argv[0] != NULL)
+		free_mat(p->argv);
+	if (p->command != NULL)
+		free(p->command);
 	free(p);
 }
 
@@ -47,8 +64,6 @@ static void	free_jobs(t_job **jobs)
 	job = *jobs;
 	if (!job)
 		return ;
-	if (job->next)
-		free_jobs(&(job->next));
 	free_process(&(job->process_lst));
 	free(job);
 	return ;
@@ -66,9 +81,9 @@ void	before_living(t_cmd_tab *table)
 		free(table->cmd_line);
 	if (table->history != NULL)
 		free(table->history);
-	if (table->simple_cmd)
+	if (table->simple_cmd != NULL)
 		tk_free_lst(table->simple_cmd);
-	if (table->piped_cmd)
+	if (table->piped_cmd != NULL)
 	{
 		while (table->piped_cmd[i] != NULL)
 		{
