@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 08:51:24 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/20 20:33:31 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/21 16:33:58 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,10 @@ typedef struct s_token
 typedef struct s_session
 {
 	t_ht_tab	*env;
-	char		**envp;
 	t_job		*jobs;
+	char		**envp;
+	int			e_size;
+	char		**child_envp;
 }	t_session;
 
 typedef struct s_cmd_tab

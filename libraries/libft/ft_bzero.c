@@ -21,7 +21,7 @@ void	ft_bzero(void *mem, size_t n_bytes)
 	mem_f = (unsigned char *)mem;
 	while (pos < n_bytes)
 	{
-		mem_f[pos] = (unsigned char)'\0';
+		mem_f[pos] = (unsigned char) '\0';
 		pos++;
 	}
 }

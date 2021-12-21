@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 14:13:05 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/20 20:37:51 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/21 16:48:51 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,10 @@ void	push_process(t_process **lst, t_process *new_p)
 	}
 }
 
+/*
+	Puts commands in argv[0] and in char * commands
+	Handle Variables assignment in local_env
+*/
 void	parse_words(t_process *p, t_token *tokens, int i[])
 {
 	char	*word;
@@ -35,9 +39,14 @@ void	parse_words(t_process *p, t_token *tokens, int i[])
 	word = ft_strdup(tokens->value);
 	if (p->command == NULL && tokens->type == T_BUILTIN)
 		p->command = word;
+	if (p->command == NULL && word[0] != '=' && ft_strchr(word, '='))
+	{
+		p->local_env[i[I_ENV]] = word;
+		i[I_ENV]++;
+	}
 	else
 	{
-		if (i[I_ARGV] == 0 && p->command == NULL)
+		if (i[I_ARGV] == 0)
 			p->command = ft_strdup(word);
 		p->argv[i[I_ARGV]] = word;
 		i[I_ARGV]++;

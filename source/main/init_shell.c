@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 09:53:26 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/20 20:47:01 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/21 16:34:09 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ int	main(int argc, char *argv[], char *envp[])
 		ft_check_error(EALLOC, "INITIALIZING SESSION", NULL);
 	g_session = session;
 	session->env = load_env(envp);
+	session->e_size = session->env->count;
+	session->envp = envp;
 	repl(session);
 	free_ht_tab(session->env);
 	free (session);

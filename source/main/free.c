@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 17:26:31 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/20 20:47:32 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/21 14:35:13 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	before_living(t_cmd_tab *table)
 		free(table->piped_cmd);
 	}
 	if (table->session->jobs)
-		free_jobs(table->session->jobs);
+		free_jobs(&table->session->jobs);
 	if (table)
 		free(table);
 }

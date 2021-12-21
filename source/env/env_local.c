@@ -1,29 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_struct.c                                      :+:      :+:    :+:   */
+/*   env_local.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/19 13:53:35 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/21 14:34:38 by smodesto         ###   ########.fr       */
+/*   Created: 2021/12/21 16:20:53 by smodesto          #+#    #+#             */
+/*   Updated: 2021/12/21 16:47:44 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Minishell.h"
 
-t_cmd_tab	*init_cmd_tab(t_session *session)
+char	**env_local(char **local_envp, char **envp, size_t envp_size)
 {
-	t_cmd_tab	*table;
+	int		i;
+	int		j;
+	char	**new_envp;
 
-	table = (t_cmd_tab *)malloc(sizeof(t_cmd_tab));
-	if (!table)
-		ft_check_error(EALLOC, "Initing structure", table);
-	table->session = session;
-	table->cmd_line = NULL;
-	table->cmd_splitted = NULL;
-	table->history = NULL;
-	table->piped_cmd = NULL;
-	table->simple_cmd = NULL;
-	return (table);
+	i = 0;
+	j = 0;
+	while (local_envp[i])
+		i++;
+	i += envp_size + 1;
+	new_envp = ft_calloc(i, sizeof(char *));
+	if (!new_envp)
+		return (NULL);
+	while (envp[j])
+	{
+		new_envp[j] = ft_strdup(envp[j]);
+		j++;
+	}
+	j = 0;
+	while (local_envp[j])
+	{
+		new_envp[envp_size + j] = ft_strdup(local_envp[j]);
+		j++;
+	}
+	return (new_envp);
 }

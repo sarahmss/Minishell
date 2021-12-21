@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 17:49:11 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/20 20:18:40 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/21 17:05:39 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ char	*insert_spaces(char *line, t_cmd_tab *tab)
 	char	*temp;
 	int		i;
 
-	operators = ft_strdup("<>();*-/+");
+	operators = ft_strdup("<>();*/+");
 	new_line = NULL;
 	temp = line;
 	i = 0;

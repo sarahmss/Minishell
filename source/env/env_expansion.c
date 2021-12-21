@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 23:05:02 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/14 21:36:28 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/21 16:55:15 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static char	*find_value(t_ht_tab *env, char *var_name)
 {
 	t_variable	*variable;
 
-	variable = ht_search(env, var_name);
+	variable = (t_variable *)ht_search(env, var_name);
 	if (variable)
 		return (variable->value);
 	else
