@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 17:01:52 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/21 17:02:39 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/21 18:31:07 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,15 @@ void	fork_simple_cmd(t_session *session, t_cmd_tab *tb)
 
 	pid = fork();
 	if (pid == -1)
+	{
 		ft_check_error(ERRSYS, "Failed forking child..", tb);
+		return ;
+	}
 	else if (pid == 0)
 		exec_simple_cmd(session);
+	else
+	{
+		wait (NULL);
+		return ;
+	}
 }
