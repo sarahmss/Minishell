@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 09:53:26 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/21 18:35:37 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/22 13:30:24 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int	main(int argc, char *argv[], char *envp[])
 {
 	t_session	*session;
+	t_ht_tab	*env;
 
 	(void)argv;
 	if (argc != 1)
@@ -25,6 +26,7 @@ int	main(int argc, char *argv[], char *envp[])
 	session->env = load_env(envp);
 	session->e_size = session->env->count;
 	session->envp = envp;
+	session->status = 1;
 	repl(session);
 	free_ht_tab(session->env);
 	free (session);

@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 23:05:02 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/21 17:50:54 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/22 12:36:19 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ void	env_expand_var(char **cmd_splitted, t_ht_tab *env)
 	while (cmd_splitted[i] != NULL)
 	{
 		j = 0;
-		while (cmd_splitted[i][j] != '\0')
+		while (cmd_splitted[i][j] != '\0' && ft_strchr(cmd_splitted[i], '$'))
 		{
 			if (cmd_splitted[i][j] == '\\' && cmd_splitted[i][j + 1] == '$')
 			{

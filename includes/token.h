@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 15:42:54 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/20 12:52:59 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/21 21:23:53 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,5 @@ void			tokenizer(t_cmd_tab *tab);
 t_token			**pipe_cmd_line(t_cmd_tab *tab);
 void			tk_define_types(t_token *head);
 int				token_error(t_cmd_tab *tb);
-int				tk_builtin(t_token *tk);
+int				tk_builtin(char *value);
 #endif

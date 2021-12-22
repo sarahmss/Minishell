@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 21:45:41 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/14 21:46:24 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/22 12:08:07 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,3 +16,30 @@
 	newline, on the standard output.
 	-n	do not append a newline
 */
+
+#include "../includes/Minishell.h"
+
+t_bool	ft_echo(char **argv)
+{
+	t_bool	flag_n;
+	int		i;
+	char	*temp;
+
+	i = 1;
+	flag_n = false;
+	if (argv[1] != NULL && ft_strcmp(argv[1], "-n"))
+	{
+		i = 2;
+		flag_n = true;
+	}
+	while (argv[i] != NULL)
+	{
+		temp = ft_strtrim(argv[i], "\"");
+		printf("%s ", temp);
+		i++;
+		free (temp);
+	}
+	if (flag_n == false)
+		printf("\n");
+	return (true);
+}

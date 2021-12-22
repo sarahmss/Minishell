@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 17:26:31 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/21 18:09:49 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/22 14:55:12 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,30 +24,31 @@ static void	free_mat(char **matrix)
 	}
 }
 
+static void	free_file(t_file *file[])
+{
+	int	i;
+
+	i = 0;
+	if (*file)
+	{
+		while (file[i] != NULL)
+		{
+			free(file[i]->path);
+			free(file[i]);
+			i++;
+		}
+	}
+}
+
 static void	free_process(t_process **process)
 {
-	int			i;
 	t_process	*p;
 
 	p = *process;
-	if (!p)
-		return ;
 	if (p->next)
 		free_process(&(p->next));
-	i = 0;
-	while (p->input_file[i] != NULL)
-	{
-		free(p->input_file[i]->path);
-		free(p->input_file[i]);
-		i++;
-	}
-	i = 0;
-	while (p->output_file[i] != NULL)
-	{
-		free(p->output_file[i]->path);
-		free(p->output_file[i]);
-		i++;
-	}
+	free_file(p->input_file);
+	free_file(p->output_file);
 	if (p->local_env[0] != NULL)
 		free_mat(p->local_env);
 	if (p->argv[0] != NULL)
@@ -55,18 +56,6 @@ static void	free_process(t_process **process)
 	if (p->command != NULL)
 		free(p->command);
 	free(p);
-}
-
-static void	free_jobs(t_job **jobs)
-{
-	t_job	*job;
-
-	job = *jobs;
-	if (!job)
-		return ;
-	free_process(&(job->process_lst));
-	free(job);
-	return ;
 }
 
 /*
@@ -77,6 +66,8 @@ void	before_living(t_cmd_tab *table)
 	int	i;
 
 	i = 0;
+	if (!table)
+		return ;
 	if (table->cmd_line != NULL)
 		free(table->cmd_line);
 	if (table->history != NULL)
@@ -92,8 +83,7 @@ void	before_living(t_cmd_tab *table)
 		}
 		free(table->piped_cmd);
 	}
-	if (table->session->jobs)
-		free_jobs(&table->session->jobs);
-	if (table)
-		free(table);
+	if (table->session->process_lst)
+		free_process(&(table->session->process_lst));
+	free(table);
 }

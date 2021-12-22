@@ -6,7 +6,7 @@
 #    By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/11 17:02:33 by smodesto          #+#    #+#              #
-#    Updated: 2021/12/21 17:03:42 by smodesto         ###   ########.fr        #
+#    Updated: 2021/12/22 14:40:17 by smodesto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,10 +48,13 @@ SRCS_FILES =	main/init_shell.c		\
 				env/env_variables.c		\
 				env/env_local.c			\
 				parse/parser_process.c	\
-				parse/parser_job.c		\
+				parse/parser.c		\
 				exec/exec_root.c		\
 				exec/exec_path.c		\
 				exec/exec_simple_cmd.c	\
+				builtins/builtins_root.c\
+				builtins/echo.c			\
+				builtins/exit.c			\
 
 SRCS = $(addprefix $(SRC_PATH), $(SRCS_FILES))
 
@@ -83,7 +86,7 @@ $(OBJS_PATH)%.o : $(SRC_PATH)%.c $(HEADERS)
 			@mkdir -p objects/token
 			@mkdir -p objects/env
 			@mkdir -p objects/parse
-			@mkdir -p objects/exec
+			@mkdir -p objects/builtins
 			$(CC) $(FLAGS) -c $(INCLUDES) $< -o $@
 
 $(LIBFT):

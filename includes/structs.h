@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 08:51:24 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/21 17:42:45 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/22 14:57:58 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef struct s_file
 	int					fd;
 }						t_file;
 
+
 typedef struct s_process
 {
 	char				*local_env[32];
@@ -34,12 +35,6 @@ typedef struct s_process
 	struct s_process	*next;
 	struct s_process	*prev;
 }						t_process;
-
-typedef struct s_job
-{
-	t_process			*process_lst;
-	struct s_job		*next;
-}						t_job;
 
 typedef enum e_index
 {
@@ -74,10 +69,11 @@ typedef struct s_token
 typedef struct s_session
 {
 	t_ht_tab	*env;
-	t_job		*jobs;
+	t_process	*process_lst;
 	char		**envp;
-	int			e_size;
 	char		**child_envp;
+	int			e_size;
+	int			status;
 }	t_session;
 
 typedef struct s_cmd_tab

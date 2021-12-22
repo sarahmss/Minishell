@@ -1,39 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_job.c                                       :+:      :+:    :+:   */
+/*   parserc                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/20 13:38:19 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/20 20:40:04 by smodesto         ###   ########.fr       */
+/*   Created: 2021/12/22 14:40:56 by smodesto          #+#    #+#             */
+/*   Updated: 2021/12/22 14:41:00 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Minishell.h"
 
-static void	push_job(t_job **job, t_job *new)
+static t_process	*simple_or_piped(t_token **tokens, int i)
 {
-	t_job	*temp;
-
-	if (*job == NULL)
-		*job = new;
-	else
-	{
-		temp = *job;
-		while (temp->next != NULL)
-			temp = temp->next;
-		temp->next = new;
-	}
-}
-
-static t_job	*parse_job(t_token **tokens, int i)
-{
-	t_job		*job;
 	t_process	*head;
-	t_process	*command;	
+	t_process	*command;
+	t_process	*process_lst;
 
-	job = ft_calloc(1, sizeof(t_job));
 	head = NULL;
 	if (i == 0)
 	{
@@ -49,17 +33,16 @@ static t_job	*parse_job(t_token **tokens, int i)
 		command = parse_command(tokens);
 		push_process(&head, command);
 	}
-	job->process_lst = head;
-	return (job);
+	process_lst = head;
+	return (process_lst);
 }
 
-t_job	*parser(t_cmd_tab *tb)
+t_process	*parser(t_cmd_tab *tb)
 {
-	t_job		*jobs;
 	t_token		**tokens;
 	int			mood;
+	t_process	*process;
 
-	jobs = NULL;
 	mood = 1;
 	if (tb->piped_cmd != NULL)
 	{
@@ -68,6 +51,6 @@ t_job	*parser(t_cmd_tab *tb)
 	}
 	else
 		tokens = &tb->simple_cmd;
-	push_job(&jobs, parse_job(tokens, mood));
-	return (jobs);
+	process = simple_or_piped(tokens, mood);
+	return (process);
 }

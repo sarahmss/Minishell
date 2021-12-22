@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 17:33:48 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/21 17:52:57 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/22 14:39:43 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	repl(t_session	*session)
 		tokenizer(tb);
 		if (!(token_error(tb)))
 		{
-			session->jobs = parser(tb);
+			session->process_lst = parser(tb);
 			execute_root(session, tb);
 		}
 		before_living(tb);
