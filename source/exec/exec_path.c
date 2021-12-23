@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 15:28:09 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/21 17:51:35 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/22 21:19:00 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 	stat function check status of file such as permissions and type
 	S_IXUSR = check if it is executable
 */
-static t_bool	is_executable(char *path_cmd)
+t_bool	is_executable(char *path_cmd)
 {
 	struct stat	buffer;
 

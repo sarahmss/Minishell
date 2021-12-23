@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 10:17:15 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/20 20:40:31 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/22 21:12:12 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,17 @@
 int	validate_tokens(t_token *tk)
 {
 	int			status;
-	t_token		*temp;
+	t_token		*t;
 
 	status = 0;
-	temp = tk;
-	while (temp)
+	t = tk;
+	while (t)
 	{
-		if (temp->type != T_WORD && (!temp->next || temp->next->type != T_WORD))
+		if ((t->type != T_WORD && (!t->next || t->next->type != T_WORD))
+			&& (t->type != T_BUILTIN && (!t->next || t->next->type != T_BUILTIN)
+			))
 				status = -1;
-		temp = temp->next;
+		t = t->next;
 	}
 	return (status);
 }
