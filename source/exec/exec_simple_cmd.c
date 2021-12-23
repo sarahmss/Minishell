@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 17:01:52 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/22 14:45:16 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/22 21:19:17 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@ static void	exec_simple_cmd(t_session *session)
 	char	**envp;
 
 	command = session->process_lst->command;
-	full_path = find_full_path(session->env, command);
+	if (is_executable(command) == true)
+		full_path = command;
+	else
+		full_path = find_full_path(session->env, command);
 	if (full_path == NULL)
 		return ;
 	argv = session->process_lst->argv;

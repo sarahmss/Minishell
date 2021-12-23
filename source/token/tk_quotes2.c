@@ -6,26 +6,27 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 10:19:18 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/20 18:59:21 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/22 21:03:31 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Minishell.h"
 
-void	check_quotes(char *cmd_line, t_cmd_tab *tab)
+int	check_quotes(char *cmd_line, t_cmd_tab *tab)
 {
 	char	quotes[2];
 
 	quotes[0] = C_DQUOTE;
 	quotes[1] = C_SQUOTE;
 	if (dq(cmd_line, quotes[0]) == -1)
-		ft_check_error(-1, "MISSING DOUBLE QUOTES", tab);
+		return (ft_check_error(EUNFQT, "MISSING DOUBLE QUOTES\n", NULL));
 	if (dq(cmd_line, quotes[0]) == 1)
 		dq_cmd_tab(tab, tab->cmd_splitted, quotes[0], cmd_line);
 	if (dq(cmd_line, quotes[1]) == -1)
-		ft_check_error(-1, "MISSING SINGLE QUOTES", tab);
+		return (ft_check_error(EUNFQT, "MISSING SINGLE QUOTES\n", NULL));
 	if (dq(cmd_line, quotes[1]) == 1)
 		dq_cmd_tab(tab, tab->cmd_splitted, quotes[1], cmd_line);
+	return (0);
 }
 
 /*
