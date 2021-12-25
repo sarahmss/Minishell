@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 18:56:26 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/22 14:42:32 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/25 18:03:06 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,5 @@ void			root_piped_cmd(t_session *session, t_cmd_tab *tb);
 t_bool			run_builtins(t_cmd_tab *tb, t_session *s, t_process *p);
 t_bool			ft_echo(char **argv);
 t_bool			ft_exit(t_cmd_tab *tb, t_session *s, t_process *p);
+t_bool			ft_env(t_ht_tab *table);
 #endif

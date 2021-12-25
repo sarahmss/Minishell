@@ -1,41 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env_local.c                                        :+:      :+:    :+:   */
+/*   env_assign.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/21 16:20:53 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/25 17:25:29 by smodesto         ###   ########.fr       */
+/*   Created: 2021/12/22 21:49:27 by smodesto          #+#    #+#             */
+/*   Updated: 2021/12/25 17:53:19 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Minishell.h"
 
-char	**env_local(char **local_envp, char **envp, size_t envp_size)
+/*
+	Runs through *envp[] while putting the environment variables in the hash table env.
+*/
+int	env_assign(char *envp[], t_ht_tab *env)
 {
-	int		i;
-	int		j;
-	char	**new_envp;
+	int			i;
+	int		assign;
 
 	i = 0;
-	j = 0;
-	while (local_envp[i])
+	assign = 0;
+	while (envp[i])
+	{
+		if (set_value(env, envp[i]))
+			assign = 1;
 		i++;
-	i += envp_size + 1;
-	new_envp = (char **)ft_calloc(i + 1, sizeof(char *));
-	if (!new_envp)
-		return (NULL);
-	while (envp[j])
-	{
-		new_envp[j] = ft_strdup(envp[j]);
-		j++;
 	}
-	j = 0;
-	while (local_envp[j])
-	{
-		new_envp[envp_size + j] = ft_strdup(local_envp[j]);
-		j++;
-	}
-	return (new_envp);
+	return (assign);
 }

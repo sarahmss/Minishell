@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 09:53:26 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/22 13:30:24 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/22 22:01:45 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 int	main(int argc, char *argv[], char *envp[])
 {
 	t_session	*session;
-	t_ht_tab	*env;
 
 	(void)argv;
 	if (argc != 1)

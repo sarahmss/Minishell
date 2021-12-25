@@ -1,41 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env_local.c                                        :+:      :+:    :+:   */
+/*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/21 16:20:53 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/25 17:25:29 by smodesto         ###   ########.fr       */
+/*   Created: 2021/12/25 17:58:11 by smodesto          #+#    #+#             */
+/*   Updated: 2021/12/25 18:28:55 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Minishell.h"
 
-char	**env_local(char **local_envp, char **envp, size_t envp_size)
+t_bool	ft_env(t_ht_tab *table)
 {
-	int		i;
-	int		j;
-	char	**new_envp;
+	int	i;
+	int	total;
 
 	i = 0;
-	j = 0;
-	while (local_envp[i])
+	total = table->count;
+	while (i < HT_SIZE_ENV && total)
+	{
+		if (table->items[i])
+		{
+			printf("%s=%s\n", table->items[i]->key, table->items[i]->value);
+			total--;
+		}
 		i++;
-	i += envp_size + 1;
-	new_envp = (char **)ft_calloc(i + 1, sizeof(char *));
-	if (!new_envp)
-		return (NULL);
-	while (envp[j])
-	{
-		new_envp[j] = ft_strdup(envp[j]);
-		j++;
 	}
-	j = 0;
-	while (local_envp[j])
-	{
-		new_envp[envp_size + j] = ft_strdup(local_envp[j]);
-		j++;
-	}
-	return (new_envp);
+	return (true);
 }
