@@ -6,7 +6,7 @@
 #    By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/11 17:02:33 by smodesto          #+#    #+#              #
-#    Updated: 2021/12/25 18:01:23 by smodesto         ###   ########.fr        #
+#    Updated: 2021/12/25 18:45:17 by smodesto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,15 +49,14 @@ SRCS_FILES =	main/init_shell.c		\
 				env/env_local.c			\
 				env/env_assign.c		\
 				parse/parser_process.c	\
-				parse/parser.c		\
+				parse/parser.c			\
 				exec/exec_root.c		\
 				exec/exec_path.c		\
 				exec/exec_simple_cmd.c	\
 				builtins/builtins_root.c\
 				builtins/echo.c			\
 				builtins/exit.c			\
-				builtins/env.c			\
-
+				builtins/env.c			
 SRCS = $(addprefix $(SRC_PATH), $(SRCS_FILES))
 
 OBJS_FILES	= $(patsubst %.c, %.o, $(SRCS_FILES))

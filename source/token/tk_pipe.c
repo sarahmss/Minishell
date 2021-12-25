@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 09:23:44 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/20 17:57:52 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/22 21:03:00 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ t_token	**pipe_cmd_line(t_cmd_tab *tab)
 	times = count_pipes(tab->cmd_line);
 	pipe = (t_token **)malloc(sizeof(t_token *) * times + 2);
 	if (!pipe)
-		ft_check_error(EALLOC, "CREATING PIPED CMD LINE", tab);
+		ft_check_error(EALLOC, "CREATING PIPED CMD LINE", NULL);
 	split = split_pipe(tab->cmd_line, times + 2);
 	while (i < times + 1)
 	{

@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 21:26:17 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/21 17:50:27 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/22 19:51:41 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,6 @@ char	*set_value(t_ht_tab *env, char *str)
 	else
 		ht_insert(env, var_split[0], var_split[1]);
 	free (var_split[0]);
+	free (var_split[1]);
 	return (var_split[1]);
 }

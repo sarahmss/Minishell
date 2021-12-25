@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 17:26:31 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/22 14:55:12 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/25 19:03:08 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,19 @@ static void	free_process(t_process **process)
 }
 
 /*
-	free memory before living
+	free session before exiting shell
+*/
+void	free_session(t_session *session)
+{
+	free_ht_tab(session->env);
+	free_mat(session->child_envp);
+	free(session->child_envp);
+	free (session);
+	session = NULL;
+}
+
+/*
+	free memory before prompting again
 */
 void	before_living(t_cmd_tab *table)
 {
@@ -83,7 +95,7 @@ void	before_living(t_cmd_tab *table)
 		}
 		free(table->piped_cmd);
 	}
-	if (table->session->process_lst)
+	if (table->session && table->session->process_lst)
 		free_process(&(table->session->process_lst));
 	free(table);
 }

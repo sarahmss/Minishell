@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 09:53:26 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/22 22:01:45 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/22 20:48:04 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,8 @@ int	main(int argc, char *argv[], char *envp[])
 	session->env = load_env(envp);
 	session->e_size = session->env->count;
 	session->envp = envp;
-	session->status = 1;
+	session->status = 0;
 	repl(session);
-	free_ht_tab(session->env);
-	free (session);
+	free_session(session);
 	return (EXIT_SUCCESS);
 }

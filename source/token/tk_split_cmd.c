@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 11:22:40 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/20 17:59:10 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/22 20:55:14 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static char	**make_splitted(char *cmd_line, char delimiter, t_cmd_tab *tab)
 		token = ft_strtok(NULL, delimiter);
 	}
 	tokens[pos] = NULL;
-	check_quotes(line, tab);
+	tab->session->status = check_quotes(line, tab);
 	env_expand_var(tab->cmd_splitted, tab->session->env);
 	return (tab->cmd_splitted);
 }
@@ -91,7 +91,7 @@ t_token	*tk_split_cmd(char *line, char delimiter, t_cmd_tab *tab)
 	pos.stemp = treat_line(line, tab);
 	tab->cmd_splitted = ft_alocate(pos, delimiter);
 	if (tab->cmd_splitted == NULL)
-		ft_check_error(EALLOC, "ALLOCATING CMD_SPLITTED", tab);
+		ft_check_error(EALLOC, "ALLOCATING CMD_SPLITTED", NULL);
 	tab->cmd_splitted = make_splitted(pos.stemp, delimiter, tab);
 	head = tk_create_tokens(tab, tab->cmd_splitted);
 	free (pos.stemp);
