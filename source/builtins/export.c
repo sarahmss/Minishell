@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/25 19:19:59 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/26 16:16:51 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/26 17:26:46 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,14 @@ t_bool	ft_export(t_process *p, t_session *s)
 {
 	int	i;
 
+	i = 0;
+	while (p->argv[i])
+		i++;
+	if (i > 2)
+		ft_check_error(ENUMARG, "too much args", NULL);
 	if (!p->argv[1])
 		export_no_args(s->env);
-	if (!ft_strchr(p->argv[1], '='))
-
+	else if (ft_strchr(p->argv[1], '='))
+		set_value(s->env, p->argv[1]);
 	return (true);
 }

@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 18:56:26 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/25 18:42:55 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/26 17:21:29 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,5 @@ t_bool			run_builtins(t_cmd_tab *tb, t_session *s, t_process *p);
 t_bool			ft_echo(char **argv);
 void			ft_exit(t_cmd_tab *tb, t_session *s, t_process *p);
 t_bool			ft_env(t_ht_tab *table);
+t_bool			ft_export(t_process *p, t_session *s);
 #endif
