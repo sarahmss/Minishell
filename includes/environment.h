@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   environment.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 21:19:39 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/25 18:43:35 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/26 01:07:11 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void		split_var(char *str, char *var_split[]);
 
 //	env_load
 t_ht_tab	*load_env(char *envp[]);
-char		**env_local(char **local_envp, char **envp, size_t envp_size);
+char		**env_local(char **local_envp, char **envp, int envp_size);
 int			env_assign(char *envp[], t_ht_tab *env);
 
 void		env_expand_var(char **cmd_splitted, t_ht_tab *env);
