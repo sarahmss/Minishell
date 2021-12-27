@@ -1,39 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/25 17:58:11 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/27 19:13:47 by smodesto         ###   ########.fr       */
+/*   Created: 2021/12/27 18:59:42 by smodesto          #+#    #+#             */
+/*   Updated: 2021/12/27 19:50:46 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Minishell.h"
 
-t_bool	ft_env(t_session *s, t_ht_tab *table)
+t_bool	ft_unset(t_ht_tab *env, t_process *p)
 {
-	int	i;
-	int	total;
-	int	argc;
+	int			i;
+	t_ht_item	*current;
 
-	argc = 0;
-	while (s->process_lst->argv[argc])
-		argc++;
-	if (argc != 1)
+	i = 1;
+	current = NULL;
+	while (p->argv[i])
 	{
-		ft_check_error(ENUMARG, "ENV: Invalid args", NULL);
-		return (false);
-	}
-	i = 0;
-	total = table->count;
-	while (i < HT_SIZE_ENV && total)
-	{
-		if (table->items[i] && table->items[i]->is_env == true)
+		current = ht_search(env, p->argv[i]);
+		if (current != NULL)
+			ht_delete(env, p->argv[i]);
+		else
 		{
-			printf("%s=%s\n", table->items[i]->key, table->items[i]->value);
-			total--;
+			ft_check_error (ENUMARG, "UNSET, invalid args", NULL);
+			return (false);
 		}
 		i++;
 	}

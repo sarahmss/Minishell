@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 18:56:26 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/27 18:44:07 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/27 19:50:53 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,8 @@ t_bool			is_executable(char *path_cmd);
 // builtins
 t_bool			run_builtins(t_cmd_tab *tb, t_session *s, t_process *p);
 t_bool			ft_echo(char **argv);
-void			ft_exit(t_cmd_tab *tb, t_session *s, t_process *p);
-t_bool			ft_env(t_ht_tab *table);
+int				ft_exit(t_cmd_tab *tb, t_session *s, t_process *p);
+t_bool			ft_env(t_session *s, t_ht_tab *table);
 t_bool			ft_export(t_process *p, t_session *s);
+t_bool			ft_unset(t_ht_tab *env, t_process *p);
 #endif

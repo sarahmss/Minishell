@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 13:53:35 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/27 18:44:00 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/27 19:46:51 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ t_cmd_tab	*init_cmd_tab(t_session *session)
 t_session	*init_session(char *envp[])
 {
 	t_session	*session;
+
 	session = ft_calloc(1, sizeof(t_session));
 	if (!session)
 		ft_check_error(EALLOC, "INITIALIZING SESSION", NULL);
