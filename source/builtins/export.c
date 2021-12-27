@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/25 19:19:59 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/26 17:26:46 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/27 13:38:57 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ static void	export_no_args(t_ht_tab *table)
 	total = table->count;
 	while (i < HT_SIZE_ENV && total)
 	{
-		if (table->items[i])
+		if (table->items[i] && table->items[i]->is_env == true)
 		{
-			printf("declare -x");
+			printf("declare -x ");
 			printf("%s=%s\n", table->items[i]->key, table->items[i]->value);
 			total--;
 		}
@@ -43,6 +43,6 @@ t_bool	ft_export(t_process *p, t_session *s)
 	if (!p->argv[1])
 		export_no_args(s->env);
 	else if (ft_strchr(p->argv[1], '='))
-		set_value(s->env, p->argv[1]);
+		set_value(s->env, p->argv[1], 1);
 	return (true);
 }

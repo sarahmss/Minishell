@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   environment.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
+/*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 21:19:39 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/26 01:07:11 by coder            ###   ########.fr       */
+/*   Updated: 2021/12/27 13:33:29 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "./Minishell.h"
 
 //	env_variables
-char		*set_value(t_ht_tab *env, char *str);
+t_ht_item	*set_value(t_ht_tab *env, char *str, int mood);
 void		split_var(char *str, char *var_split[]);
 
 //	env_load

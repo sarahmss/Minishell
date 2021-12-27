@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_root.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
+/*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 10:54:32 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/26 01:19:04 by coder            ###   ########.fr       */
+/*   Updated: 2021/12/27 13:52:38 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ int	execute_root(t_session *session, t_cmd_tab *tb)
 
 	assign = 0;
 	local_env = session->process_lst->local_env;
-	session->child_envp = env_local(local_env, session->envp, session->e_size);
 	assign = env_assign(local_env, session->env);
+	session->child_envp = env_local(local_env, session->envp, session->e_size);
 	if (!assign && session->process_lst->next == NULL)
 		root_simple_cmd(session, tb);
 	/*
