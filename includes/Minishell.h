@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 18:56:26 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/26 17:21:29 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/27 18:44:07 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@
 # include <sys/wait.h>
 
 // init
+t_session		*init_session(char *envp[]);
 t_cmd_tab		*init_cmd_tab(t_session *session);
 void			before_living(t_cmd_tab *table);
 int				ft_check_error(t_errcode code, char *msg, t_cmd_tab *table);
