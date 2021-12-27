@@ -44,7 +44,7 @@ char	*ft_strcdup(const char *src, char c);
 char	*ft_strchr2(const char *str, int c, int c2);
 int		ft_strcmp(const char *s1, const char *s2);
 char	*str_replace(char *orig, char *rep, char *with);
-char	*ft_strjoin_variadic(unsigned int arg_quantity, ...);
+char	*ft_join_var(unsigned int arg_quantity, ...);
 // input/output
 int		get_next_line(int fd, char **line);
 void	ft_free_g(char **s_list);

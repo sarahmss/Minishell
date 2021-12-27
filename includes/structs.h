@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 08:51:24 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/22 21:10:52 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/27 14:15:51 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ typedef struct s_session
 	t_process	*process_lst;
 	char		**envp;
 	char		**child_envp;
-	int			e_size;
 	int			status;
 }	t_session;
 

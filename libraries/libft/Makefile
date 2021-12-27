@@ -50,7 +50,7 @@ SRCS	=	ft_bzero.c		\
 		ft_printf_simple.c	\
 		get_next_line.c		\
 		get_next_line_utils.c\
-		ft_strjoin_variadic.c\
+		ft_join_var.c		\
 
 
 SRCS_B = ft_lstnew.c		\

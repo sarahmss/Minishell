@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin_variadic.c                              :+:      :+:    :+:   */
+/*   ft_join_var.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 15:17:59 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/21 15:22:02 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/27 14:08:50 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin_variadic(unsigned int arg_quantity, ...)
+char	*ft_join_var(unsigned int arg_quantity, ...)
 {
 	va_list			arg_list;
 	unsigned int	i;
