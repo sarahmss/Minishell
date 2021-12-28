@@ -6,7 +6,7 @@
 #    By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/11 17:02:33 by smodesto          #+#    #+#              #
-#    Updated: 2021/12/27 19:43:31 by smodesto         ###   ########.fr        #
+#    Updated: 2021/12/27 21:16:19 by smodesto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,7 +58,10 @@ SRCS_FILES =	main/init_shell.c		\
 				builtins/exit.c			\
 				builtins/env.c			\
 				builtins/export.c		\
-				builtins/unset.c
+				builtins/unset.c		\
+				builtins/pwd.c			\
+				builtins/cd.c
+
 
 SRCS = $(addprefix $(SRC_PATH), $(SRCS_FILES))
 

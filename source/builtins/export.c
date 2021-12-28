@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/25 19:19:59 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/27 19:46:23 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/27 20:16:23 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ t_bool	ft_export(t_process *p, t_session *s)
 			set_value(s->env, p->argv[i], 1);
 		else
 		{
-			ft_check_error (ENUMARG, "EXPORT, invalid args", NULL);
+			ft_check_error (ENUMARG, "export, invalid args", NULL);
 			return (false);
 		}
 		i++;

@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 18:59:42 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/27 19:50:46 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/27 20:16:34 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_bool	ft_unset(t_ht_tab *env, t_process *p)
 			ht_delete(env, p->argv[i]);
 		else
 		{
-			ft_check_error (ENUMARG, "UNSET, invalid args", NULL);
+			ft_check_error (ENUMARG, "unset, invalid args", NULL);
 			return (false);
 		}
 		i++;
