@@ -23,7 +23,7 @@ char	*working_directory(int mod)
 	if (mod == 0)
 		return (getcwd(NULL, 0));
 	temp = getcwd(NULL, 0);
-	cwd = ft_join_var(3, "\e[0;36m", temp, "\e[0;37m$");
+	cwd = ft_join_var(3, "\e[0;36m", temp, "\e[0;37m$ ");
 	free(temp);
 	return (cwd);
 }
