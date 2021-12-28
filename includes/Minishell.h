@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
+/*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 18:56:26 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/28 03:02:51 by coder            ###   ########.fr       */
+/*   Updated: 2021/12/28 03:57:45 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,11 @@
 // init
 t_session		*init_session(char *envp[]);
 t_cmd_tab		*init_cmd_tab(t_session *session);
-void	        greetings(void);
+void			greetings(void);
 void			before_living(t_cmd_tab *table);
 int				ft_check_error(t_errcode code, char *msg, t_cmd_tab *table);
 void			repl(t_session *session);
 void			free_session(t_session *session);
-
 
 // cmd_line
 void			ft_read_line(t_cmd_tab *tb);
