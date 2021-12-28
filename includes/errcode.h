@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 15:32:49 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/22 13:05:38 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/27 20:23:27 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,8 @@ typedef enum e_errcode
 	ENOFDI,
 	EPARSE,
 	EUNFQT,
-	ENOTVI,
 	ECMDNF,
 	ECOMMAND,
-	ESYNTAX,
 	ENUMARG,
 	EALLOC,
 	__ERRMAX

@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 09:59:13 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/21 17:49:39 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/27 13:29:29 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 //env
 typedef enum e_bool
 {
-	true,
-	false
+	false,
+	true
 }					t_bool;
 
 // each item in ht corresponds to a variable with key=name and value
@@ -28,6 +28,7 @@ typedef struct s_ht_item
 {
 	char	*key;
 	char	*value;
+	t_bool	is_env;
 }	t_ht_item;
 
 //  Double linked list
@@ -55,7 +56,7 @@ t_ht_tab		*create_table(int size);
 t_ht_item		*create_item(char *key, char *value);
 
 // ht utils
-void			ht_insert(t_ht_tab *ht, char *key, char *value);
+t_ht_item		*ht_insert(t_ht_tab *ht, char *key, char *value);
 t_ht_item		*ht_search(t_ht_tab *ht_tab, char *key);
 void			ht_delete(t_ht_tab *ht_tab, char *key);
 

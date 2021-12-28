@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 18:56:26 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/25 18:42:55 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/27 21:57:57 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@
 # include <sys/wait.h>
 
 // init
+t_session		*init_session(char *envp[]);
 t_cmd_tab		*init_cmd_tab(t_session *session);
 void			before_living(t_cmd_tab *table);
 int				ft_check_error(t_errcode code, char *msg, t_cmd_tab *table);
@@ -61,6 +62,11 @@ t_bool			is_executable(char *path_cmd);
 // builtins
 t_bool			run_builtins(t_cmd_tab *tb, t_session *s, t_process *p);
 t_bool			ft_echo(char **argv);
-void			ft_exit(t_cmd_tab *tb, t_session *s, t_process *p);
-t_bool			ft_env(t_ht_tab *table);
+int				ft_exit(t_cmd_tab *tb, t_session *s, t_process *p);
+t_bool			ft_env(t_session *s, t_ht_tab *table);
+t_bool			ft_export(t_process *p, t_session *s);
+t_bool			ft_unset(t_ht_tab *env, t_process *p);
+t_bool			ft_cd(t_process *p, t_ht_tab *env);
+t_bool			ft_pwd(t_process *p);
+
 #endif

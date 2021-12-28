@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 10:12:52 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/10 22:06:12 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/27 19:58:16 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ static void	search_to_del(t_ht_tab *ht, t_linkdlst *head, char *key, int index)
 static void	no_colis(t_ht_tab *ht, t_ht_item *item, int index)
 {
 	ht->items[index] = NULL;
+	free(item->key);
+	free(item->value);
 	free(item);
 	ht->count--;
 	return ;

@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 14:13:05 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/21 16:48:51 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/27 20:22:01 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int	parse_iredirect(t_process *p, t_token **tk, int i[])
 		return (EPARSE);
 	input = malloc(sizeof(t_file));
 	if (!input)
-		return (ERRSYS);
+		return (ft_check_error(EALLOC, "Allocating input", NULL));
 	input->path = ft_strdup(token->value);
 	input->flags = 2;
 	p->input_file[i[I_IRED]] = input;
@@ -83,7 +83,7 @@ int	parse_oredirect(t_process *p, t_token **tk, t_bool append, int i[])
 		return (EPARSE);
 	outfile = malloc(sizeof(t_file));
 	if (!outfile)
-		return (ERRSYS);
+		return (ft_check_error(EALLOC, "Allocating input", NULL));
 	outfile->path = ft_strdup(token->value);
 	if (append == true)
 		outfile->flags = 1;

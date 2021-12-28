@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 15:28:09 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/22 21:19:00 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/27 14:09:11 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char	*find_full_path(t_ht_tab *env, char *command)
 	path_split = ft_split(path->value, ':');
 	while (path_split[i] != NULL)
 	{
-		final_path = ft_strjoin_variadic(3, path_split[i], "/", command);
+		final_path = ft_join_var(3, path_split[i], "/", command);
 		if (is_executable(final_path) == true)
 		{
 			free_matrix(path_split);
