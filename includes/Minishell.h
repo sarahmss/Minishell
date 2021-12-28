@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 18:56:26 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/28 00:53:12 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/28 13:35:24 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,7 @@ int				ft_unset(t_ht_tab *env, t_process *p);
 int				ft_cd(t_process *p, t_ht_tab *env);
 int				ft_pwd(t_process *p);
 
+// signals
+void			empty_line(void);
+void			no_empty_line(t_cmd_tab *tb);
 #endif

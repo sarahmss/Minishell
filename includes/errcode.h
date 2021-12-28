@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 15:32:49 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/28 01:34:00 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/28 13:05:12 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ typedef enum e_errcode
 	ECOMMAND,
 	ENUMARG,
 	EALLOC,
+	SINT = 130,
+	SQUIT = 131,
 	__ERRMAX
 }					t_errcode;
 

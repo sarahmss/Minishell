@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: coder <coder@student.42.fr>                +#+  +:+       +#+         #
+#    By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/11 17:02:33 by smodesto          #+#    #+#              #
-#    Updated: 2021/12/28 02:59:05 by coder            ###   ########.fr        #
+#    Updated: 2021/12/28 13:27:09 by smodesto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ SRCS_FILES =	main/init_shell.c		\
 				main/repl.c				\
 				main/greetings.c		\
 				cmd_line/prompt.c		\
+				cmd_line/sig_handler.c	\
 				cmd_line/ft_read_line.c	\
 				ht/ft_lstdoubly.c		\
 				ht/ht_insert.c			\
