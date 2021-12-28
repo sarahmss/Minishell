@@ -6,32 +6,30 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 13:57:56 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/27 21:57:48 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/28 01:00:12 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Minishell.h"
 
-t_bool	run_builtins(t_cmd_tab *tb, t_session *s, t_process *p)
+int	run_builtins(t_cmd_tab *tb, t_session *s, t_process *p)
 {
 	char	*command;
-	t_bool	ret;
 
-	ret = false;
 	command = p->command;
 	if (ft_strcmp("echo", command))
-		ret = ft_echo(p->argv);
+		s->status = ft_echo(p->argv);
 	if (ft_strcmp("exit", command))
 		ft_exit(tb, s, p);
 	if (ft_strcmp("env", command))
-		ret = ft_env(s, s->env);
+		s->status = ft_env(s, s->env);
 	if (ft_strcmp("export", command))
-		ret = ft_export(p, s);
+		s->status = ft_export(p, s);
 	if (ft_strcmp("unset", command))
-		ret = ft_unset(s->env, s->process_lst);
+		s->status = ft_unset(s->env, s->process_lst);
 	if (ft_strcmp("pwd", command))
-		ret = ft_pwd(s->process_lst);
+		s->status = ft_pwd(s->process_lst);
 	if (ft_strcmp("cd", command))
-		ret = ft_cd(s->process_lst, s->env);
-	return (ret);
+		s->status = ft_cd(s->process_lst, s->env);
+	return (s->status);
 }

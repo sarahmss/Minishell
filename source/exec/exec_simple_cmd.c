@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 17:01:52 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/28 00:38:55 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/28 01:34:08 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,18 @@ static void	exec_simple_cmd(t_session *session)
 	else
 		full_path = find_full_path(session->env, command);
 	if (full_path == NULL)
+	{
+		session->status = ft_check_error(ENOFD, "command not found", NULL);
 		return ;
+	}
 	argv = session->process_lst->argv;
 	envp = session->child_envp;
-	if (execve(full_path, argv, envp) == -1)
+	session->status = execve(full_path, argv, envp);
+	if (session->status == -1)
+	{
 		perror("Could not execute execve");
+		session->status = ft_check_error(ECMDNF, "command not found", NULL);
+	}
 	free (full_path);
 	return ;
 }

@@ -6,13 +6,13 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/25 17:58:11 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/27 20:14:16 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/28 00:55:28 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Minishell.h"
 
-t_bool	ft_env(t_session *s, t_ht_tab *table)
+int	ft_env(t_session *s, t_ht_tab *table)
 {
 	int	i;
 	int	total;
@@ -22,10 +22,7 @@ t_bool	ft_env(t_session *s, t_ht_tab *table)
 	while (s->process_lst->argv[argc + 1])
 		argc++;
 	if (argc != 1)
-	{
-		ft_check_error(ENUMARG, "ENV: Invalid args", NULL);
-		return (false);
-	}
+		return (ft_check_error(ENUMARG, "ENV: Invalid args", NULL));
 	i = 0;
 	total = table->count;
 	while (i < HT_SIZE_ENV && total)
@@ -37,5 +34,5 @@ t_bool	ft_env(t_session *s, t_ht_tab *table)
 		}
 		i++;
 	}
-	return (true);
+	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
+/*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 20:04:04 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/28 02:16:19 by coder            ###   ########.fr       */
+/*   Updated: 2021/12/28 00:59:15 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static void	update_var(t_ht_tab *env, char *key, char *pwd)
 	}
 }
 
-static	t_bool	update_cwd(t_ht_tab *env, char *old_pwd)
+static	int	update_cwd(t_ht_tab *env, char *old_pwd)
 {
 	char	*cwd;
 
@@ -53,10 +53,10 @@ static	t_bool	update_cwd(t_ht_tab *env, char *old_pwd)
 		return (false);
 	update_var(env, "OLDPWD", old_pwd);
 	update_var(env, "PWD", cwd);
-	return (true);
+	return (0);
 }
 
-t_bool	ft_cd(t_process *p, t_ht_tab *env)
+int	ft_cd(t_process *p, t_ht_tab *env)
 {
 	t_ht_item	*temp;
 	t_ht_item	*var;
@@ -72,10 +72,7 @@ t_bool	ft_cd(t_process *p, t_ht_tab *env)
 	else if (p->argv[2] == NULL)
 	{
 		if (chdir(p->argv[1]) == -1)
-		{
-			ft_check_error(ECOMMAND, "cd: Dir not exists", NULL);
-			return (false);
-		}
+			return (ft_check_error(ECOMMAND, "cd: Dir not exists", NULL));
 	}
 	return (update_cwd(env, old_pwd));
 }

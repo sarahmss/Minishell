@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/22 12:57:57 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/28 00:45:13 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/28 00:59:00 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,10 @@ int	ft_exit(t_cmd_tab *tb, t_session *s, t_process *p)
 		while (arg[argc])
 		{
 			if ((!ft_isdigit(arg[argc])) && (arg[argc] != '-'))
-				ft_check_error(ENUMARG, "exit: no num arg", NULL);
+				return (ft_check_error(ENUMARG, "exit: no num arg", NULL));
 			argc++;
 		}
 		status = ft_atoi(argv[1]);
 	}
-	ft_check_error(status, "exit\n", tb);
-	return (0);
+	return (ft_check_error(status, "exit\n", tb));
 }

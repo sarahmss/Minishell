@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 18:56:26 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/28 03:57:45 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/28 00:53:12 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,13 +61,13 @@ void			root_piped_cmd(t_session *session, t_cmd_tab *tb);
 t_bool			is_executable(char *path_cmd);
 
 // builtins
-t_bool			run_builtins(t_cmd_tab *tb, t_session *s, t_process *p);
-t_bool			ft_echo(char **argv);
+int				run_builtins(t_cmd_tab *tb, t_session *s, t_process *p);
+int				ft_echo(char **argv);
 int				ft_exit(t_cmd_tab *tb, t_session *s, t_process *p);
-t_bool			ft_env(t_session *s, t_ht_tab *table);
-t_bool			ft_export(t_process *p, t_session *s);
-t_bool			ft_unset(t_ht_tab *env, t_process *p);
-t_bool			ft_cd(t_process *p, t_ht_tab *env);
-t_bool			ft_pwd(t_process *p);
+int				ft_env(t_session *s, t_ht_tab *table);
+int				ft_export(t_process *p, t_session *s);
+int				ft_unset(t_ht_tab *env, t_process *p);
+int				ft_cd(t_process *p, t_ht_tab *env);
+int				ft_pwd(t_process *p);
 
 #endif

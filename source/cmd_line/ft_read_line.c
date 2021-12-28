@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 11:22:40 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/28 00:16:16 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/28 01:15:00 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,10 @@ void	ft_read_line(t_cmd_tab *tb)
 		ft_check_error(SIGEXIT, "Ctrl+c", tb);
 	if (strlen(tb->cmd_line) != 0 && not_only_char(tb->cmd_line, '\t')
 		&& not_only_char(tb->cmd_line, ' '))
-		{
-			add_history(tb->cmd_line);
-			tb->session->status = 0;
-		}
+	{
+		add_history(tb->cmd_line);
+		tb->session->status = 0;
+	}
 	else
 		tb->session->status = ECMDNF;
 	free(prompt);

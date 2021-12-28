@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 21:19:39 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/27 14:12:23 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/28 01:37:53 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,6 @@ t_ht_tab	*load_env(char *envp[]);
 char		**env_local(t_ht_tab *env);
 int			env_assign(char *envp[], t_ht_tab *env);
 
-void		env_expand_var(char **cmd_splitted, t_ht_tab *env);
+void		env_expand_var(char **cmd_splitted, t_ht_tab *env, int status);
 char		*assign_value(char *str, t_ht_tab *env, int j);
 #endif

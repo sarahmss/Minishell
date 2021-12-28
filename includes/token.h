@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 15:42:54 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/22 20:46:04 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/28 01:21:37 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char			*insert_spaces(char *line, t_cmd_tab *tab);
 
 // quotes 1
 void			dq_cmd_tab(t_cmd_tab *tab, char **old, char c, char *cmd_line);
-
+int				in_qt(char *str, char c);
 // quotes 2
 int				dq(char	*line, char c);
 int				check_quotes(char *cmd_line, t_cmd_tab *tab);

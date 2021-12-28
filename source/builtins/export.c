@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/25 19:19:59 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/27 20:16:23 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/28 00:58:19 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	export_no_args(t_ht_tab *table)
 	}
 }
 
-t_bool	ft_export(t_process *p, t_session *s)
+int	ft_export(t_process *p, t_session *s)
 {
 	int	i;
 
@@ -43,11 +43,8 @@ t_bool	ft_export(t_process *p, t_session *s)
 		if (ft_strchr(p->argv[i], '='))
 			set_value(s->env, p->argv[i], 1);
 		else
-		{
-			ft_check_error (ENUMARG, "export, invalid args", NULL);
-			return (false);
-		}
+			return (ft_check_error (ENUMARG, "export, invalid args", NULL));
 		i++;
 	}
-	return (true);
+	return (0);
 }
