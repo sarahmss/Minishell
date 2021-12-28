@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 23:05:02 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/28 19:37:47 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/28 19:53:07 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ void	env_expand_var(char **cmd_splitted, t_ht_tab *env, int status)
 				cmd_splitted[i] = literal_value(cmd_splitted[i], status, 0, &j);
 			else if (cmd_splitted[i][j] == '$' && cmd_splitted[i][j + 1] == '?')
 				cmd_splitted[i] = literal_value(cmd_splitted[i], status, 1, &j);
-			else if (cmd_splitted[i][j] == '$' && !in_qt(cmd_splitted[i], '\''))
+			else if (cmd_splitted[i][j] == '$' && !dq(cmd_splitted[i], '\''))
 				cmd_splitted[i] = assign_value(cmd_splitted[i], env, j);
 			j++;
 		}

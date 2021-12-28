@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 16:47:37 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/28 01:37:44 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/28 19:48:29 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	in_qt(char *str, char c)
 	{
 		q1 = ft_strchr(str, c);
 		q1++;
-		q2 = ft_strchr(str, c);
+		q2 = ft_strchr(q1, c);
 		while (*q1 != *q2)
 		{
 			if (*q1++ == C_PIPE)
