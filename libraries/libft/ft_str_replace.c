@@ -34,6 +34,7 @@ static int	imod(int a)
 	else
 		return (-a);
 }
+
 char	*str_replace(char *orig, char *rep, char *with)
 {
 	t_replace	r;

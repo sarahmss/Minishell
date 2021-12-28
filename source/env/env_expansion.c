@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 23:05:02 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/28 01:23:52 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/28 16:41:36 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static char	*find_var_name(char *str, int j)
 	return (var_name);
 }
 
-static char	*literal_value(char *str, int status, int mood)
+static char	*literal_value(char *str, int status, int mood, int *j)
 {
 	char		*new_line;
 	char		*temp;
@@ -48,12 +48,17 @@ static char	*literal_value(char *str, int status, int mood)
 	{
 		temp = ft_strchr(str, '$');
 		new_line = str_replace(str, temp - 1, temp);
+		j += 2;
 	}
 	if (mood == 1)
 	{
 		temp = ft_itoa(status);
 		new_line = str_replace(str, "$?", temp);
 		free (temp);
+		if (ft_strlen(new_line) < 2)
+			j++;
+		else
+			j += 2;
 	}
 	free(str);
 	return (new_line);
@@ -114,15 +119,9 @@ void	env_expand_var(char **cmd_splitted, t_ht_tab *env, int status)
 		while (cmd_splitted[i][j] != '\0' && ft_strchr(cmd_splitted[i], '$'))
 		{
 			if (cmd_splitted[i][j] == '\\' && cmd_splitted[i][j + 1] == '$')
-			{
-				cmd_splitted[i] = literal_value(cmd_splitted[i], status, 0);
-				j += 2;
-			}
+				cmd_splitted[i] = literal_value(cmd_splitted[i], status, 0, &j);
 			else if (cmd_splitted[i][j] == '$' && cmd_splitted[i][j + 1] == '?')
-			{
-				cmd_splitted[i] = literal_value(cmd_splitted[i], status, 1);
-				j += 2;
-			}
+				cmd_splitted[i] = literal_value(cmd_splitted[i], status, 1, &j);
 			else if (cmd_splitted[i][j] == '$' && !in_qt(cmd_splitted[i], '\''))
 				cmd_splitted[i] = assign_value(cmd_splitted[i], env, j);
 			j++;
