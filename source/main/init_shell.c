@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_shell.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 09:53:26 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/27 18:43:47 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/28 03:02:31 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	main(int argc, char *argv[], char *envp[])
 	if (argc != 1)
 		ft_check_error(EUSAGE, "USE MOOD: ./minishell", NULL);
 	session = init_session(envp);
+	greetings();
 	repl(session);
 	free_session(session);
 	return (EXIT_SUCCESS);

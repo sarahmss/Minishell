@@ -3,35 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 13:50:38 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/10 11:07:53 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/28 03:03:08 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Minishell.h"
-
-/*
-	Greeting shell during startup
-*/
-static void	init_shell(void)
-{
-	char	*username;
-
-	printf(CLEAR);
-	printf("\n\n\n\n******************"
-		"************************");
-	printf("\n\n\n\t****MINISHELL****");
-	printf("\n\n\t-USE AT YOUR OWN RISK-");
-	printf("\n\n\n\n*******************"
-		"***********************");
-	username = getenv("USER");
-	printf("\n\n\nUSER is: @%s", username);
-	printf("\n");
-	sleep(3);
-	printf(CLEAR);
-}
 
 /*
 	returns the current working directory use mod == 0 unless in prompt function
@@ -57,7 +36,6 @@ char	*create_prompt(void)
 
 	user = ft_strjoin(getenv("USER"), ":");
 	cwd = working_directory(1);
-//	init_shell();
 	prompt = ft_strjoin(user, cwd);
 	free(user);
 	free(cwd);

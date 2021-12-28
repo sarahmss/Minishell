@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+         #
+#    By: coder <coder@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/11 17:02:33 by smodesto          #+#    #+#              #
-#    Updated: 2021/12/27 21:16:19 by smodesto         ###   ########.fr        #
+#    Updated: 2021/12/28 02:59:05 by coder            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ SRCS_FILES =	main/init_shell.c		\
 				main/error_manager.c	\
 				main/free.c				\
 				main/repl.c				\
+				main/greetings.c		\
 				cmd_line/prompt.c		\
 				cmd_line/ft_read_line.c	\
 				ht/ft_lstdoubly.c		\
@@ -76,7 +77,7 @@ HEADER_FILES	=	Minishell.h		\
 HEADERS = $(addprefix $(INCLUDES_PATH), $(HEADER_FILES))
 
 CC			= gcc
-FLAGS		= -Wall -Wextra -g
+FLAGS		= -Wall -Wextra -Werror -g
 LIBRARIES	= -L$(LIBFT_PATH) -lft $(READLINE)
 INCLUDES	= -I$(INCLUDES_PATH) -I$(LIBFT_PATH)
 
