@@ -30,11 +30,11 @@ char	*working_directory(int mod)
 
 char	*create_prompt(void)
 {
-	char	*prmt;
+	char	*prmpt;
 	char	*cwd;
 
 	cwd = working_directory(1);
-	prmt = ft_join_var(4, "✨🐚✨\e[0;35m", getenv("USER"), "\e[0;37m:", cwd);
+	prmpt = ft_join_var(4, "✨🐚✨\e[0;35m", getenv("USER"), "\e[0;37m:", cwd);
 	free(cwd);
-	return (prmt);
+	return (prmpt);
 }
