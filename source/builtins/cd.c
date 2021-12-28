@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 20:04:04 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/28 00:59:15 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/28 20:07:39 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ int	ft_cd(t_process *p, t_ht_tab *env)
 	t_ht_item	*temp;
 	t_ht_item	*var;
 	char		*old_pwd;
+	char		dir;
 
 	var = ht_search(env, "PWD");
 	old_pwd = ft_strdup(var->value);
@@ -71,8 +72,12 @@ int	ft_cd(t_process *p, t_ht_tab *env)
 	}
 	else if (p->argv[2] == NULL)
 	{
-		if (chdir(p->argv[1]) == -1)
+		dir = ft_strtrim(p->argv[1], "\'\"");
+		if (chdir(dir) == -1)
+		{
 			return (ft_check_error(ECOMMAND, "cd: Dir not exists", NULL));
+			free (dir);
+		}
 	}
 	return (update_cwd(env, old_pwd));
 }
