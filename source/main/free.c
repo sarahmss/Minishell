@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 17:26:31 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/28 04:08:56 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/28 00:24:03 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ static void	free_process(t_process **process)
 		free_mat(p->argv);
 	if (p->command != NULL)
 		free(p->command);
-	free(p);
+	free(*process);
+	*process = NULL;
 }
 
 /*
