@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 20:04:04 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/27 22:00:25 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/28 02:16:19 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ t_bool	ft_cd(t_process *p, t_ht_tab *env)
 	char		*old_pwd;
 
 	var = ht_search(env, "PWD");
-	old_pwd = var->value;
+	old_pwd = ft_strdup(var->value);
 	if (!p->argv[1])
 	{
 		temp = ht_search(env, "HOME");

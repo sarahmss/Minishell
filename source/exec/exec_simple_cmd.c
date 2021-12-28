@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_simple_cmd.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 17:01:52 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/22 21:19:17 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/28 02:13:57 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,6 @@ void	root_simple_cmd(t_session *session, t_cmd_tab *tb)
 		else if (pid == 0)
 			exec_simple_cmd(session);
 		else
-			wait(&status);
+			waitpid(pid, &status, 0);
 	}
 }
