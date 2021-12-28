@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 11:22:40 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/28 13:39:18 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/28 15:09:18 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 	0: only char
 	1: not only char
 */
-int	not_only_char(char *str, char c)
+int	n_o_char(char *str, char c)
 {
 	int	i;
 
@@ -38,12 +38,12 @@ void	ft_read_line(t_cmd_tab *tb)
 	tb->cmd_line = readline(prompt);
 	if (tb->cmd_line == NULL)
 		ft_check_error(SIGEXIT, "CTRL+D: EOF", tb);
-	if (strlen(tb->cmd_line) != 0 && not_only_char(tb->cmd_line, '\t')
-		&& not_only_char(tb->cmd_line, ' '))
+	if (strlen(tb->cmd_line) == 0)
+		empty_line();
+	else if (n_o_char(tb->cmd_line, '\t') && n_o_char(tb->cmd_line, ' '))
 	{
 		add_history(tb->cmd_line);
 		tb->session->status = 0;
-		empty_line();
 	}
 	else
 	{
