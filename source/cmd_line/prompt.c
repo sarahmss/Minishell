@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   prompt.c                                           :+:      :+:    :+:   */
+/*   prmt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
+/*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 13:50:38 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/28 03:03:08 by coder            ###   ########.fr       */
+/*   Updated: 2021/12/28 15:39:45 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Minishell.h"
 
 /*
-	returns the current working directory use mod == 0 unless in prompt function
+	returns the current working directory use mod == 0 unless in prmt function
 */
 char	*working_directory(int mod)
 {
@@ -23,21 +23,18 @@ char	*working_directory(int mod)
 	if (mod == 0)
 		return (getcwd(NULL, 0));
 	temp = getcwd(NULL, 0);
-	cwd = ft_strjoin(temp, "$");
+	cwd = ft_join_var(3, "\e[0;36m", temp, "\e[0;37m$");
 	free(temp);
 	return (cwd);
 }
 
 char	*create_prompt(void)
 {
-	char	*user;
-	char	*prompt;
+	char	*prmt;
 	char	*cwd;
 
-	user = ft_strjoin(getenv("USER"), ":");
 	cwd = working_directory(1);
-	prompt = ft_strjoin(user, cwd);
-	free(user);
+	prmt = ft_join_var(4, "✨🐚✨\e[0;35m", getenv("USER"), "\e[0;37m:", cwd);
 	free(cwd);
-	return (prompt);
+	return (prmt);
 }
