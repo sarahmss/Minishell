@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/28 02:58:28 by coder             #+#    #+#             */
-/*   Updated: 2021/12/28 15:58:43 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/28 19:31:48 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void	greetings(void)
 {
 	char	*username;
 
-	printf(CLEAR);
 	printf("\e[0;35m");
 	printf("┌─┐┌─┐  ┌┐ ┌─┐┌─┐┬ ┬┌┬┐┬┌─┐┬ ┬┬    ┌─┐┌─┐  ┌─┐  ┌─┐┬ ┬┌─┐┬  ┬\n");
 	printf("├─┤└─┐  ├┴┐├┤ ├─┤│ │ │ │├┤ │ ││    ├─┤└─┐  ├─┤  └─┐├─┤├┤ │  │\n");
@@ -54,6 +53,4 @@ void	greetings(void)
 	username = getenv("USER");
 	printf("\n\n\nWelcome: @%s", username);
 	printf("\n");
-	sleep(3);
-	printf(CLEAR);
 }

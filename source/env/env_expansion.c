@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 23:05:02 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/28 16:41:36 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/28 19:37:47 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ char	*assign_value(char *str, t_ht_tab *env, int j)
 		if (cl_var)
 			free(cl_var);
 		free (str);
-		return (ft_strdup(" "));
+		return (ft_strdup("  "));
 	}
 	new_line = str_replace(str, var_name, value);
 	if (var_name != str)
