@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   repl.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: kde-oliv <kde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 17:33:48 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/22 20:48:27 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/29 14:14:31 by kde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	repl(t_session	*session)
 		if (!(token_error(tb)) && !session->status)
 		{
 			session->process_lst = parser(tb);
-			execute_root(session, tb);
+			execute_root(session);
 		}
 		before_living(tb);
 	}
