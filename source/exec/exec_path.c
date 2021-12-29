@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_path.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: kde-oliv <kde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 15:28:09 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/22 21:19:00 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/29 14:06:09 by kde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,17 @@ char	*find_full_path(t_ht_tab *env, char *command)
 	}
 	free_matrix(path_split);
 	return (NULL);
+}
+
+char	*get_fullpath(t_session *session, char *command)
+{
+	char	*full_path;
+
+	if (is_executable(command) == true)
+		full_path = ft_strdup(command);
+	else
+		full_path = find_full_path(session->env, command);
+	if (full_path == NULL)
+		return (NULL);
+	return (full_path);
 }

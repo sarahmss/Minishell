@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+         #
+#    By: kde-oliv <kde-oliv@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/11 17:02:33 by smodesto          #+#    #+#              #
-#    Updated: 2021/12/25 18:45:17 by smodesto         ###   ########.fr        #
+#    Updated: 2021/12/29 10:51:22 by kde-oliv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,7 @@ SRCS_FILES =	main/init_shell.c		\
 				parse/parser.c			\
 				exec/exec_root.c		\
 				exec/exec_path.c		\
-				exec/exec_simple_cmd.c	\
+				exec/exec_cmd.c		\
 				builtins/builtins_root.c\
 				builtins/echo.c			\
 				builtins/exit.c			\

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: kde-oliv <kde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 18:56:26 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/25 18:42:55 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/29 11:19:10 by kde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,12 @@ t_process		*parser(t_cmd_tab *tb);
 t_process		*parse_command(t_token **tokens);
 
 // execute
-int				execute_root(t_session *session, t_cmd_tab *tb);
+int				execute_root(t_session *session);
 char			*find_full_path(t_ht_tab *env, char *command);
-void			root_simple_cmd(t_session *session, t_cmd_tab *tb);
-void			root_piped_cmd(t_session *session, t_cmd_tab *tb);
+char			*get_fullpath(t_session *session, char *command);
+
+void			exec_cmd(t_session *session);
+
 t_bool			is_executable(char *path_cmd);
 
 // builtins
