@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/22 12:57:57 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/28 00:59:00 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/30 13:41:20 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	ft_exit(t_cmd_tab *tb, t_session *s, t_process *p)
 
 	argc = 0;
 	argv = p->argv;
-	status = s->status;
+	status = s->errcode;
 	while (argv[argc + 1] != NULL)
 		argc++;
 	if (argc > 1)

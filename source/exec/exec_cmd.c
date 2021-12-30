@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smodesto <smodesto@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/28 08:51:20 by kde-oliv          #+#    #+#             */
-/*   Updated: 2021/12/30 12:37:57 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/30 13:41:20 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	run_command(t_session *session)
 		full_path = get_fullpath(session, session->process_lst->command);
 		if (full_path == NULL)
 			return ;
-		session->status = execve(full_path, session->process_lst->argv, envp);
+		session->errcode = execve(full_path, session->process_lst->argv, envp);
 		perror("error execve");
 		return ;
 	}
@@ -65,7 +65,7 @@ static void	pipe_create(int fdin, int tmpout, t_session *session)
 }
 
 void	exec_cmd(t_session *session)
-{	
+{
 	int		tmpin;
 	int		tmpout;
 	int		fdin;

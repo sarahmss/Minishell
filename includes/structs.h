@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
+/*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 08:51:24 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/28 03:19:52 by coder            ###   ########.fr       */
+/*   Updated: 2021/12/30 13:41:20 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,8 @@ typedef struct s_session
 	t_process	*process_lst;
 	char		**envp;
 	char		**child_envp;
-	int			status;
+	int			errcode;
+	int			stat;
 }	t_session;
 
 typedef struct s_cmd_tab

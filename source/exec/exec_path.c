@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_path.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smodesto <smodesto@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 15:28:09 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/30 12:50:33 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/30 13:41:20 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ char	*get_fullpath(t_session *session, char *command)
 		full_path = find_full_path(session->env, command);
 	if (full_path == NULL)
 	{
-		session->status = ft_check_error(ENOFD, "command not found", NULL);
+		session->errcode = ft_check_error(ECMDNF, "command not found", NULL);
 		return (NULL);
 	}
 	return (full_path);
