@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_root.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: smodesto <smodesto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 10:54:32 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/28 13:25:08 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/30 12:39:40 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,9 @@ int	execute_root(t_session *session, t_cmd_tab *tb)
 	if (session->child_envp != NULL)
 		free_matrix(session->child_envp);
 	session->child_envp = env_local(session->env);
-	if (!assign && session->process_lst->next == NULL)
-		root_simple_cmd(session, tb);
-	/*
-	else
-		root_piped_cmd(session, tb);*/
+	if (!assign && tk_builtin(session->process_lst->command))
+		run_builtins(tb, session, session->process_lst);
+	else if (!assign)
+		exec_cmd(session);
 	return (1);
 }

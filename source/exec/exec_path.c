@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_path.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: smodesto <smodesto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 15:28:09 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/27 14:09:11 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/30 12:50:33 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,20 @@ char	*find_full_path(t_ht_tab *env, char *command)
 	}
 	free_matrix(path_split);
 	return (NULL);
+}
+
+char	*get_fullpath(t_session *session, char *command)
+{
+	char	*full_path;
+
+	if (is_executable(command) == true)
+		full_path = ft_strdup(command);
+	else
+		full_path = find_full_path(session->env, command);
+	if (full_path == NULL)
+	{
+		session->status = ft_check_error(ENOFD, "command not found", NULL);
+		return (NULL);
+	}
+	return (full_path);
 }
