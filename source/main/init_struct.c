@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 13:53:35 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/30 13:41:20 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/30 13:56:13 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ t_session	*init_session(char *envp[])
 	session->env = load_env(envp);
 	session->envp = envp;
 	session->errcode = 0;
+	session->stat = 0;
 	session->child_envp = NULL;
 	session->process_lst = NULL;
 	return (session);

@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 11:22:40 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/30 13:41:20 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/30 13:59:34 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,21 +32,24 @@ int	no_only_c(char *str, char c)
 
 void	ft_read_line(t_cmd_tab *tb)
 {
-	char	*prompt;
+	char		*prompt;
+	t_session	*s;
 
-	tb->session->stat = tb->session->errcode;
+	s = tb->session;
+	if (s->errcode == ECMDNF || s->errcode == SINT || s->errcode == SQUIT)
+		s->stat = s->errcode;
 	prompt = create_prompt();
 	empty_line();
 	tb->cmd_line = readline(prompt);
 	if (tb->cmd_line == NULL)
-		tb->session->errcode = ft_check_error(SIGEXIT, "CTRL+D: EOF\n", tb);
+		s->errcode = ft_check_error(SIGEXIT, "CTRL+D: EOF\n", tb);
 	else if (no_only_c(tb->cmd_line, '\t') && no_only_c(tb->cmd_line, ' '))
 	{
 		add_history(tb->cmd_line);
-		tb->session->errcode = 0;
+		s->errcode = 0;
 	}
 	else
-		tb->session->errcode = EEMPTYLN;
+		s->errcode = EEMPTYLN;
 	no_empty_line(tb);
 	free(prompt);
 }
