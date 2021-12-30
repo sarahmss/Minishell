@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: smodesto <smodesto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 20:04:04 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/28 20:07:39 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/30 12:48:49 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	ft_cd(t_process *p, t_ht_tab *env)
 	t_ht_item	*temp;
 	t_ht_item	*var;
 	char		*old_pwd;
-	char		dir;
+	char		*dir;
 
 	var = ht_search(env, "PWD");
 	old_pwd = ft_strdup(var->value);

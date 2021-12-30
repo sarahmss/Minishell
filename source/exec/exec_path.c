@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_path.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kde-oliv <kde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: smodesto <smodesto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 15:28:09 by smodesto          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2021/12/29 14:06:09 by kde-oliv         ###   ########.fr       */
-=======
-/*   Updated: 2021/12/27 14:09:11 by smodesto         ###   ########.fr       */
->>>>>>> main
+/*   Updated: 2021/12/30 12:50:33 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +63,9 @@ char	*get_fullpath(t_session *session, char *command)
 	else
 		full_path = find_full_path(session->env, command);
 	if (full_path == NULL)
+	{
+		session->status = ft_check_error(ENOFD, "command not found", NULL);
 		return (NULL);
+	}
 	return (full_path);
 }

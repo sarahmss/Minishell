@@ -3,14 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kde-oliv <kde-oliv@student.42sp.org.br>    +#+  +:+       +#+         #
+#    By: smodesto <smodesto@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/11 17:02:33 by smodesto          #+#    #+#              #
-<<<<<<< HEAD
-#    Updated: 2021/12/29 10:51:22 by kde-oliv         ###   ########.fr        #
-=======
-#    Updated: 2021/12/28 13:27:09 by smodesto         ###   ########.fr        #
->>>>>>> main
+#    Updated: 2021/12/30 12:48:17 by smodesto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,7 +54,7 @@ SRCS_FILES =	main/init_shell.c		\
 				parse/parser.c			\
 				exec/exec_root.c		\
 				exec/exec_path.c		\
-				exec/exec_cmd.c		\
+				exec/exec_cmd.c			\
 				builtins/builtins_root.c\
 				builtins/echo.c			\
 				builtins/exit.c			\
@@ -100,6 +96,8 @@ $(OBJS_PATH)%.o : $(SRC_PATH)%.c $(HEADERS)
 			@mkdir -p objects/env
 			@mkdir -p objects/parse
 			@mkdir -p objects/builtins
+			@mkdir -p objects/exec
+
 			$(CC) $(FLAGS) -c $(INCLUDES) $< -o $@
 
 $(LIBFT):

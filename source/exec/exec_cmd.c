@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kde-oliv <kde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: smodesto <smodesto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/28 08:51:20 by kde-oliv          #+#    #+#             */
-/*   Updated: 2021/12/29 14:05:43 by kde-oliv         ###   ########.fr       */
+/*   Updated: 2021/12/30 12:37:57 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ static void	run_command(t_session *session)
 {
 	char	**envp;
 	int		ret;
+	char	*full_path;
 
 	envp = session->child_envp;
 	ret = fork();
@@ -23,8 +24,10 @@ static void	run_command(t_session *session)
 		perror("error creating fork");
 	else if (ret == 0)
 	{
-		execve(get_fullpath(session, session->process_lst->command), \
-		 session->process_lst->argv, envp);
+		full_path = get_fullpath(session, session->process_lst->command);
+		if (full_path == NULL)
+			return ;
+		session->status = execve(full_path, session->process_lst->argv, envp);
 		perror("error execve");
 		return ;
 	}

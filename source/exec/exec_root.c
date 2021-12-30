@@ -3,20 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   exec_root.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kde-oliv <kde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: smodesto <smodesto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 10:54:32 by smodesto          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2021/12/29 11:17:30 by kde-oliv         ###   ########.fr       */
-=======
-/*   Updated: 2021/12/28 13:25:08 by smodesto         ###   ########.fr       */
->>>>>>> main
+/*   Updated: 2021/12/30 12:39:40 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Minishell.h"
 
-int	execute_root(t_session *session)
+int	execute_root(t_session *session, t_cmd_tab *tb)
 {
 	char	**local_env;
 	int		assign;
@@ -24,17 +20,12 @@ int	execute_root(t_session *session)
 	assign = 0;
 	local_env = session->process_lst->local_env;
 	assign = env_assign(local_env, session->env);
-<<<<<<< HEAD
-	exec_cmd(session);
-=======
 	if (session->child_envp != NULL)
 		free_matrix(session->child_envp);
 	session->child_envp = env_local(session->env);
-	if (!assign && session->process_lst->next == NULL)
-		root_simple_cmd(session, tb);
-	/*
-	else
-		root_piped_cmd(session, tb);*/
->>>>>>> main
+	if (!assign && tk_builtin(session->process_lst->command))
+		run_builtins(tb, session, session->process_lst);
+	else if (!assign)
+		exec_cmd(session);
 	return (1);
 }
