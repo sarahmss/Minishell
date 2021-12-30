@@ -6,16 +6,18 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 17:35:04 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/22 21:17:19 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/28 03:55:37 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Minishell.h"
 
-static void	errmsg(char *str)
+static void	errmsg(char *str, int code)
 {
 	if (str)
 		ft_putstr_fd(str, STDERR_FILENO);
+	if (code)
+		exit (code);
 }
 
 /*
@@ -38,24 +40,24 @@ int	ft_check_error(t_errcode code, char *msg, t_cmd_tab *table)
 {
 	t_session	*session;
 
-	session = table->session;
+	session = NULL;
 	if (table != NULL)
+	{
+		session = table->session;
 		before_living(table);
+	}
 	if (code == SIGEXIT || ft_strcmp(msg, "exit\n"))
 	{
-		free_session(session);
+		if (session)
+			free_session(session);
 		exit (0);
 	}
 	ft_putstr_fd("minishell: ", STDERR_FILENO);
 	if ((int)code == -1 || code == EALLOC || code == EUSAGE)
-	{
-		errmsg(msg);
-		exit (code);
-	}
+		errmsg(msg, code);
 	else if (code > 0)
 	{
-		if (msg)
-			errmsg(msg);
+		errmsg(msg, 0);
 		ft_putchar_fd('\n', STDERR_FILENO);
 	}
 	return (code);

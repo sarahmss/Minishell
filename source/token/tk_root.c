@@ -6,24 +6,27 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 16:47:37 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/22 21:04:09 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/28 19:48:29 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Minishell.h"
 
-static int	in_qt(char *cmd_line, char c)
+/*
+	returns 1 if str is between c and 0 if it isn't
+*/
+int	in_qt(char *str, char c)
 {
 	char	*q1;
 	char	*q2;
 	int		ret;
 
 	ret = 0;
-	if (dq(cmd_line, c) == 1)
+	if (dq(str, c) == 1)
 	{
-		q1 = ft_strchr(cmd_line, c);
+		q1 = ft_strchr(str, c);
 		q1++;
-		q2 = ft_strchr(cmd_line, c);
+		q2 = ft_strchr(q1, c);
 		while (*q1 != *q2)
 		{
 			if (*q1++ == C_PIPE)

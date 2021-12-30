@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 21:26:17 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/22 19:51:41 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/27 14:20:01 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	split_var(char *str, char *var_split[])
 	Creates a item to env hash table, where the key = Variable's name
 	(ex.: PATH) and values = Variable's value (ex:. "/usr/bin")
 */
-char	*set_value(t_ht_tab *env, char *str)
+t_ht_item	*set_value(t_ht_tab *env, char *str, int mood)
 {
 	t_ht_item	*variable;
 	char		*var_split[2];
@@ -45,10 +45,22 @@ char	*set_value(t_ht_tab *env, char *str)
 	split_var(str, var_split);
 	variable = ht_search(env, var_split[0]);
 	if (variable != NULL)
-		variable->value = var_split[1];
+	{
+		variable->value = ft_strdup(var_split[1]);
+		if (mood)
+			variable->is_env = true;
+		else
+			variable->is_env = false;
+	}
 	else
-		ht_insert(env, var_split[0], var_split[1]);
+	{
+		variable = ht_insert(env, var_split[0], var_split[1]);
+		if (mood)
+			variable->is_env = true;
+		else
+			variable->is_env = false;
+	}
 	free (var_split[0]);
 	free (var_split[1]);
-	return (var_split[1]);
+	return (variable);
 }

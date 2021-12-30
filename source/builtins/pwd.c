@@ -1,32 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env_load.c                                         :+:      :+:    :+:   */
+/*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/10 20:59:23 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/27 13:31:54 by smodesto         ###   ########.fr       */
+/*   Created: 2021/12/27 20:31:18 by smodesto          #+#    #+#             */
+/*   Updated: 2021/12/28 00:58:16 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Minishell.h"
 
-/*
-	Runs through *envp[] while putting the environment variables in a hash table.
-	echo $USER
-*/
-t_ht_tab	*load_env(char *envp[])
+int	ft_pwd(t_process *p)
 {
-	t_ht_tab	*env;
-	int			i;
+	char	wd[10000];
+	int		argc;
 
-	i = 0;
-	env = create_table((int)HT_SIZE_ENV);
-	while (envp[i])
+	argc = 1;
+	while (p->argv[argc])
+		argc++;
+	if (argc != 1)
+		return (ft_check_error(ENUMARG, "ENV: Invalid args", NULL));
+	if (!getcwd(wd, 10000))
 	{
-		set_value(env, envp[i], 1);
-		i++;
+		ft_strcpy(wd, "pwd: not able to determine current working directory");
+		return (ft_check_error(ECOMMAND, wd, NULL));
 	}
-	return (env);
+	else
+		printf("%s \n", wd);
+	return (0);
 }

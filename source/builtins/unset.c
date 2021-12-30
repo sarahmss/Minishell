@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env_load.c                                         :+:      :+:    :+:   */
+/*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/10 20:59:23 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/27 13:31:54 by smodesto         ###   ########.fr       */
+/*   Created: 2021/12/27 18:59:42 by smodesto          #+#    #+#             */
+/*   Updated: 2021/12/28 00:58:11 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Minishell.h"
 
-/*
-	Runs through *envp[] while putting the environment variables in a hash table.
-	echo $USER
-*/
-t_ht_tab	*load_env(char *envp[])
+int	ft_unset(t_ht_tab *env, t_process *p)
 {
-	t_ht_tab	*env;
 	int			i;
+	t_ht_item	*current;
 
-	i = 0;
-	env = create_table((int)HT_SIZE_ENV);
-	while (envp[i])
+	i = 1;
+	current = NULL;
+	while (p->argv[i])
 	{
-		set_value(env, envp[i], 1);
+		current = ht_search(env, p->argv[i]);
+		if (current != NULL)
+			ht_delete(env, p->argv[i]);
+		else
+			return (ft_check_error (ENUMARG, "unset, invalid args", NULL));
 		i++;
 	}
-	return (env);
+	return (true);
 }

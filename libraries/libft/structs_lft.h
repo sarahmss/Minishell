@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 19:11:44 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/14 13:11:01 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/28 16:22:08 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,9 @@ typedef struct s_replace
 	char	*result;
 	char	*ins;
 	char	*tmp;
-	int		len_rep;
-	int		len_with;
-	int		len_front;
+	int		l_rep;
+	int		l_with;
+	int		l_front;
 	int		count;
 }	t_replace;
 

@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 17:26:31 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/25 19:03:08 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/28 14:56:23 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ static void	free_process(t_process **process)
 		free_mat(p->argv);
 	if (p->command != NULL)
 		free(p->command);
-	free(p);
+	free(*process);
+	*process = NULL;
 }
 
 /*
@@ -64,8 +65,11 @@ static void	free_process(t_process **process)
 void	free_session(t_session *session)
 {
 	free_ht_tab(session->env);
-	free_mat(session->child_envp);
-	free(session->child_envp);
+	if (session->child_envp)
+	{
+		free_mat(session->child_envp);
+		free(session->child_envp);
+	}
 	free (session);
 	session = NULL;
 }
@@ -95,7 +99,7 @@ void	before_living(t_cmd_tab *table)
 		}
 		free(table->piped_cmd);
 	}
-	if (table->session && table->session->process_lst)
+	if (table->session != NULL && table->session->process_lst != NULL)
 		free_process(&(table->session->process_lst));
 	free(table);
 }

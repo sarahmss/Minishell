@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 11:22:40 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/22 20:55:14 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/28 18:17:54 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,30 +51,44 @@ static char	**make_splitted(char *cmd_line, char delimiter, t_cmd_tab *tab)
 	}
 	tokens[pos] = NULL;
 	tab->session->status = check_quotes(line, tab);
-	env_expand_var(tab->cmd_splitted, tab->session->env);
+	env_expand_var(tab->cmd_splitted, tab->session->env, tab->session->status);
 	return (tab->cmd_splitted);
+}
+
+static void	skip_spacesqt(t_positions *p)
+{
+	p->stemp++;
+	while ((*p->stemp != '\'' || *p->stemp != '\"') && *p->stemp == ' ')
+	{
+		p->k++;
+		p->stemp++;
+	}
+	p->stemp++;
+	p->k++;
 }
 
 /*
 	Allocates space for the matrix divided by the sep delimiter
 */
-static char	**ft_alocate(t_positions pos, char sep)
+static char	**ft_alocate(t_positions p, char sep)
 {
 	char	**splitted_matrix;
 
-	pos.k = 0;
-	while (*pos.stemp)
+	p.k = 0;
+	while (*p.stemp)
 	{
-		if (*pos.stemp != sep)
+		if (*p.stemp == '\'' || *p.stemp == '\"')
+			skip_spacesqt(&p);
+		else if (*p.stemp != sep)
 		{
-			while (*pos.stemp != sep && *pos.stemp)
-				pos.stemp++;
-			pos.k++;
+			while (*p.stemp != sep && *p.stemp)
+				p.stemp++;
+			p.k++;
 		}
-		if (*pos.stemp)
-			pos.stemp++;
+		if (*p.stemp)
+			p.stemp++;
 	}
-	splitted_matrix = (char **)ft_calloc((pos.k + 1), sizeof(char *));
+	splitted_matrix = (char **)ft_calloc((p.k + 1), sizeof(char *));
 	if (!splitted_matrix)
 		return (NULL);
 	return (splitted_matrix);

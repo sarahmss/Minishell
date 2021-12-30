@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 21:45:41 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/22 20:39:34 by smodesto         ###   ########.fr       */
+/*   Updated: 2021/12/28 01:15:13 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 #include "../includes/Minishell.h"
 
-t_bool	ft_echo(char **argv)
+int	ft_echo(char **argv)
 {
 	t_bool	flag_n;
 	int		i;
@@ -41,5 +41,5 @@ t_bool	ft_echo(char **argv)
 	}
 	if (flag_n == false)
 		printf("\n");
-	return (true);
+	return (1);
 }

@@ -6,7 +6,11 @@
 /*   By: kde-oliv <kde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 18:56:26 by smodesto          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2021/12/29 11:19:10 by kde-oliv         ###   ########.fr       */
+=======
+/*   Updated: 2021/12/28 13:35:24 by smodesto         ###   ########.fr       */
+>>>>>>> main
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +39,9 @@
 # include <sys/wait.h>
 
 // init
+t_session		*init_session(char *envp[]);
 t_cmd_tab		*init_cmd_tab(t_session *session);
+void			greetings(void);
 void			before_living(t_cmd_tab *table);
 int				ft_check_error(t_errcode code, char *msg, t_cmd_tab *table);
 void			repl(t_session *session);
@@ -61,8 +67,16 @@ void			exec_cmd(t_session *session);
 t_bool			is_executable(char *path_cmd);
 
 // builtins
-t_bool			run_builtins(t_cmd_tab *tb, t_session *s, t_process *p);
-t_bool			ft_echo(char **argv);
-void			ft_exit(t_cmd_tab *tb, t_session *s, t_process *p);
-t_bool			ft_env(t_ht_tab *table);
+int				run_builtins(t_cmd_tab *tb, t_session *s, t_process *p);
+int				ft_echo(char **argv);
+int				ft_exit(t_cmd_tab *tb, t_session *s, t_process *p);
+int				ft_env(t_session *s, t_ht_tab *table);
+int				ft_export(t_process *p, t_session *s);
+int				ft_unset(t_ht_tab *env, t_process *p);
+int				ft_cd(t_process *p, t_ht_tab *env);
+int				ft_pwd(t_process *p);
+
+// signals
+void			empty_line(void);
+void			no_empty_line(t_cmd_tab *tb);
 #endif
