@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/28 08:51:20 by kde-oliv          #+#    #+#             */
-/*   Updated: 2021/12/30 13:41:20 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/01/04 19:50:16 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ static void	run_command(t_session *session)
 	char	*full_path;
 
 	envp = session->child_envp;
+	full_path = get_fullpath(session, session->process_lst->command);
+	if (full_path == NULL)
+		return ;
 	ret = fork();
 	if (ret < 0)
 		perror("error creating fork");
 	else if (ret == 0)
 	{
-		full_path = get_fullpath(session, session->process_lst->command);
-		if (full_path == NULL)
-			return ;
 		session->errcode = execve(full_path, session->process_lst->argv, envp);
 		perror("error execve");
 		return ;
