@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 17:49:11 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/22 20:56:02 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/01/03 20:53:23 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,10 @@ static int	eval_line(char *l, char c)
 	{
 		while (l[i] != '\0')
 		{
-			if (l[i] != C_SPACE && l[i] != c && l[i + 1] == c)
+			if (l[i] != C_SPACE && l[i] != c && l[i + 1] == c && l[i] != '=')
 				spaces++;
-			if (l[i + 1] != C_SPACE && l[i + 1] != c && l[i] == c)
+			if (l[i + 1] != C_SPACE && l[i + 1] != c && l[i] == c && c != '\''
+				&& c != '\"')
 				spaces++;
 			i++;
 		}
@@ -61,12 +62,14 @@ static char	*sup_insert_spaces(char *line, char c, t_cmd_tab *tab)
 	while (line[i] != '\0' && new_line != line)
 	{
 		new_line[j] = line[i];
-		if (line[i] != C_SPACE && line[i] != c && line[i + 1] == c)
+		if (line[i] != ' ' && line[i] != c && line[i + 1] == c
+			&& line[i] != '=')
 		{
 			j++;
 			new_line[j] = ' ';
 		}
-		if (line[i + 1] != C_SPACE && line[i + 1] != c && line[i] == c)
+		if (line[i + 1] != ' ' && line[i + 1] != c && line[i] == c && c != '\''
+				&& c != '\"')
 		{
 			j++;
 			new_line[j] = ' ';
@@ -84,7 +87,7 @@ char	*insert_spaces(char *line, t_cmd_tab *tab)
 	char	*temp;
 	int		i;
 
-	operators = ft_strdup("<>();*+");
+	operators = ft_strdup("\'\"<>();*+");
 	new_line = NULL;
 	temp = line;
 	i = 0;
