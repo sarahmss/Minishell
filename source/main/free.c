@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 17:26:31 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/28 14:56:23 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/01/04 14:56:03 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ void	free_session(t_session *session)
 		free_mat(session->child_envp);
 		free(session->child_envp);
 	}
+	if (session->process_lst != NULL)
+		free_process(&session->process_lst);
 	free (session);
 	session = NULL;
 }
