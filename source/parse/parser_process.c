@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 14:13:05 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/27 20:22:01 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/01/04 14:32:52 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	parse_words(t_process *p, t_token *tokens, int i[])
 		p->local_env[i[I_ENV]] = word;
 		i[I_ENV]++;
 	}
-	else
+	else if (no_only_c(word, ' '))
 	{
 		if (i[I_ARGV] == 0)
 			p->command = ft_strdup(word);

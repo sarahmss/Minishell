@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/22 12:57:57 by smodesto          #+#    #+#             */
-/*   Updated: 2022/01/03 22:09:23 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/01/04 14:28:21 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	ft_exit(t_cmd_tab *tb, t_session *s, t_process *p)
 	while (argv[argc + 1] != NULL)
 		argc++;
 	if (argc > 1)
-		ft_check_error(ENUMARG, "exit: invalid args", NULL);
+		return ((void)ft_check_error(ENUMARG, "exit: invalid args", NULL));
 	if (argc == 1)
 	{
 		arg = argv[1];
@@ -38,7 +38,7 @@ void	ft_exit(t_cmd_tab *tb, t_session *s, t_process *p)
 		while (arg[argc])
 		{
 			if ((!ft_isdigit(arg[argc])) && (arg[argc] != '-'))
-				ft_check_error(ENUMARG, "exit: no num arg", NULL);
+				return((void)ft_check_error(ENUMARG, "exit: no num arg", NULL));
 			argc++;
 		}
 		status = ft_atoi(argv[1]);

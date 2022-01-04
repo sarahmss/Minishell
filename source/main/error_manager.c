@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 17:35:04 by smodesto          #+#    #+#             */
-/*   Updated: 2022/01/03 22:06:53 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/01/04 14:28:43 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	ft_check_error(t_errcode code, char *msg, t_cmd_tab *table)
 {
 	if (table != NULL)
 		before_living(table);
-	ft_putstr_fd("minishell: ", STDERR_FILENO);
+	ft_putstr_fd("minishell- ", STDERR_FILENO);
 	if ((int)code == -1 || code == EALLOC || code == EUSAGE)
 		errmsg(msg, code);
 	else if (code > 0)

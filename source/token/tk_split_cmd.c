@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 11:22:40 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/30 13:41:20 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/01/04 14:39:49 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,13 @@ static char	**make_splitted(char *cmd_line, char delimiter, t_cmd_tab *tab)
 	tokens = tab->cmd_splitted;
 	while (token != NULL)
 	{
-		tokens[pos] = token;
-		pos++;
+		if (ft_strlen(token))
+		{
+			tokens[pos] = token;
+			pos++;
+		}
+		else
+			free(token);
 		token = ft_strtok(NULL, delimiter);
 	}
 	tokens[pos] = NULL;
