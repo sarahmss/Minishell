@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 17:35:04 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/28 03:55:37 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/01/03 22:06:53 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,21 @@ static void	errmsg(char *str, int code)
 		ft_putstr_fd(str, STDERR_FILENO);
 	if (code)
 		exit (code);
+}
+
+void	exit_shell(t_errcode code, t_cmd_tab *table)
+{
+	t_session	*session;
+
+	session = NULL;
+	if (table != NULL)
+	{
+		session = table->session;
+		before_living(table);
+	}
+	if (session)
+		free_session(session);
+	exit (code);
 }
 
 /*
@@ -38,20 +53,8 @@ static void	errmsg(char *str, int code)
 */
 int	ft_check_error(t_errcode code, char *msg, t_cmd_tab *table)
 {
-	t_session	*session;
-
-	session = NULL;
 	if (table != NULL)
-	{
-		session = table->session;
 		before_living(table);
-	}
-	if (code == SIGEXIT || ft_strcmp(msg, "exit\n"))
-	{
-		if (session)
-			free_session(session);
-		exit (0);
-	}
 	ft_putstr_fd("minishell: ", STDERR_FILENO);
 	if ((int)code == -1 || code == EALLOC || code == EUSAGE)
 		errmsg(msg, code);

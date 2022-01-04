@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 11:22:40 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/30 13:59:34 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/01/03 22:03:10 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	ft_read_line(t_cmd_tab *tb)
 	empty_line();
 	tb->cmd_line = readline(prompt);
 	if (tb->cmd_line == NULL)
-		s->errcode = ft_check_error(SIGEXIT, "CTRL+D: EOF\n", tb);
+		exit_shell(SIGEXIT, tb);
 	else if (no_only_c(tb->cmd_line, '\t') && no_only_c(tb->cmd_line, ' '))
 	{
 		add_history(tb->cmd_line);

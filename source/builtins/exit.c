@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/22 12:57:57 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/30 13:41:20 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/01/03 22:09:23 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 	omitted, the exit status is that of the last command executed. Any trap on
 	exit is executed before the shell terminates.
 */
-int	ft_exit(t_cmd_tab *tb, t_session *s, t_process *p)
+void	ft_exit(t_cmd_tab *tb, t_session *s, t_process *p)
 {
 	char	**argv;
 	int		argc;
@@ -30,7 +30,7 @@ int	ft_exit(t_cmd_tab *tb, t_session *s, t_process *p)
 	while (argv[argc + 1] != NULL)
 		argc++;
 	if (argc > 1)
-		return (ft_check_error(ENUMARG, "exit: invalid args", NULL));
+		ft_check_error(ENUMARG, "exit: invalid args", NULL);
 	if (argc == 1)
 	{
 		arg = argv[1];
@@ -38,10 +38,10 @@ int	ft_exit(t_cmd_tab *tb, t_session *s, t_process *p)
 		while (arg[argc])
 		{
 			if ((!ft_isdigit(arg[argc])) && (arg[argc] != '-'))
-				return (ft_check_error(ENUMARG, "exit: no num arg", NULL));
+				ft_check_error(ENUMARG, "exit: no num arg", NULL);
 			argc++;
 		}
 		status = ft_atoi(argv[1]);
 	}
-	return (ft_check_error(status, "exit\n", tb));
+	exit_shell(status, tb);
 }
