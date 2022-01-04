@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 17:49:11 by smodesto          #+#    #+#             */
-/*   Updated: 2022/01/03 20:53:23 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/01/04 14:48:58 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static char	*create_nl(char *line, char c, t_cmd_tab *tab)
 	return (new_line);
 }
 
-static char	*sup_insert_spaces(char *line, char c, t_cmd_tab *tab)
+static char	*sup_insert_spaces(char *l, char c, t_cmd_tab *tab)
 {
 	char		*new_line;
 	int			i;
@@ -58,18 +58,17 @@ static char	*sup_insert_spaces(char *line, char c, t_cmd_tab *tab)
 
 	i = 0;
 	j = 0;
-	new_line = create_nl(line, c, tab);
-	while (line[i] != '\0' && new_line != line)
+	new_line = create_nl(l, c, tab);
+	while (l[i] != '\0' && new_line != l)
 	{
-		new_line[j] = line[i];
-		if (line[i] != ' ' && line[i] != c && line[i + 1] == c
-			&& line[i] != '=')
+		new_line[j] = l[i];
+		if (l[i] != ' ' && l[i] != c && l[i + 1] == c && l[i] != '=')
 		{
 			j++;
 			new_line[j] = ' ';
 		}
-		if (line[i + 1] != ' ' && line[i + 1] != c && line[i] == c && c != '\''
-				&& c != '\"')
+		if (l[i + 1] != ' ' && l[i + 1] != c && l[i] == c && c != '\''
+			&& c != '\"')
 		{
 			j++;
 			new_line[j] = ' ';
