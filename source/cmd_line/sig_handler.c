@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/28 12:56:56 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/28 13:37:26 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/01/04 20:03:04 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,5 @@ void	no_empty_line(t_cmd_tab *tb)
 {
 	signal(SIGINT, sig_handler);
 	if (!signal(SIGQUIT, sig_handler))
-		ft_check_error(SIGEXIT, "CTRL + \\", tb);
+		ft_check_error(SIGEXIT, "CTRL + \\ Quit (core dumped)", tb);
 }
