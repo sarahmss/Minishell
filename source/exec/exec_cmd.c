@@ -6,32 +6,35 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/28 08:51:20 by kde-oliv          #+#    #+#             */
-/*   Updated: 2022/01/04 19:50:16 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/01/04 21:17:47 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Minishell.h"
 
-static void	run_command(t_session *session)
+static void	run_command(t_session *session, t_cmd_tab *tb)
 {
 	char	**envp;
-	int		ret;
+	pid_t	pid;
 	char	*full_path;
 
+	if (tk_builtin(session->process_lst->command))
+		return ((void)run_builtins(tb));
 	envp = session->child_envp;
 	full_path = get_fullpath(session, session->process_lst->command);
 	if (full_path == NULL)
 		return ;
-	ret = fork();
-	if (ret < 0)
+	pid = fork();
+	if (pid < 0)
 		perror("error creating fork");
-	else if (ret == 0)
+	else if (pid == 0)
 	{
-		session->errcode = execve(full_path, session->process_lst->argv, envp);
+		session->errcd = execve(full_path, session->process_lst->argv,\
+		envp);
 		perror("error execve");
 		return ;
 	}
-	waitpid(ret, NULL, 0);
+	waitpid(pid, NULL, 0);
 	return ;
 }
 
@@ -64,7 +67,7 @@ static void	pipe_create(int fdin, int tmpout, t_session *session)
 	return ;
 }
 
-void	exec_cmd(t_session *session)
+void	exec_cmd(t_session *session, t_cmd_tab *tb)
 {
 	int		tmpin;
 	int		tmpout;
@@ -84,7 +87,7 @@ void	exec_cmd(t_session *session)
 	while (session->process_lst != NULL)
 	{
 		pipe_create(fdin, tmpout, session);
-		run_command(session);
+		run_command(session, tb);
 		session->process_lst = session->process_lst->next;
 	}
 	dup2(tmpin, 0);
