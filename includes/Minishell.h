@@ -44,7 +44,6 @@ void			repl(t_session *session);
 void			free_session(t_session *session);
 void			exit_shell(t_errcode code, t_cmd_tab *table);
 
-
 // cmd_line
 void			ft_read_line(t_cmd_tab *tb);
 char			*create_prompt(void);

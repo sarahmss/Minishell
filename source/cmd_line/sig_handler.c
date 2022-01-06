@@ -12,6 +12,8 @@
 
 #include "../includes/Minishell.h"
 
+t_cmd_tab	*g_tb;
+
 /*
 	CTRL+C: Redisplay prompt
 		1. Move to a new line
@@ -40,15 +42,28 @@ void	empty_line(void)
 
 static void	sig_handler(int signal)
 {
+	t_session	*session;
+
 	if (signal == SIGINT)
 		printf ("\n");
-	if (signal == SQUIT)
-		return ;
+	if (signal == SIGQUIT)
+	{
+		session = NULL;
+		if (g_tb != NULL)
+		{
+			session = g_tb->session;
+			before_living(g_tb);
+		}
+		if (session)
+			free_session(session);
+		printf("Quit (core dumped)");
+		exit (SIGQUIT);
+	}
 }
 
 void	no_empty_line(t_cmd_tab *tb)
 {
+	g_tb = tb;
 	signal(SIGINT, sig_handler);
-	if (!signal(SIGQUIT, sig_handler))
-		ft_check_error(SIGEXIT, "CTRL + \\ Quit (core dumped)", tb);
+	signal(SIGQUIT, sig_handler);
 }

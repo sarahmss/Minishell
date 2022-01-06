@@ -31,7 +31,8 @@ static void	run_command(t_session *session)
 		perror("error execve");
 		return ;
 	}
-	waitpid(ret, NULL, 0);
+	waitpid(ret, &session->stat, 0);
+	free (full_path);
 	return ;
 }
 

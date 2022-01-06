@@ -31,5 +31,6 @@ int	run_builtins(t_cmd_tab *tb, t_session *s, t_process *p)
 		s->errcode = ft_pwd(s->process_lst);
 	if (ft_strcmp("cd", command))
 		s->errcode = ft_cd(s->process_lst, s->env);
+	s->stat = 0;
 	return (s->errcode);
 }

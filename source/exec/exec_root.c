@@ -14,8 +14,9 @@
 
 int	execute_root(t_session *session, t_cmd_tab *tb)
 {
-	char	**local_env;
-	int		assign;
+	char		**local_env;
+	int			assign;
+	t_process	*process_head;
 
 	assign = 0;
 	local_env = session->process_lst->local_env;
@@ -26,6 +27,10 @@ int	execute_root(t_session *session, t_cmd_tab *tb)
 	if (!assign && tk_builtin(session->process_lst->command))
 		run_builtins(tb, session, session->process_lst);
 	else if (!assign)
+	{
+		process_head = session->process_lst;
 		exec_cmd(session);
+		session->process_lst = process_head;
+	}
 	return (1);
 }

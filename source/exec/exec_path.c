@@ -38,6 +38,8 @@ char	*find_full_path(t_ht_tab *env, char *command)
 
 	i = 0;
 	path = ht_search(env, "PATH");
+	if (path == NULL)
+		return (NULL);
 	path_split = ft_split(path->value, ':');
 	while (path_split[i] != NULL)
 	{
