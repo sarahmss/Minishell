@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 13:53:35 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/30 13:56:13 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/01/04 20:47:17 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ t_session	*init_session(char *envp[])
 		ft_check_error(EALLOC, "INITIALIZING SESSION", NULL);
 	session->env = load_env(envp);
 	session->envp = envp;
-	session->errcode = 0;
+	session->errcd = 0;
 	session->stat = 0;
 	session->child_envp = NULL;
 	session->process_lst = NULL;

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: smodesto <smodesto@student.42.fr>          +#+  +:+       +#+         #
+#    By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/11 17:02:33 by smodesto          #+#    #+#              #
-#    Updated: 2021/12/30 12:48:17 by smodesto         ###   ########.fr        #
+#    Updated: 2022/01/04 20:33:46 by smodesto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,7 +78,7 @@ HEADER_FILES	=	Minishell.h		\
 HEADERS = $(addprefix $(INCLUDES_PATH), $(HEADER_FILES))
 
 CC			= gcc
-FLAGS		= -Wall -Wextra -Werror -g
+FLAGS		= -Wall -Wextra -g
 LIBRARIES	= -L$(LIBFT_PATH) -lft $(READLINE)
 INCLUDES	= -I$(INCLUDES_PATH) -I$(LIBFT_PATH)
 

@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 21:45:41 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/28 01:15:13 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/01/04 21:23:28 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,11 @@ int	ft_echo(char **argv)
 	}
 	while (argv[i] != NULL)
 	{
-		temp = ft_strtrim(argv[i], "\"\'");
-		printf("%s ", temp);
+		temp = ft_strtrim(argv[i], "\"\' ");
+		if (argv[i + 1] != NULL)
+			printf("%s ", temp);
+		else
+			printf("%s", temp);
 		i++;
 		free (temp);
 	}
