@@ -14,7 +14,7 @@
 
 int	run_builtins(t_cmd_tab *tb)
 {
-	char	*command;
+	char		*command;
 	t_session	*s;
 	t_process	*p;
 
@@ -34,12 +34,7 @@ int	run_builtins(t_cmd_tab *tb)
 	if (ft_strcmp("pwd", command))
 		s->errcd = ft_pwd(s->process_lst);
 	if (ft_strcmp("cd", command))
-<<<<<<< HEAD
-		s->errcode = ft_cd(s->process_lst, s->env);
-	s->stat = 0;
-	return (s->errcode);
-=======
 		s->errcd = ft_cd(s->process_lst, s->env);
+	s->stat = 0;
 	return (s->errcd);
->>>>>>> b5cb4982d321cfcd478ecbee2bd5e6322bda0b99
 }

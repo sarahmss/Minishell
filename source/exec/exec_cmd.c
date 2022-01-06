@@ -29,17 +29,13 @@ static void	run_command(t_session *session, t_cmd_tab *tb)
 		perror("error creating fork");
 	else if (pid == 0)
 	{
-		session->errcd = execve(full_path, session->process_lst->argv,\
+		session->errcd = execve(full_path, session->process_lst->argv, \
 		envp);
 		perror("error execve");
 		return ;
 	}
-<<<<<<< HEAD
-	waitpid(ret, &session->stat, 0);
+	waitpid(pid, &session->stat, 0);
 	free (full_path);
-=======
-	waitpid(pid, NULL, 0);
->>>>>>> b5cb4982d321cfcd478ecbee2bd5e6322bda0b99
 	return ;
 }
 

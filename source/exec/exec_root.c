@@ -24,18 +24,11 @@ int	execute_root(t_session *session, t_cmd_tab *tb)
 	if (session->child_envp != NULL)
 		free_matrix(session->child_envp);
 	session->child_envp = env_local(session->env);
-<<<<<<< HEAD
-	if (!assign && tk_builtin(session->process_lst->command))
-		run_builtins(tb, session, session->process_lst);
-	else if (!assign)
+	if (!assign)
 	{
 		process_head = session->process_lst;
-		exec_cmd(session);
+		exec_cmd(session, tb);
 		session->process_lst = process_head;
 	}
-=======
-	if (!assign)
-		exec_cmd(session, tb);
->>>>>>> b5cb4982d321cfcd478ecbee2bd5e6322bda0b99
 	return (1);
 }
