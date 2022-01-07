@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 15:42:54 by smodesto          #+#    #+#             */
-/*   Updated: 2022/01/06 20:46:09 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/01/06 23:14:55 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ char			*insert_spaces(char *line, t_cmd_tab *tab);
 // quotes 1
 void			dq_cmd_tab(t_cmd_tab *tab, char **old, char c, char *cmd_line);
 int				in_qt(char *str, char c);
+char			*substitute_quotes(char *line);
 // quotes 2
 int				dq(char	*line, char c);
 int				check_quotes(char *cmd_line, t_cmd_tab *tab);
@@ -45,6 +46,7 @@ void			tk_insert_at_foot(char *value, t_token *head, t_cmd_tab *tab);
 t_token			*tk_insert_at_head(char *value, t_token *head, t_cmd_tab *tab);
 void			tk_del(t_token **head, t_token *del);
 void			tk_free_lst(t_token *head);
+void			make_one_source(t_positions *pos, char **old, char **new);
 
 //
 t_token			*tk_create_tokens(t_cmd_tab *tab, char **cmd_splitted);

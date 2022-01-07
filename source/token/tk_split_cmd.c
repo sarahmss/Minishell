@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 11:22:40 by smodesto          #+#    #+#             */
-/*   Updated: 2022/01/06 21:20:38 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/01/06 23:14:24 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,7 @@ static char	*treat_line(char *line, t_cmd_tab *tab)
 	tab->session->errcd = check_quotes2(line);
 	if (line == NULL || tab->session->errcd != 0)
 		return (NULL);
-	treated_line = remove_qt_inside_qt(line, "\"");
-	if (treated_line == NULL)
-		treated_line = line;
+	treated_line = substitute_quotes(line);
 	stemp = treated_line;
 	treated_line = insert_spaces(treated_line, tab);
 	if (stemp != NULL && stemp != treated_line && stemp != line)
