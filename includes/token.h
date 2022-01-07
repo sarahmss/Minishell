@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 15:42:54 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/28 01:21:37 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/01/06 20:46:09 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ int				in_qt(char *str, char c);
 // quotes 2
 int				dq(char	*line, char c);
 int				check_quotes(char *cmd_line, t_cmd_tab *tab);
+int				check_quotes2(char *cmd_line);
+char			*remove_qt_inside_qt(char *str, char *c);
 
 // Tk lst
 t_token			*tk_get_new_tok(char *value, t_cmd_tab *tab);

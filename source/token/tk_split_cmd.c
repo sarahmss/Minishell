@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 11:22:40 by smodesto          #+#    #+#             */
-/*   Updated: 2022/01/04 20:47:17 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/01/06 21:20:38 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,16 @@ static char	*treat_line(char *line, t_cmd_tab *tab)
 	char		*treated_line;
 	char		*stemp;
 
-	if (line == NULL)
+	tab->session->errcd = check_quotes2(line);
+	if (line == NULL || tab->session->errcd != 0)
 		return (NULL);
-	stemp = NULL;
-	treated_line = NULL;
-	treated_line = insert_spaces(line, tab);
+	treated_line = remove_qt_inside_qt(line, "\"");
+	if (treated_line == NULL)
+		treated_line = line;
+	stemp = treated_line;
+	treated_line = insert_spaces(treated_line, tab);
+	if (stemp != NULL && stemp != treated_line && stemp != line)
+		free(stemp);
 	stemp = treated_line;
 	treated_line = ft_strtrim(treated_line, " ");
 	if (stemp != NULL && stemp != treated_line && stemp != line)
@@ -82,7 +87,7 @@ static char	**ft_alocate(t_positions p, char sep)
 	p.k = 0;
 	while (*p.stemp)
 	{
-		if (*p.stemp == '\'' || *p.stemp == '\"')
+		if ((*p.stemp == '\'' || *p.stemp == '\"') && (*(p.stemp + 1) == ' '))
 			skip_spacesqt(&p);
 		else if (*p.stemp != sep)
 		{
@@ -108,6 +113,8 @@ t_token	*tk_split_cmd(char *line, char delimiter, t_cmd_tab *tab)
 	t_token		*head;
 
 	pos.stemp = treat_line(line, tab);
+	if (pos.stemp == NULL)
+		return (NULL);
 	tab->cmd_splitted = ft_alocate(pos, delimiter);
 	if (tab->cmd_splitted == NULL)
 		ft_check_error(EALLOC, "ALLOCATING CMD_SPLITTED", NULL);
