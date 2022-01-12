@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 10:03:07 by smodesto          #+#    #+#             */
-/*   Updated: 2022/01/06 23:14:29 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/01/12 23:14:05 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,21 @@ static t_positions	*init_pos(t_cmd_tab *tab, char c, char *cmd_line)
 	return (pos);
 }
 
+static int	check_spaces(char c, char *cmd_line)
+{
+	char	*temp;
+
+	temp = ft_strchr(cmd_line, c);
+	temp = ft_strcdup((temp + 1), c);
+	if (no_only_c(temp, ' '))
+	{
+		free(temp);
+		return (1);
+	}
+	free(temp);
+	return (0);
+}
+
 void	dq_cmd_tab(t_cmd_tab *tab, char **old, char c, char *cmd_line)
 {
 	char		**new;
@@ -78,7 +93,7 @@ void	dq_cmd_tab(t_cmd_tab *tab, char **old, char c, char *cmd_line)
 	new = (char **)(malloc(sizeof(char *) * pos->len));
 	while (old[pos->i] != NULL)
 	{
-		if (dq(old[pos->i], c) == -1)
+		if (dq(old[pos->i], c) == -1 && check_spaces(c, cmd_line) == 1)
 			make_one_source(pos, old, new);
 		else
 		{
