@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smodesto <smodesto@student.42.fr>          +#+  +:+       +#+        */
+/*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 20:04:04 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/30 12:48:49 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/01/13 00:34:08 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,9 +75,10 @@ int	ft_cd(t_process *p, t_ht_tab *env)
 		dir = ft_strtrim(p->argv[1], "\'\"");
 		if (chdir(dir) == -1)
 		{
-			return (ft_check_error(ECOMMAND, "cd: Dir not exists", NULL));
 			free (dir);
+			return (ft_check_error(ECOMMAND, "cd: Dir not exists", NULL));
 		}
+		free (dir);
 	}
 	return (update_cwd(env, old_pwd));
 }

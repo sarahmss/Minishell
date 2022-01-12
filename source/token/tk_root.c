@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 16:47:37 by smodesto          #+#    #+#             */
-/*   Updated: 2022/01/06 20:25:27 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/01/13 00:33:43 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,23 @@ int	in_qt(char *str, char c)
 	return (ret);
 }
 
+int	valid_piped(char *str)
+{
+	char	*pipe;
+
+	if (!ft_strchr(str, C_PIPE))
+		return (0);
+	pipe = ft_strchr(str, C_PIPE);
+	if (ft_strlen(pipe) <= 1)
+		return (0);
+	if ((*(pipe + 2) == '|' && *(pipe + 1) == '|') || no_only_c(pipe + 1, ' '))
+		return (0);
+	return (1);
+}
+
 void	tokenizer(t_cmd_tab *tab)
 {
-	if (ft_strchr(tab->cmd_line, C_PIPE)
+	if (valid_piped(tab->cmd_line)
 		&& !in_qt(tab->cmd_line, C_DQUOTE) && !in_qt(tab->cmd_line, C_SQUOTE))
 		tab->piped_cmd = pipe_cmd_line(tab);
 	else

@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 21:26:17 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/27 14:20:01 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/01/13 00:33:09 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,11 @@ t_ht_item	*set_value(t_ht_tab *env, char *str, int mood)
 	t_ht_item	*variable;
 	char		*var_split[2];
 
-	variable = NULL;
 	split_var(str, var_split);
 	variable = ht_search(env, var_split[0]);
 	if (variable != NULL)
 	{
+		free(variable->value);
 		variable->value = ft_strdup(var_split[1]);
 		if (mood)
 			variable->is_env = true;

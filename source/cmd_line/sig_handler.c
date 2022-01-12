@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sig_handler.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
+/*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/28 12:56:56 by smodesto          #+#    #+#             */
-/*   Updated: 2022/01/12 22:24:34 by coder            ###   ########.fr       */
+/*   Updated: 2022/01/13 00:37:23 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,16 +48,10 @@ static void	sig_handler(int signal)
 		printf ("\n");
 	if (signal == SIGQUIT)
 	{
-		session = NULL;
-		if (g_tb != NULL)
-		{
-			session = g_tb->session;
-			before_living(g_tb);
-		}
-		if (session)
-			free_session(session);
+		session = g_tb->session;
 		printf("Quit (core dumped)\n");
-		exit (SQUIT);
+		session->errcd = SQUIT;
+		return ;
 	}
 }
 
