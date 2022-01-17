@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 11:22:40 by smodesto          #+#    #+#             */
-/*   Updated: 2022/01/04 20:47:17 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/01/17 15:12:28 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	ft_read_line(t_cmd_tab *tb)
 	t_session	*s;
 
 	s = tb->session;
-	if (s->errcd == ECMDNF || s->errcd == SINT || s->errcd == SQUIT)
+	if (s->errcd > -1)
 		s->stat = s->errcd;
 	prompt = create_prompt();
 	empty_line();
