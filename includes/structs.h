@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: smodesto <smodesto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 08:51:24 by smodesto          #+#    #+#             */
-/*   Updated: 2022/01/04 20:47:17 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/01/16 20:00:49 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,9 @@ typedef enum e_type
 	T_OREDIRECT,
 	T_OAPPEND,
 	T_IREADNOHISTORY,
-	T_BUILTIN
+	T_BUILTIN,
+	T_SEMICOLON,
+	T_PIPE,
 }					t_type;
 
 typedef struct s_token

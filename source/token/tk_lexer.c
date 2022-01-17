@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tk_lexer.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: smodesto <smodesto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 19:18:46 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/21 21:23:29 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/01/16 20:02:07 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,10 @@ void	tk_define_types(t_token *head)
 			temp->type = T_IREDIRECT;
 		else if (ft_strcmp("<<", temp->value))
 			temp->type = T_IREADNOHISTORY;
+		else if (ft_strcmp(";", temp->value))
+			temp->type = T_IREADNOHISTORY;
+		else if (ft_strcmp("|", temp->value))
+			temp->type = T_PIPE;
 		else
 			temp->type = T_WORD;
 		temp = temp->next;

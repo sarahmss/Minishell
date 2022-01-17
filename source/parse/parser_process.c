@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 14:13:05 by smodesto          #+#    #+#             */
-/*   Updated: 2022/01/04 14:32:52 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/01/17 13:58:47 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,14 +107,14 @@ t_process	*parse_command(t_token **tokens)
 	temp = *tokens;
 	while (temp != NULL)
 	{
-		if (temp->type == T_WORD || temp->type == T_BUILTIN)
-			parse_words(process, temp, i);
-		else if (temp->type == T_IREDIRECT)
+		if (temp->type == T_IREDIRECT)
 			parse_iredirect(process, &temp, i);
 		else if (temp->type == T_OREDIRECT)
 			parse_oredirect(process, &temp, false, i);
 		else if (temp->type == T_OAPPEND)
 			parse_oredirect(process, &temp, true, i);
+		else
+			parse_words(process, temp, i);
 		temp = temp->next;
 	}
 	free (i);
