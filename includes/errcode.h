@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 15:32:49 by smodesto          #+#    #+#             */
-/*   Updated: 2022/01/17 15:11:52 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/01/18 09:07:17 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 typedef enum e_errcode
 {
 	SIGEXIT,
-	ESYNTAX = -8,
+	ESYNTAX,
 	EUSAGE,
 	EPARSE,
 	EUNFQT,

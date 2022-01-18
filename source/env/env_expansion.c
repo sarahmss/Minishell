@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 23:05:02 by smodesto          #+#    #+#             */
-/*   Updated: 2022/01/03 20:47:31 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/01/18 09:03:51 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ static char	*literal_value(char *str, int status, int mood, int *j)
 	}
 	if (mood == 1)
 	{
-		temp = ft_itoa(status);
+		if (WIFEXITED(status))
+			temp = ft_itoa(WEXITSTATUS(status));
 		new_line = str_replace(str, "$?", temp);
 		free (temp);
 		if (ft_strlen(new_line) < 2)
