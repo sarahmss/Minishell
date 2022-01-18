@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 23:05:02 by smodesto          #+#    #+#             */
-/*   Updated: 2022/01/18 09:27:50 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/01/18 09:37:39 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static char	*find_var_name(char *str, int j)
 	return (var_name);
 }
 
-static char	*literal_value(char *str, int status, int mood, int *j)
+static char	*literal_value(char *str, int stts, int mood, int *j)
 {
 	char		*new_line;
 	char		*temp;
@@ -52,10 +52,10 @@ static char	*literal_value(char *str, int status, int mood, int *j)
 	}
 	if (mood == 1)
 	{
-		if (WIFEXITED(status))
-			temp = ft_itoa(WEXITSTATUS(status));
+		if (WIFEXITED(stts) && stts != ECMDNF && stts != SINT && stts != SQUIT)
+			temp = ft_itoa(WEXITSTATUS(stts));
 		else
-			temp = ft_itoa(status);
+			temp = ft_itoa(stts);
 		new_line = str_replace(str, "$?", temp);
 		free (temp);
 		if (ft_strlen(new_line) < 2)
