@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/28 12:56:56 by smodesto          #+#    #+#             */
-/*   Updated: 2022/01/17 14:32:20 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/01/18 09:43:22 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,12 @@ static void	sig_handler(int signal)
 	t_session	*session;
 
 	if (signal == SIGINT)
-		printf ("\n");
+	{
+		session = g_tb->session;
+		printf("\n");
+		session->errcd = SINT;
+		return ;
+	}
 	if (signal == SIGQUIT)
 	{
 		session = g_tb->session;
