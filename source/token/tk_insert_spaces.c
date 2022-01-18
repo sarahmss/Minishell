@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 17:49:11 by smodesto          #+#    #+#             */
-/*   Updated: 2022/01/04 14:48:58 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/01/18 12:49:19 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ static int	eval_line(char *l, char c)
 	{
 		while (l[i] != '\0')
 		{
-			if (l[i] != C_SPACE && l[i] != c && l[i + 1] == c && l[i] != '=')
+			if (l[i] != C_SPACE && l[i] != c && l[i + 1] == c && l[i] != '='
+				&& l[i - 2] != '-')
 				spaces++;
 			if (l[i + 1] != C_SPACE && l[i + 1] != c && l[i] == c && c != '\''
 				&& c != '\"')
@@ -50,19 +51,18 @@ static char	*create_nl(char *line, char c, t_cmd_tab *tab)
 	return (new_line);
 }
 
-static char	*sup_insert_spaces(char *l, char c, t_cmd_tab *tab)
+static char	*sup_insert_spaces(char *l, char c, t_cmd_tab *tab, int j)
 {
 	char		*new_line;
 	int			i;
-	int			j;
 
 	i = 0;
-	j = 0;
 	new_line = create_nl(l, c, tab);
 	while (l[i] != '\0' && new_line != l)
 	{
 		new_line[j] = l[i];
-		if (l[i] != ' ' && l[i] != c && l[i + 1] == c && l[i] != '=')
+		if (l[i] != ' ' && l[i] != c && l[i + 1] == c && l[i] != '='
+			&& l[i - 1] != '-')
 		{
 			j++;
 			new_line[j] = ' ';
@@ -94,7 +94,7 @@ char	*insert_spaces(char *line, t_cmd_tab *tab)
 	{
 		if (new_line != NULL)
 			temp = new_line;
-		new_line = sup_insert_spaces(temp, operators[i], tab);
+		new_line = sup_insert_spaces(temp, operators[i], tab, 0);
 		if (temp != NULL && temp != line && temp != new_line)
 			free (temp);
 		i++;

@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 14:13:05 by smodesto          #+#    #+#             */
-/*   Updated: 2022/01/18 11:13:06 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/01/18 12:45:12 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,7 @@ void	parse_words(t_process *p, t_token *tokens, int i[])
 {
 	char	*word;
 
-	word = ft_strtrim(tokens->value, "\'\" ");
-	if (word == NULL)
-		word = ft_strdup(tokens->value);
+	word = sup_trim(tokens->value);
 	if (p->command == NULL && tokens->type == T_BUILTIN)
 		p->command = word;
 	if (p->command == NULL && word[0] != '=' && ft_strchr(word, '='))

@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 10:03:07 by smodesto          #+#    #+#             */
-/*   Updated: 2022/01/12 23:14:05 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/01/18 12:44:26 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,14 @@ char	*substitute_quotes(char *line)
 
 static void	suport(t_positions *pos, char *temp, char c)
 {
-	if (*(pos->temp + 1) != ' ' && *(pos->temp + 1) != '\0')
+	if (*(pos->dq1 - 2) == '-')
+	{
+		while ((pos->dq1[pos->i] != c) && (pos->dq1[pos->i] != '\0'))
+			pos->i++;
+		pos->stemp = ft_calloc(sizeof(char), pos->i + 4);
+		pos->stemp = ft_strncpy(pos->stemp, pos->dq1 - 2, pos->i + 4);
+	}
+	else if (*(pos->temp + 1) != ' ' && *(pos->temp + 1) != '\0')
 	{
 		while ((pos->temp[pos->i] != ' ') && (pos->temp[pos->i] != '\0'))
 			pos->i++;
@@ -73,7 +80,11 @@ static int	check_spaces(char c, char *cmd_line)
 {
 	char	*temp;
 
+	if (*cmd_line == '-')
+		return (1);
 	temp = ft_strchr(cmd_line, c);
+	if (*(temp - 2) == '-')
+		return (1);
 	temp = ft_strcdup((temp + 1), c);
 	if (no_only_c(temp, ' '))
 	{

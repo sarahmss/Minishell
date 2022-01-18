@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 18:56:26 by smodesto          #+#    #+#             */
-/*   Updated: 2022/01/04 21:15:33 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/01/18 12:45:53 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void			push_process(t_process **lst, t_process *new_p);
 t_process		*parser(t_cmd_tab *tb);
 t_process		*parse_command(t_token **tokens);
 int				no_only_c(char *str, char c);
+char			*sup_trim(char *word);
 
 // execute
 int				execute_root(t_session *session, t_cmd_tab *tb);
