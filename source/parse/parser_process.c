@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 14:13:05 by smodesto          #+#    #+#             */
-/*   Updated: 2022/01/17 13:58:47 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/01/18 10:16:43 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ void	parse_words(t_process *p, t_token *tokens, int i[])
 		p->argv[i[I_ARGV]] = word;
 		i[I_ARGV]++;
 	}
+	if (!no_only_c(word, ' '))
+		free (word);
 }
 
 int	parse_iredirect(t_process *p, t_token **tk, int i[])
