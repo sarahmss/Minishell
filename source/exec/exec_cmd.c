@@ -6,7 +6,7 @@
 /*   By: kde-oliv <kde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/28 08:51:20 by kde-oliv          #+#    #+#             */
-/*   Updated: 2022/01/20 20:07:41 by kde-oliv         ###   ########.fr       */
+/*   Updated: 2022/01/20 20:32:08 by kde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,16 +42,20 @@ static void	run_command(t_session *session, t_cmd_tab *tb)
 //eval multiples redirections output<<
 static int	get_output_file(t_session *session)
 {
-	int	fdout;
+	int		fdout;
 	mode_t	mode;
-	int i;
+	int 	i;
 
 	i = 0;
 	mode = S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH;
 	while (session->process_lst->output_file[i])
 	{
-		fdout = open(session->process_lst->output_file[i]->path, \
+		if (session->process_lst->output_file[i]->flags == 0)
+			fdout = open(session->process_lst->output_file[i]->path, \
 		O_WRONLY | O_CREAT | O_TRUNC, mode);
+		else
+			fdout = open(session->process_lst->output_file[i]->path, \
+		O_RDWR | O_APPEND );
 		i++;
 	}
 	return (fdout);
