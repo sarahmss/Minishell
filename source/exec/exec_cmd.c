@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: kde-oliv <kde-oliv@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/28 08:51:20 by kde-oliv          #+#    #+#             */
-/*   Updated: 2022/01/17 15:34:54 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/01/20 20:07:41 by kde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,25 +39,41 @@ static void	run_command(t_session *session, t_cmd_tab *tb)
 	return ;
 }
 
+//eval multiples redirections output<<
+static int	get_output_file(t_session *session)
+{
+	int	fdout;
+	mode_t	mode;
+	int i;
+
+	i = 0;
+	mode = S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH;
+	while (session->process_lst->output_file[i])
+	{
+		fdout = open(session->process_lst->output_file[i]->path, \
+		O_WRONLY | O_CREAT | O_TRUNC, mode);
+		i++;
+	}
+	return (fdout);
+}
+
 static void	pipe_create(int fdin, int tmpout, t_session *session)
 {
 	int		fdout;
 	int		fdpipe[2];
-	mode_t	mode;
 
 	dup2(fdin, 0);
 	close(fdin);
-	mode = S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH;
-	if (session->process_lst->next == NULL)
+	if (session->process_lst->next == NULL) // simple command
 	{
 		if (session->process_lst->output_file[0])
-			fdout = open(session->process_lst->output_file[0]->path, \
-			O_WRONLY | O_CREAT | O_TRUNC, mode);
+			fdout = get_output_file(session);
 		else
 			fdout = dup(tmpout);
 	}
 	else
 	{
+		fdout = get_output_file(session);
 		if (pipe(fdpipe) < 0)
 			ft_putstr_fd("error creating pipe", STDERR_FILENO);
 		fdout = fdpipe[1];
