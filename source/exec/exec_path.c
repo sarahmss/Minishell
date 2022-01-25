@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 15:28:09 by smodesto          #+#    #+#             */
-/*   Updated: 2022/01/04 20:47:17 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/01/25 14:19:49 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ t_bool	is_executable(char *path_cmd)
 {
 	struct stat	buffer;
 
+	if (!path_cmd)
+		return (false);
 	if (stat(path_cmd, &buffer) != 0)
 		return (false);
 	if ((buffer.st_mode & S_IFMT) == S_IFDIR)
