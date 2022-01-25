@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/28 08:51:20 by kde-oliv          #+#    #+#             */
-/*   Updated: 2022/01/25 13:18:13 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/01/25 13:37:14 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static int	get_output_file(t_session *s)
 		O_WRONLY | O_CREAT | O_TRUNC, mode);
 		else
 			fdout = open(s->process_lst->output_file[i]->path, \
-		O_CREAT | O_RDWR | O_APPEND);
+		O_RDWR | O_APPEND);
 		i++;
 	}
 	return (fdout);
