@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 14:13:05 by smodesto          #+#    #+#             */
-/*   Updated: 2022/01/25 12:51:22 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/01/25 14:26:47 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,11 @@ int	parse_iredirect(t_process *p, t_token **tk, int i[], t_bool r_only)
 	if (r_only == true)
 		input->flags = 2;
 	else
+	{
 		input->flags = 1;
-	p->argv[i[I_ARGV]] = ft_join_var(2, "/tmp/", token->value);
-	i[I_ARGV]++;
+		p->argv[i[I_ARGV]] = ft_join_var(2, "/tmp/", token->value);
+		i[I_ARGV]++;
+	}
 	p->input_file[i[I_IRED]] = input;
 	i[I_IRED]++;
 	return (0);
