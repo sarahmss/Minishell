@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/28 08:51:20 by kde-oliv          #+#    #+#             */
-/*   Updated: 2022/01/25 13:37:14 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/01/25 13:45:38 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ int	def_fdin(int tmpin, t_session *s)
 	t_file	*file;
 	int		i;
 
-	i = 0;
+	i = -1;
 	while (s->process_lst->input_file[i])
 		i++;
 	file = s->process_lst->input_file[i];
