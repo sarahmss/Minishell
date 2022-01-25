@@ -32,3 +32,27 @@ char	*ft_strrchr(const char *str, int c)
 	}
 	return (NULL);
 }
+
+/*
+	1: char inside char
+*/
+int	c_in_c(char c, char *line)
+{
+	char	*c1;
+	char	*c2;
+	char	*temp;
+
+	c1 = ft_strchr(line, c);
+	if (c1 == NULL)
+		return (0);
+	c2 = ft_strchr(++c1, c);
+	if (c2 == NULL)
+		return (-1);
+	temp = c2 + 1;
+	if (*temp != '\0')
+		return (c_in_c(c, temp));
+	if (*(c2 + 1) == ' ' && *(c2 + 2) == c)
+		return (0);
+	else
+		return (1);
+}
