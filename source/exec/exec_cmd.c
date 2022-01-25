@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/28 08:51:20 by kde-oliv          #+#    #+#             */
-/*   Updated: 2022/01/25 14:13:09 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/01/25 20:18:57 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void	run_command(t_session *s, t_cmd_tab *tb)
 	return ;
 }
 
-/* eval multiples redirections output<< */
+/* eval multiples redirections output >> */
 static int	get_output_file(t_session *s)
 {
 	int		fdout;
@@ -55,7 +55,7 @@ static int	get_output_file(t_session *s)
 		O_WRONLY | O_CREAT | O_TRUNC, mode);
 		else
 			fdout = open(s->process_lst->output_file[i]->path, \
-		O_RDWR | O_APPEND);
+		O_WRONLY | O_CREAT | O_APPEND, mode);
 		i++;
 	}
 	return (fdout);
