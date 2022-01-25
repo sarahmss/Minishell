@@ -6,11 +6,27 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/22 14:40:56 by smodesto          #+#    #+#             */
-/*   Updated: 2022/01/18 12:45:38 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/01/25 11:17:36 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Minishell.h"
+
+void	push_process(t_process **lst, t_process *new_p)
+{
+	t_process	*last;
+
+	if (*lst == NULL)
+		*lst = new_p;
+	else
+	{
+		last = *lst;
+		while (last->next != NULL)
+			last = last->next;
+		last->next = new_p;
+		new_p->prev = last;
+	}
+}
 
 char	*sup_trim(char *word)
 {

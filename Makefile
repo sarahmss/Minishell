@@ -6,7 +6,7 @@
 #    By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/11 17:02:33 by smodesto          #+#    #+#              #
-#    Updated: 2022/01/06 23:13:03 by smodesto         ###   ########.fr        #
+#    Updated: 2022/01/25 13:18:55 by smodesto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,6 +56,7 @@ SRCS_FILES =	main/init_shell.c		\
 				exec/exec_root.c		\
 				exec/exec_path.c		\
 				exec/exec_cmd.c			\
+				exec/redir.c			\
 				builtins/builtins_root.c\
 				builtins/echo.c			\
 				builtins/exit.c			\
