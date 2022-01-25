@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/28 08:51:20 by kde-oliv          #+#    #+#             */
-/*   Updated: 2022/01/25 13:45:38 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/01/25 14:13:09 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ int	def_fdin(int tmpin, t_session *s)
 	int		i;
 
 	i = -1;
-	while (s->process_lst->input_file[i])
+	while (s->process_lst->input_file[i + 1])
 		i++;
 	file = s->process_lst->input_file[i];
 	if (file && file->flags == 2)
@@ -118,7 +118,7 @@ void	exec_cmd(t_session *s, t_cmd_tab *tb)
 	fdin = def_fdin(tmpin, s);
 	if (fdin == -1)
 	{
-		perror("error:");
+		perror("error");
 		return ;
 	}
 	while (s->process_lst != NULL)
