@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 14:13:05 by smodesto          #+#    #+#             */
-/*   Updated: 2022/01/25 14:26:47 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/01/25 19:01:23 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	parse_iredirect(t_process *p, t_token **tk, int i[], t_bool r_only)
 	input->path = ft_strdup(token->value);
 	if (r_only == true)
 		input->flags = 2;
-	else
+	else if (r_only == false)
 	{
 		input->flags = 1;
 		p->argv[i[I_ARGV]] = ft_join_var(2, "/tmp/", token->value);
@@ -102,7 +102,7 @@ t_process	*parse_command(t_token **tokens)
 	{
 		if (temp->type == T_IREDIRECT)
 			parse_iredirect(process, &temp, i, true);
-		if (temp->type == T_IREADNOHISTORY)
+		else if (temp->type == T_IREADNOHISTORY)
 			parse_iredirect(process, &temp, i, false);
 		else if (temp->type == T_OREDIRECT)
 			parse_oredirect(process, &temp, false, i);
