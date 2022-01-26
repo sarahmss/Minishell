@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 17:49:11 by smodesto          #+#    #+#             */
-/*   Updated: 2022/01/25 20:07:10 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/01/26 14:56:13 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	eval_line(char *l, char c)
 		while (l[i] != '\0')
 		{
 			if (l[i] != C_SPACE && l[i] != c && l[i + 1] == c && l[i] != '='
-				&& l[i - 2] != '-' && l[i + 2] != ' ')
+				&& l[i - 2] != '-' && l[i + 2] != ' ' && l[i + 2] != '\0')
 				spaces++;
 			if (l[i + 1] != C_SPACE && l[i + 1] != c && l[i] == c && c != '\''
 				&& c != '\"')
@@ -62,7 +62,7 @@ static char	*sup_insert_spaces(char *l, char c, t_cmd_tab *tab, int j)
 	{
 		new_line[j] = l[i];
 		if (l[i] != ' ' && l[i] != c && l[i + 1] == c && l[i] != '='
-			&& l[i - 1] != '-' && l[i + 2] != ' ')
+			&& l[i - 1] != '-' && l[i + 2] != ' ' && l[i + 2] != '\0')
 		{
 			j++;
 			new_line[j] = ' ';

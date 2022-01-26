@@ -6,7 +6,7 @@
 #    By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/11 17:02:33 by smodesto          #+#    #+#              #
-#    Updated: 2022/01/25 13:18:55 by smodesto         ###   ########.fr        #
+#    Updated: 2022/01/25 20:24:34 by smodesto         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -80,7 +80,7 @@ HEADER_FILES	=	Minishell.h		\
 HEADERS = $(addprefix $(INCLUDES_PATH), $(HEADER_FILES))
 
 CC			= gcc
-FLAGS		= -Wall -Wextra -g
+FLAGS		= -Wall -Wextra -Werror -g
 LIBRARIES	= -L$(LIBFT_PATH) -lft $(READLINE)
 INCLUDES	= -I$(INCLUDES_PATH) -I$(LIBFT_PATH)
 
