@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/22 14:40:56 by smodesto          #+#    #+#             */
-/*   Updated: 2022/01/25 11:17:36 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/01/26 18:04:35 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ char	*sup_trim(char *word)
 	if (qt == 0)
 		return (ft_strdup(word));
 	qts = ft_strchr(word, qt);
+	if (qts == NULL || ft_strchr(qts + 1, qt) == NULL)
+		return (ft_strdup(word));
 	qts = ft_strcdup(qts + 1, qt);
 	if (ft_strlen(qts) && no_only_c(qts, qt) && no_only_c(qts + 1, C_SPACE))
 		ret = ft_strtrim(word, "\'\" ");
