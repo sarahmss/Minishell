@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 21:26:17 by smodesto          #+#    #+#             */
-/*   Updated: 2022/01/13 00:33:09 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/01/27 11:48:13 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	split_var(char *str, char *var_split[])
 	if (temp)
 	{
 		var_split[0] = ft_strtok(str, '=');
-		var_split[1] = ft_strdup(temp + 1);
+		var_split[1] = ft_strtrim(temp + 1, "\"");
 	}
 	else
 	{
