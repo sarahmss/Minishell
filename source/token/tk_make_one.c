@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 23:11:31 by smodesto          #+#    #+#             */
-/*   Updated: 2022/01/12 23:13:54 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/01/31 10:54:19 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static char	*make_one(char *s1, char *s2)
 void	make_one_source(t_positions *pos, char **old, char **new)
 {
 	new[pos->j] = NULL;
-	while (!ft_strcmp(new[pos->j], pos->stemp))
+	while (!ft_strcmp(new[pos->j], pos->stemp) && old[pos->i])
 	{
 		if (pos->k > 0)
 		{
