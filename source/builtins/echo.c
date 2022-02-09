@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 21:45:41 by smodesto          #+#    #+#             */
-/*   Updated: 2022/01/06 23:04:03 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/02/02 19:12:33 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ int	ft_echo(char **argv)
 	flag_n = false;
 	if (argv[1] != NULL && ft_strcmp(argv[1], "-n"))
 	{
-		i = 2;
+		while (ft_strcmp(argv[i], "-n"))
+			i++;
 		flag_n = true;
 	}
 	while (argv[i] != NULL)

@@ -6,13 +6,24 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/28 12:56:56 by smodesto          #+#    #+#             */
-/*   Updated: 2022/01/18 09:43:22 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/02/09 00:32:52 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Minishell.h"
 
 t_cmd_tab	*g_tb;
+
+void	sig_doc(int signal)
+{
+	if (signal == SIGINT)
+	{
+		printf("\n");
+		exit(130);
+	}
+	if (signal == SIGQUIT)
+		return ;
+}
 
 /*
 	CTRL+C: Redisplay prompt
@@ -22,7 +33,7 @@ t_cmd_tab	*g_tb;
 	CTRL+\: do nothing
 
 */
-static void	redisplay_prompt(int signal)
+void	redisplay_prompt(int signal)
 {
 	(void)signal;
 	printf("\n");

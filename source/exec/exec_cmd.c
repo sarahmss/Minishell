@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/28 08:51:20 by kde-oliv          #+#    #+#             */
-/*   Updated: 2022/01/25 20:18:57 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/02/09 00:28:43 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,10 @@ int	def_fdin(int tmpin, t_session *s)
 	if (file && file->flags == 2)
 		fdin = open(file->path, O_RDONLY);
 	else if (file)
-		fdin = redir(file->path);
+	{
+		fdin = redir(file->path, s);
+		s->remove_file = file->path;
+	}
 	else
 		fdin = dup(tmpin);
 	return (fdin);
@@ -116,9 +119,10 @@ void	exec_cmd(t_session *s, t_cmd_tab *tb)
 	tmpin = dup(0);
 	tmpout = dup(1);
 	fdin = def_fdin(tmpin, s);
-	if (fdin == -1)
+	if (fdin < 0)
 	{
-		perror("error");
+		if (fdin == -1)
+			perror("error");
 		return ;
 	}
 	while (s->process_lst != NULL)

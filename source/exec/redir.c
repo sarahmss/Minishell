@@ -6,65 +6,80 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 13:11:28 by smodesto          #+#    #+#             */
-/*   Updated: 2022/01/25 14:12:22 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/02/09 00:55:21 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Minishell.h"
 
-static int	create_heredoc(char *delimiter, char *final_file)
+static int	create_heredoc(char *path)
 {
-	char	*temp;
 	int		fd;
 
-	temp = ft_join_var(2, "/tmp/", delimiter);
-	fd = open(temp, O_CREAT | O_RDWR, S_IRUSR | S_IWUSR);
-	free(temp);
-	if (fd == -1)
-		return (-1);
-	write (fd, final_file, ft_strlen(final_file));
-	free(final_file);
+	fd = open(path, O_CREAT | O_RDWR, S_IRUSR | S_IWUSR);
+	if (fd < -1)
+	{
+		perror("error");
+		return (0);
+	}
 	return (fd);
 }
 
-static int	ft_free_str(char *s1, char *s2, char *s3, char *s4)
+static void	here_doc_sig(void)
 {
-	if (s1)
-		free(s1);
-	if (s2)
-		free(s2);
-	if (s3)
-		free(s3);
-	if (s4)
-		free(s4);
-	return (ft_check_error(1, "here-doc delimited by EOF", NULL));
+	signal(SIGINT, sig_doc);
+	signal(SIGQUIT, SIG_IGN);
 }
 
-int	redir(char *delimiter)
+void	read_write_heredoc(char *delimiter, int fd, char *path)
 {
-	char		*final_file;
-	char		*line;
-	char		*temp;
+	char	*line;
 
-	line = readline(">");
-	if (line == NULL)
-		return (ft_check_error(20, "here-doc delimited by EOF", NULL));
-	temp = NULL;
-	while (!ft_strcmp(line, delimiter))
+	here_doc_sig();
+	while (1)
 	{
-		if (temp != NULL)
-		{
-			final_file = ft_join_var(3, temp, "\n", line);
-			free (temp);
-		}
-		else
-			final_file = ft_strdup(line);
-		free (line);
 		line = readline(">");
 		if (line == NULL)
-			return (ft_free_str(final_file, temp, NULL, NULL));
-		temp = final_file;
+		{
+			if (path)
+				free(path);
+			ft_check_error(-1, "here-doc delimited by EOF\n", NULL);
+		}
+		if (ft_strcmp(line, delimiter))
+		{
+			free(line);
+			break ;
+		}
+		else
+			ft_putendl_fd(line, fd);
+		free(line);
 	}
-	free(line);
-	return (create_heredoc(delimiter, final_file));
+	exit(0);
+}
+
+int	redir(char *delimiter, t_session *s)
+{
+	int		fd;
+	int		pid;
+	char	*path;
+
+	signal(SIGQUIT, SIG_IGN);
+	signal(SIGINT, SIG_IGN);
+	path = ft_join_var(2, "/tmp/", delimiter);
+	remove_fd(path);
+	fd = create_heredoc(path);
+	if (fd < 0)
+	{
+		free(path);
+		return (0);
+	}
+	signal(SIGINT, SIG_IGN);
+	pid = fork();
+	if (pid == 0)
+		read_write_heredoc(delimiter, fd, path);
+	else
+		waitpid(pid, &s->stat, 0);
+	if (path)
+		free(path);
+	return (fd);
 }

@@ -51,6 +51,7 @@ SRCS	=	ft_bzero.c		\
 		get_next_line.c		\
 		get_next_line_utils.c\
 		ft_join_var.c		\
+		remove_fd.c
 
 
 SRCS_B = ft_lstnew.c		\

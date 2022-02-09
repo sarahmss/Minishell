@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 13:53:35 by smodesto          #+#    #+#             */
-/*   Updated: 2022/01/04 20:47:17 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/02/02 20:40:45 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ t_session	*init_session(char *envp[])
 	session->envp = envp;
 	session->errcd = 0;
 	session->stat = 0;
+	session->remove_file = NULL;
 	session->child_envp = NULL;
 	session->process_lst = NULL;
 	return (session);

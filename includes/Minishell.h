@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 18:56:26 by smodesto          #+#    #+#             */
-/*   Updated: 2022/01/25 13:12:09 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/02/08 23:43:15 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ char			*find_full_path(t_ht_tab *env, char *command);
 char			*get_fullpath(t_session *session, char *command);
 void			exec_cmd(t_session *session, t_cmd_tab *tb);
 t_bool			is_executable(char *path_cmd);
-int				redir(char *delimiter);
+int				redir(char *delimiter, t_session *s);
 // builtins
 int				run_builtins(t_cmd_tab *tb);
 int				ft_echo(char **argv);
@@ -76,4 +76,7 @@ int				ft_pwd(t_process *p);
 // signals
 void			empty_line(void);
 void			no_empty_line(t_cmd_tab *tb);
+void			redisplay_prompt(int signal);
+void			sig_doc(int signal);
+
 #endif
