@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 23:05:02 by smodesto          #+#    #+#             */
-/*   Updated: 2022/01/18 09:37:39 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/02/09 01:12:42 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,25 +110,26 @@ char	*assign_value(char *str, t_ht_tab *env, int j)
 	1. $variable || ${variable} || "$variable" || "${variable}"
 		echo $USER ${USER} "$USER" "${USER}"
 */
-void	env_expand_var(char **cmd_splitted, t_ht_tab *env, int status)
+void	env_expand_var(char **s, t_ht_tab *env, int status)
 {
 	int		i;
 	int		j;
 
 	i = 0;
-	while (cmd_splitted[i] != NULL)
+	while (s[i] != NULL)
 	{
 		j = 0;
-		while (cmd_splitted[i][j] != '\0' && ft_strchr(cmd_splitted[i], '$'))
+		while (s[i][j] != '\0' && ft_strchr(s[i], '$'))
 		{
-			if (cmd_splitted[i][j] == '\\' && cmd_splitted[i][j + 1] == '$')
-				cmd_splitted[i] = literal_value(cmd_splitted[i], status, 0, &j);
-			else if (cmd_splitted[i][j] == '$' && cmd_splitted[i][j + 1] == '?')
-				cmd_splitted[i] = literal_value(cmd_splitted[i], status, 1, &j);
-			else if (cmd_splitted[i][j] == '$' && cmd_splitted[i][j + 1] == '$')
+			if (s[i][j] == '\\' && s[i][j + 1] == '$')
+				s[i] = literal_value(s[i], status, 0, &j);
+			else if (s[i][j] == '$' && s[i][j + 1] == '?')
+				s[i] = literal_value(s[i], status, 1, &j);
+			else if (s[i][j] == '$' && s[i][j + 1] == '$')
 				j++;
-			else if (cmd_splitted[i][j] == '$' && !dq(cmd_splitted[i], '\''))
-				cmd_splitted[i] = assign_value(cmd_splitted[i], env, j);
+			else if (s[i][j] == '$' && !dq(s[i], '\'' && s[i][j + 1] != '\0'
+				&& s[i][j + 1] != ' '))
+				s[i] = assign_value(s[i], env, j);
 			j++;
 		}
 		i++;
