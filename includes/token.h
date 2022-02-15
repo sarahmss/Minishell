@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 15:42:54 by smodesto          #+#    #+#             */
-/*   Updated: 2022/01/06 23:14:55 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/02/15 19:59:23 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ char			*insert_spaces(char *line, t_cmd_tab *tab);
 
 // quotes 1
 void			dq_cmd_tab(t_cmd_tab *tab, char **old, char c, char *cmd_line);
-int				in_qt(char *str, char c);
 char			*substitute_quotes(char *line);
 // quotes 2
 int				dq(char	*line, char c);
@@ -55,4 +54,5 @@ t_token			**pipe_cmd_line(t_cmd_tab *tab);
 void			tk_define_types(t_token *head);
 int				token_error(t_cmd_tab *tb);
 int				tk_builtin(char *value);
+int				in_qt(char *str, char qt, char caracter);
 #endif

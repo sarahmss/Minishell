@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 11:22:40 by smodesto          #+#    #+#             */
-/*   Updated: 2022/01/31 10:59:57 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/02/15 19:59:20 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,8 @@ static char	**make_splitted(char *cmd_line, char delimiter, t_cmd_tab *tab)
 	tokens = tab->cmd_splitted;
 	while (token != NULL)
 	{
-		if (ft_strlen(token))
-		{
-			tokens[pos] = token;
-			pos++;
-		}
-		else
-			free(token);
+		tokens[pos] = token;
+		pos++;
 		token = ft_strtok(NULL, delimiter);
 	}
 	tokens[pos] = NULL;
@@ -90,7 +85,8 @@ static char	**ft_alocate(t_positions p, char sep)
 	{
 		if ((*p.stemp == '\'' || *p.stemp == '\"') && (*(p.stemp + 1) == ' '))
 			skip_spacesqt(&p);
-		else if (*p.stemp != sep)
+		else if (*p.stemp != sep || (*p.stemp == sep
+				&& (*(p.stemp + 1) == sep || *(p.stemp - 1) == sep)))
 		{
 			while (*p.stemp != sep && *p.stemp)
 				p.stemp++;

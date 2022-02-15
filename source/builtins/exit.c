@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/22 12:57:57 by smodesto          #+#    #+#             */
-/*   Updated: 2022/02/09 00:43:49 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/02/09 12:19:26 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	ft_exit(t_cmd_tab *tb, t_session *s, t_process *p)
 	status = s->errcd;
 	while (argv[argc + 1] != NULL)
 	{
-		if (ft_isdigit(*argv[argc]))
+		if (ft_isalpha(*argv[argc + 1]))
 			exit_shell(2, tb);
 		argc++;
 	}

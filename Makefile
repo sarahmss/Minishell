@@ -3,15 +3,15 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+         #
+#    By: coder <coder@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/11 17:02:33 by smodesto          #+#    #+#              #
-#    Updated: 2022/01/25 20:24:34 by smodesto         ###   ########.fr        #
+#    Updated: 2022/02/15 18:39:52 by coder            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= minishell
-LIBFT	= libft.a
+LIBFT	= ./libraries/libft/libft.a
 READLINE = -lreadline -lncurses
 
 LIBFT_PATH		= ./libraries/libft/

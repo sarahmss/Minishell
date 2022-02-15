@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 20:04:04 by smodesto          #+#    #+#             */
-/*   Updated: 2022/02/09 00:52:52 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/02/15 19:40:08 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,6 @@ static	int	update_cwd(t_ht_tab *env, char *old_pwd)
 		return (false);
 	update_var(env, "OLDPWD", old_pwd);
 	update_var(env, "PWD", cwd);
-	if (cwd)
-		free(cwd);
-	if (old_pwd)
-		free (old_pwd);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 08:51:24 by smodesto          #+#    #+#             */
-/*   Updated: 2022/02/02 20:39:38 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/02/15 19:49:46 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,6 @@ typedef struct s_cmd_tab
 	t_session	*session;
 	char		*cmd_line;
 	char		**cmd_splitted;
-	char		*history;
 	t_token		**piped_cmd;
 	t_token		*simple_cmd;
 }	t_cmd_tab;

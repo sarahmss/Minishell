@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 23:05:02 by smodesto          #+#    #+#             */
-/*   Updated: 2022/02/09 01:12:42 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/02/15 19:28:16 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,30 +39,21 @@ static char	*find_var_name(char *str, int j)
 	return (var_name);
 }
 
-static char	*literal_value(char *str, int stts, int mood, int *j)
+static char	*expand_exit_stts(char *str, int stts, int *j)
 {
 	char		*new_line;
 	char		*temp;
 
-	if (mood == 0)
-	{
-		temp = ft_strchr(str, '$');
-		new_line = str_replace(str, temp - 1, temp);
+	if (WIFEXITED(stts) && stts != ECMDNF && stts != SINT && stts != SQUIT)
+		temp = ft_itoa(WEXITSTATUS(stts));
+	else
+		temp = ft_itoa(stts);
+	new_line = str_replace(str, "$?", temp);
+	free (temp);
+	if (ft_strlen(new_line) < 2)
+		j++;
+	else
 		j += 2;
-	}
-	if (mood == 1)
-	{
-		if (WIFEXITED(stts) && stts != ECMDNF && stts != SINT && stts != SQUIT)
-			temp = ft_itoa(WEXITSTATUS(stts));
-		else
-			temp = ft_itoa(stts);
-		new_line = str_replace(str, "$?", temp);
-		free (temp);
-		if (ft_strlen(new_line) < 2)
-			j++;
-		else
-			j += 2;
-	}
 	free(str);
 	return (new_line);
 }
@@ -121,14 +112,11 @@ void	env_expand_var(char **s, t_ht_tab *env, int status)
 		j = 0;
 		while (s[i][j] != '\0' && ft_strchr(s[i], '$'))
 		{
-			if (s[i][j] == '\\' && s[i][j + 1] == '$')
-				s[i] = literal_value(s[i], status, 0, &j);
+			if (s[i][j] == '$' && (s[i][j + 1] == '\0' || s[i][j + 1] == ' '))
+				s[i][j] = '$';
 			else if (s[i][j] == '$' && s[i][j + 1] == '?')
-				s[i] = literal_value(s[i], status, 1, &j);
-			else if (s[i][j] == '$' && s[i][j + 1] == '$')
-				j++;
-			else if (s[i][j] == '$' && !dq(s[i], '\'' && s[i][j + 1] != '\0'
-				&& s[i][j + 1] != ' '))
+				s[i] = expand_exit_stts(s[i], status, &j);
+			else if (s[i][j] == '$' && !dq(s[i], '\''))
 				s[i] = assign_value(s[i], env, j);
 			j++;
 		}

@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 13:53:35 by smodesto          #+#    #+#             */
-/*   Updated: 2022/02/02 20:40:45 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/02/15 19:49:49 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ t_cmd_tab	*init_cmd_tab(t_session *session)
 	table->session = session;
 	table->cmd_line = NULL;
 	table->cmd_splitted = NULL;
-	table->history = NULL;
 	table->piped_cmd = NULL;
 	table->simple_cmd = NULL;
 	return (table);

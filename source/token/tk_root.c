@@ -6,30 +6,30 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 16:47:37 by smodesto          #+#    #+#             */
-/*   Updated: 2022/01/25 19:22:54 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/02/15 19:56:45 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Minishell.h"
 
 /*
-	returns 1 if str is between c and 0 if it isn't
+	returns 1 if caracter in str is between c and 0 if it isn't
 */
-int	in_qt(char *str, char c)
+int	in_qt(char *str, char qt, char caracter)
 {
 	char	*q1;
 	char	*q2;
 	int		ret;
 
 	ret = 0;
-	if (dq(str, c) == 1)
+	if (dq(str, qt) == 1)
 	{
-		q1 = ft_strchr(str, c);
+		q1 = ft_strchr(str, qt);
 		q1++;
-		q2 = ft_strchr(q1, c);
+		q2 = ft_strchr(q1, qt);
 		while (*q1 != *q2)
 		{
-			if (*q1++ == C_PIPE)
+			if (*q1++ == caracter)
 				ret = 1;
 		}
 	}
@@ -52,8 +52,8 @@ int	valid_piped(char *str)
 
 void	tokenizer(t_cmd_tab *tab)
 {
-	if (valid_piped(tab->cmd_line)
-		&& !in_qt(tab->cmd_line, C_DQUOTE) && !in_qt(tab->cmd_line, C_SQUOTE))
+	if (valid_piped(tab->cmd_line) && !in_qt(tab->cmd_line, C_DQUOTE, C_PIPE)
+		&& !in_qt(tab->cmd_line, C_SQUOTE, C_PIPE))
 		tab->piped_cmd = pipe_cmd_line(tab);
 	else
 		tab->simple_cmd = tk_split_cmd(tab->cmd_line, C_SPACE, tab);
