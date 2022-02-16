@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_path.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: morgana <morgana@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 15:28:09 by smodesto          #+#    #+#             */
-/*   Updated: 2022/01/25 14:19:49 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/02/16 12:43:27 by morgana          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,4 +72,29 @@ char	*get_fullpath(t_session *session, char *command)
 		return (NULL);
 	}
 	return (full_path);
+}
+
+void	remove_temp_fd(char	*argv[], t_session *s)
+{
+	char	*full_path;
+	int		pid;
+	int		i;
+
+	i = 0;
+	full_path = get_fullpath(s, "rm");
+	if (full_path == NULL)
+		return ;
+	pid = fork();
+	if (pid < 0)
+		perror("error creating fork");
+	else if (pid == 0)
+	{
+		s->errcd = execve(full_path, argv, NULL);
+		perror("error execve");
+		return ;
+	}
+	while (argv[i] != NULL)
+		free(argv[i++]);
+	waitpid(pid, &s->stat, 0);
+	free (full_path);
 }

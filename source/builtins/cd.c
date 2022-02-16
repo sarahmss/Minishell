@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: morgana <morgana@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 20:04:04 by smodesto          #+#    #+#             */
-/*   Updated: 2022/02/15 19:40:08 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/02/16 13:16:04 by morgana          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,9 @@ int	ft_cd(t_process *p, t_ht_tab *env)
 		temp = ht_search(env, "HOME");
 		chdir(temp->value);
 	}
-	else if (p->argv[2] == NULL)
+	else if (p->argv[2] != NULL)
+		return (ft_check_error(ECOMMAND, "cd: invalid arguments", NULL));
+	else
 	{
 		dir = ft_strtrim(p->argv[1], "\'\"");
 		if (chdir(dir) == -1)

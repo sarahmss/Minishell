@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: morgana <morgana@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 13:11:28 by smodesto          #+#    #+#             */
-/*   Updated: 2022/02/15 19:30:03 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/02/16 12:51:19 by morgana          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,16 +57,26 @@ void	read_write_heredoc(char *delimiter, int fd, char *path)
 	exit(0);
 }
 
+static char	**def_arg(char *argv[], char *file_name)
+{
+	argv[0] = ft_strdup("rm");
+	argv[1] = ft_strdup("-rf");
+	argv[2] = ft_strdup(file_name);
+	argv[3] = NULL;
+	return (argv);
+}
+
 int	redir(char *delimiter, t_session *s)
 {
 	int		fd;
 	int		pid;
 	char	*path;
+	char	*argv[4];
 
 	signal(SIGQUIT, SIG_IGN);
 	signal(SIGINT, SIG_IGN);
 	path = ft_join_var(2, "/tmp/", delimiter);
-	remove_fd(path);
+	remove_temp_fd(def_arg(argv, path), s);
 	fd = create_heredoc(path);
 	if (fd < 0)
 	{

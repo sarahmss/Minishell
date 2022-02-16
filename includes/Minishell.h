@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: morgana <morgana@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 18:56:26 by smodesto          #+#    #+#             */
-/*   Updated: 2022/02/08 23:43:15 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/02/16 12:43:00 by morgana          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ char			*get_fullpath(t_session *session, char *command);
 void			exec_cmd(t_session *session, t_cmd_tab *tb);
 t_bool			is_executable(char *path_cmd);
 int				redir(char *delimiter, t_session *s);
+void			remove_temp_fd(char	*argv[], t_session *s);
 // builtins
 int				run_builtins(t_cmd_tab *tb);
 int				ft_echo(char **argv);
