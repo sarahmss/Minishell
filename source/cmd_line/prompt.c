@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/28 16:43:14 by smodesto          #+#    #+#             */
-/*   Updated: 2021/12/28 16:43:17 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/02/17 14:14:03 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char	*create_prompt(void)
 	char	*cwd;
 
 	cwd = working_directory(1);
-	prmpt = ft_join_var(4, "✨🐚✨\e[0;35m", getenv("USER"), "\e[0;37m:", cwd);
+	prmpt = ft_join_var(5, "✨🐚✨", PURPLE, getenv("USER"), BLUE, cwd);
 	free(cwd);
 	return (prmpt);
 }

@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 11:22:40 by smodesto          #+#    #+#             */
-/*   Updated: 2022/02/15 19:59:20 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/02/17 14:30:25 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ static char	*treat_line(char *line, t_cmd_tab *tab)
 	tab->session->errcd = check_quotes2(line);
 	if (line == NULL || tab->session->errcd != 0)
 		return (NULL);
-	if ((c_in_c('\"', line)) || (c_in_c('\'', line)))
+	if ((c_in_c('\"', line) || c_in_c('\'', line))
+		&& ft_strnstr(line, "echo", ft_strlen(line)))
 		treated_line = substitute_quotes(line);
 	else
 		treated_line = line;
