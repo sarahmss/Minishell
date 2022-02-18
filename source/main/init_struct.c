@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_struct.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: morgana <morgana@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 13:53:35 by smodesto          #+#    #+#             */
-/*   Updated: 2022/02/15 19:49:49 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/02/17 22:15:22 by morgana          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ t_session	*init_session(char *envp[])
 	session->envp = envp;
 	session->errcd = 0;
 	session->stat = 0;
-	session->remove_file = NULL;
 	session->child_envp = NULL;
 	session->process_lst = NULL;
 	return (session);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: morgana <morgana@student.42.fr>            +#+  +:+       +#+        */
+/*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 20:04:04 by smodesto          #+#    #+#             */
-/*   Updated: 2022/02/16 13:16:04 by morgana          ###   ########.fr       */
+/*   Updated: 2022/02/17 22:56:00 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	ft_cd(t_process *p, t_ht_tab *env)
 
 	var = ht_search(env, "PWD");
 	old_pwd = ft_strdup(var->value);
-	if (!p->argv[1])
+	if (!p->argv[1] || ft_strcmp(p->argv[1], "~"))
 	{
 		temp = ht_search(env, "HOME");
 		chdir(temp->value);

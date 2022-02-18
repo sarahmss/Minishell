@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: morgana <morgana@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 08:51:24 by smodesto          #+#    #+#             */
-/*   Updated: 2022/02/17 14:14:58 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/02/17 22:15:23 by morgana          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,6 @@ typedef struct s_session
 	t_process	*process_lst;
 	char		**envp;
 	char		**child_envp;
-	char		*remove_file;
 	int			errcd;
 	int			stat;
 }	t_session;
