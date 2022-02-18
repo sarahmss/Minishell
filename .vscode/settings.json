@@ -1,0 +1,20 @@
+{
+    "editor.renderWhitespace": "all",
+    "editor.detectIndentation": false,
+    "editor.insertSpaces": false,
+    "editor.tabSize": 4,
+    "editor.rulers": [80],
+    "editor.wordWrap": "wordWrapColumn",
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+    "files.eol": "\n",
+    "workbench.colorCustomizations": {
+            "editorWhitespace.foreground": "#6273a47b"
+     },
+    "42header.email": "smodesto@student.42sp.org.br",
+	"42header.username": "smodesto",
+	"files.associations": {
+		"hash_table.h": "c",
+		"minishell.h": "c"
+	}
+    }
