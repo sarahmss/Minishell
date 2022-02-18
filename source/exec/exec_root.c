@@ -6,59 +6,11 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 10:54:32 by smodesto          #+#    #+#             */
-/*   Updated: 2022/02/17 15:21:33 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/01/04 20:49:12 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Minishell.h"
-
-static int	def_fdin(int tmpin, t_session *s)
-{
-	int		fdin;
-	t_file	*file;
-	int		i;
-
-	i = -1;
-	while (s->process_lst->input_file[i + 1])
-		i++;
-	file = s->process_lst->input_file[i];
-	if (file && file->flags == 2)
-	{
-		fdin = open(file->path, O_RDONLY);
-		file->fd = fdin;
-	}
-	else if (file)
-	{
-		fdin = redir(file->path, s);
-		s->remove_file = file->path;
-	}
-	else
-		fdin = dup(tmpin);
-	return (fdin);
-}
-
-void	exec_cmd(t_session *s, t_cmd_tab *tb)
-{
-	int		tmpin;
-	int		tmpout;
-	int		fdin;
-
-	tmpin = dup(0);
-	tmpout = dup(1);
-	fdin = def_fdin(tmpin, s);
-	if (fdin == -1)
-		perror("error");
-	while (s->process_lst != NULL)
-	{
-		pipe_create(fdin, tmpout, s);
-		run_command(s, tb);
-		s->process_lst = s->process_lst->next;
-	}
-	dup2(tmpin, 0);
-	dup2(tmpout, 1);
-	close(tmpin);
-	close(tmpout);
-}
 
 int	execute_root(t_session *session, t_cmd_tab *tb)
 {
