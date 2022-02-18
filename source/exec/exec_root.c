@@ -3,21 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   exec_root.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: morgana <morgana@student.42.fr>            +#+  +:+       +#+        */
+/*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 10:54:32 by smodesto          #+#    #+#             */
-/*   Updated: 2022/02/17 22:19:08 by morgana          ###   ########.fr       */
+/*   Updated: 2022/02/18 03:08:41 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Minishell.h"
 
-static int	def_fdin(int tmpin, t_session *s)
+static int	def_fdin(int tmpin, t_session *s, int change, int old_fd)
 {
-	int		fdin;
-	t_file	*file;
-	int		i;
+	int			fdin;
+	t_file		*file;
+	int			i;
 
+	fdin = -2;
 	i = -1;
 	while (s->process_lst->input_file[i + 1])
 		i++;
@@ -32,9 +33,12 @@ static int	def_fdin(int tmpin, t_session *s)
 		fdin = redir(file->path, s);
 		file->fd = fdin;
 	}
-	else
+	else if (change == 0)
 		fdin = dup(tmpin);
-	return (fdin);
+	if (fdin != -2)
+		return (fdin);
+	else
+		return (old_fd);
 }
 
 void	exec_cmd(t_session *s, t_cmd_tab *tb)
@@ -42,14 +46,18 @@ void	exec_cmd(t_session *s, t_cmd_tab *tb)
 	int		tmpin;
 	int		tmpout;
 	int		fdin;
+	int		change;
 
+	change = 0;
 	tmpin = dup(0);
 	tmpout = dup(1);
-	fdin = def_fdin(tmpin, s);
-	if (fdin == -1)
-		perror("error");
+	s->std_fd[0] = dup(tmpin);
+	s->std_fd[1] = dup(tmpout);
 	while (s->process_lst != NULL)
 	{
+		fdin = def_fdin(tmpin, s, change++, fdin);
+		if (fdin == -1)
+			perror("error");
 		pipe_create(fdin, tmpout, s);
 		run_command(s, tb);
 		s->process_lst = s->process_lst->next;
@@ -58,6 +66,8 @@ void	exec_cmd(t_session *s, t_cmd_tab *tb)
 	dup2(tmpout, 1);
 	close(tmpin);
 	close(tmpout);
+	close(s->std_fd[0]);
+	close(s->std_fd[1]);
 }
 
 int	execute_root(t_session *session, t_cmd_tab *tb)

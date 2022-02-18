@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: morgana <morgana@student.42.fr>            +#+  +:+       +#+        */
+/*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 08:51:24 by smodesto          #+#    #+#             */
-/*   Updated: 2022/02/17 14:14:58 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/02/18 02:45:04 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ typedef struct s_session
 	char		**child_envp;
 	int			errcd;
 	int			stat;
+	int			std_fd[2];
 }	t_session;
 
 typedef struct s_cmd_tab

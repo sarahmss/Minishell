@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redir.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: morgana <morgana@student.42.fr>            +#+  +:+       +#+        */
+/*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 13:11:28 by smodesto          #+#    #+#             */
-/*   Updated: 2022/02/16 12:51:19 by morgana          ###   ########.fr       */
+/*   Updated: 2022/02/18 02:41:15 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,13 @@ static void	here_doc_sig(void)
 	signal(SIGQUIT, SIG_IGN);
 }
 
-void	read_write_heredoc(char *delimiter, int fd, char *path)
+void	read_write_heredoc(char *delimiter, int fd, char *path, int *new_fd)
 {
 	char	*line;
+	int		tmp_fd[2];
 
 	here_doc_sig();
+	handle_fd(new_fd, tmp_fd);
 	while (1)
 	{
 		line = readline(">");
@@ -54,6 +56,7 @@ void	read_write_heredoc(char *delimiter, int fd, char *path)
 			ft_putendl_fd(line, fd);
 		free(line);
 	}
+	handle_fd(new_fd, tmp_fd);
 	exit(0);
 }
 
@@ -86,7 +89,7 @@ int	redir(char *delimiter, t_session *s)
 	signal(SIGINT, SIG_IGN);
 	pid = fork();
 	if (pid == 0)
-		read_write_heredoc(delimiter, fd, path);
+		read_write_heredoc(delimiter, fd, path, s->std_fd);
 	else
 		waitpid(pid, &s->stat, 0);
 	if (path)

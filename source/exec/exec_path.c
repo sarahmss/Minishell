@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_path.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: morgana <morgana@student.42.fr>            +#+  +:+       +#+        */
+/*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 15:28:09 by smodesto          #+#    #+#             */
-/*   Updated: 2022/02/16 12:43:27 by morgana          ###   ########.fr       */
+/*   Updated: 2022/02/18 02:34:45 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,4 +97,26 @@ void	remove_temp_fd(char	*argv[], t_session *s)
 		free(argv[i++]);
 	waitpid(pid, &s->stat, 0);
 	free (full_path);
+}
+
+void	handle_fd(int *new_fd, int *tmp_fd)
+{
+	static int	init;
+
+	if (init == 0)
+	{
+		tmp_fd[0] = dup(STDIN_FILENO);
+		tmp_fd[1] = dup(STDOUT_FILENO);
+		dup2(new_fd[0], STDIN_FILENO);
+		dup2(new_fd[1], STDOUT_FILENO);
+		init++;
+	}
+	else
+	{
+		dup2(tmp_fd[0], STDIN_FILENO);
+		dup2(tmp_fd[1], STDOUT_FILENO);
+		close(tmp_fd[0]);
+		close(tmp_fd[1]);
+		init = 0;
+	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_struct.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: morgana <morgana@student.42.fr>            +#+  +:+       +#+        */
+/*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 13:53:35 by smodesto          #+#    #+#             */
-/*   Updated: 2022/02/17 22:15:22 by morgana          ###   ########.fr       */
+/*   Updated: 2022/02/18 02:44:31 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,7 @@ t_session	*init_session(char *envp[])
 	session->stat = 0;
 	session->child_envp = NULL;
 	session->process_lst = NULL;
+	session->std_fd[0] = STDIN_FILENO;
+	session->std_fd[1] = STDOUT_FILENO;
 	return (session);
 }

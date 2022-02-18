@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: morgana <morgana@student.42.fr>            +#+  +:+       +#+        */
+/*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 18:56:26 by smodesto          #+#    #+#             */
-/*   Updated: 2022/02/17 22:43:56 by morgana          ###   ########.fr       */
+/*   Updated: 2022/02/18 02:34:42 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ int				redir(char *delimiter, t_session *s);
 void			remove_temp_fd(char	*argv[], t_session *s);
 void			run_command(t_session *s, t_cmd_tab *tb);
 void			pipe_create(int fdin, int tmpout, t_session *s);
+void			handle_fd(int *new_fd, int *tmp_fd);
 
 // builtins
 int				run_builtins(t_cmd_tab *tb);
