@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_process.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: morgana <morgana@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 14:13:05 by smodesto          #+#    #+#             */
-/*   Updated: 2022/01/25 19:01:23 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/02/17 22:22:24 by morgana          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int	parse_iredirect(t_process *p, t_token **tk, int i[], t_bool r_only)
 	if (!input)
 		return (ft_check_error(EALLOC, "Allocating input", NULL));
 	input->path = ft_strdup(token->value);
+	input->fd = -1;
 	if (r_only == true)
 		input->flags = 2;
 	else if (r_only == false)
