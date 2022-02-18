@@ -6,13 +6,16 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 08:51:24 by smodesto          #+#    #+#             */
-/*   Updated: 2022/02/15 19:49:46 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/02/17 14:14:58 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
 # define CLEAR "\033[2J"
+# define PURPLE "\001\e[0;35m\002"
+# define BLUE "\001\e[0;37m:\002"
+
 # include "hash_table.h"
 
 //	parse
