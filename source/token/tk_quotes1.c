@@ -6,32 +6,11 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 10:03:07 by smodesto          #+#    #+#             */
-/*   Updated: 2022/01/25 19:50:17 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/02/22 13:58:16 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Minishell.h"
-
-char	*substitute_quotes(char *line)
-{
-	char		*treated_line;
-	char		*stemp;
-
-	stemp = NULL;
-	treated_line = NULL;
-	stemp = remove_qt_inside_qt(line, "\"");
-	if (stemp == NULL)
-		stemp = line;
-	treated_line = remove_qt_inside_qt(stemp, "\'");
-	if (stemp != line && treated_line != NULL && stemp != NULL)
-		free (stemp);
-	if (treated_line != NULL)
-		return (treated_line);
-	else if (stemp != NULL)
-		return (stemp);
-	else
-		return (line);
-}
 
 static void	suport(t_positions *pos, char *temp, char c)
 {
@@ -95,6 +74,17 @@ static int	check_spaces(char c, char *cmd_line)
 	return (0);
 }
 
+static int	space(char *s1, char *s2, t_positions *pos)
+{
+	if ((ft_strcmp(s1, "\'") && ft_strcmp(s2, "\'"))
+		|| (ft_strcmp(s1, "\"") && ft_strcmp(s2, "\"")))
+	{
+		pos->i += 2;
+		return (1);
+	}
+	return (0);
+}
+
 void	dq_cmd_tab(t_cmd_tab *tab, char **old, char c, char *cmd_line)
 {
 	char		**new;
@@ -104,7 +94,9 @@ void	dq_cmd_tab(t_cmd_tab *tab, char **old, char c, char *cmd_line)
 	new = (char **)(malloc(sizeof(char *) * pos->len));
 	while (old[pos->i] != NULL)
 	{
-		if (dq(old[pos->i], c) == -1 && check_spaces(c, cmd_line) == 1)
+		if (space(old[pos->i], old[pos->i + 1], pos))
+			new[pos->j] = ft_join_var(3, old[pos->i - 2], " ", old[pos->i - 1]);
+		else if (dq(old[pos->i], c) == -1 && check_spaces(c, cmd_line) == 1)
 			make_one_source(pos, old, new);
 		else
 		{

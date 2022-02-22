@@ -6,11 +6,32 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 23:11:31 by smodesto          #+#    #+#             */
-/*   Updated: 2022/01/31 10:54:19 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/02/22 14:58:30 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Minishell.h"
+
+char	*substitute_quotes(char *line)
+{
+	char		*treated_line;
+	char		*stemp;
+
+	stemp = NULL;
+	treated_line = NULL;
+	stemp = remove_qt_inside_qt(line, "\"");
+	if (stemp == NULL)
+		stemp = line;
+	treated_line = remove_qt_inside_qt(stemp, "\'");
+	if (stemp != line && treated_line != NULL && stemp != NULL)
+		free (stemp);
+	if (treated_line != NULL)
+		return (treated_line);
+	else if (stemp != NULL)
+		return (stemp);
+	else
+		return (line);
+}
 
 static char	*make_one(char *s1, char *s2)
 {

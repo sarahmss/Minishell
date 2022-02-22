@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/28 16:43:14 by smodesto          #+#    #+#             */
-/*   Updated: 2022/02/17 14:14:03 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/02/22 14:24:24 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*working_directory(int mood)
 	if (mood == 0)
 		return (getcwd(NULL, 0));
 	temp = getcwd(NULL, 0);
-	cwd = ft_join_var(3, "\e[0;36m", temp, "\e[0;37m$ ");
+	cwd = ft_join_var(3, "\001\e[0;36m\002", temp, "\001\e[0;37m\002$ ");
 	free(temp);
 	return (cwd);
 }
@@ -34,7 +34,7 @@ char	*create_prompt(void)
 	char	*cwd;
 
 	cwd = working_directory(1);
-	prmpt = ft_join_var(5, "✨🐚✨", PURPLE, getenv("USER"), BLUE, cwd);
+	prmpt = ft_join_var(4, "✨🐚✨", PURPLE, getenv("USER"), cwd);
 	free(cwd);
 	return (prmpt);
 }

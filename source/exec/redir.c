@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 13:11:28 by smodesto          #+#    #+#             */
-/*   Updated: 2022/02/18 02:41:15 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/02/22 15:26:35 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ static void	here_doc_sig(void)
 {
 	signal(SIGINT, sig_doc);
 	signal(SIGQUIT, SIG_IGN);
+	signal(SIGTSTP, SIG_IGN);
 }
 
 void	read_write_heredoc(char *delimiter, int fd, char *path, int *new_fd)

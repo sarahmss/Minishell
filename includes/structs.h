@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 08:51:24 by smodesto          #+#    #+#             */
-/*   Updated: 2022/02/18 02:45:04 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/02/22 14:12:16 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # define CLEAR "\033[2J"
 # define PURPLE "\001\e[0;35m\002"
 # define BLUE "\001\e[0;37m:\002"
+# define NOC "\001\e[0m\002"
 
 # include "hash_table.h"
 

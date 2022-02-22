@@ -6,23 +6,42 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 10:54:32 by smodesto          #+#    #+#             */
-/*   Updated: 2022/02/18 03:08:41 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/02/22 15:18:45 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Minishell.h"
 
+static t_file	*def_file(t_session *s)
+{
+	int			i;
+	t_file		*file;
+
+	i = -1;
+	file = NULL;
+	while (s->process_lst->input_file[i + 1])
+		i++;
+	if (s->process_lst->input_file[i])
+		file = s->process_lst->input_file[i];
+	else if (s->process_lst->next && ft_strcmp(s->process_lst->command, "cat")
+		&& file == NULL && s->process_lst->next->input_file[0] != NULL)
+	{
+		i = -1;
+		while (s->process_lst->next->input_file[i + 1])
+			i++;
+		file = s->process_lst->next->input_file[i];
+		s->process_lst->argv[1] = ft_strdup(file->path);
+	}
+	return (file);
+}
+
 static int	def_fdin(int tmpin, t_session *s, int change, int old_fd)
 {
 	int			fdin;
 	t_file		*file;
-	int			i;
 
+	file = def_file(s);
 	fdin = -2;
-	i = -1;
-	while (s->process_lst->input_file[i + 1])
-		i++;
-	file = s->process_lst->input_file[i];
 	if (file && file->flags == 2)
 	{
 		fdin = open(file->path, O_RDONLY);
