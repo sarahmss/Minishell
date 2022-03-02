@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 10:54:32 by smodesto          #+#    #+#             */
-/*   Updated: 2022/02/22 15:18:45 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/03/02 09:54:57 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int	check(t_file *file[], t_session *s)
 	{
 		if (stat(file[i]->path, &buffer) != 0)
 		{
+			if (file[i]->flags == 1)
+				return (1);
 			s->stat = 1;
 			s->errcd = 1;
 			printf("minshell - No such file or directory\n");
