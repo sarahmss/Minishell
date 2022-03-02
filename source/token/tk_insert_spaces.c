@@ -86,7 +86,7 @@ char	*insert_spaces(char *line, t_cmd_tab *tab)
 	char	*temp;
 	int		i;
 
-	operators = ft_strdup("\'\"<>();");
+	operators = ft_strdup("\'\"<>;");
 	new_line = NULL;
 	temp = line;
 	i = 0;

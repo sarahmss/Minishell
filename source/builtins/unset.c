@@ -28,5 +28,5 @@ int	ft_unset(t_ht_tab *env, t_process *p)
 			return (ft_check_error (ENUMARG, "unset, invalid args", NULL));
 		i++;
 	}
-	return (true);
+	return (0);
 }

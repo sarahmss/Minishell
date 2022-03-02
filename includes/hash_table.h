@@ -13,7 +13,7 @@
 #ifndef HASH_TABLE_H
 # define HASH_TABLE_H
 # include "./Minishell.h"
-# define CAPACITY 1031
+# define CAPACITY 10000
 
 //env
 typedef enum e_bool

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/17 18:56:26 by smodesto          #+#    #+#             */
-/*   Updated: 2022/02/18 02:34:42 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/03/01 23:28:34 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void			before_living(t_cmd_tab *table);
 int				ft_check_error(t_errcode code, char *msg, t_cmd_tab *table);
 void			repl(t_session *session);
 void			free_session(t_session *session);
+int				check(t_file *file[], t_session *s);
 void			exit_shell(t_errcode code, t_cmd_tab *table);
 
 // cmd_line
@@ -71,11 +72,11 @@ void			handle_fd(int *new_fd, int *tmp_fd);
 // builtins
 int				run_builtins(t_cmd_tab *tb);
 int				ft_echo(char **argv);
-void			ft_exit(t_cmd_tab *tb, t_session *s, t_process *p);
+int				ft_exit(t_cmd_tab *tb, t_session *s, t_process *p);
 int				ft_env(t_session *s, t_ht_tab *table);
 int				ft_export(t_process *p, t_session *s);
 int				ft_unset(t_ht_tab *env, t_process *p);
-int				ft_cd(t_process *p, t_ht_tab *env);
+int				ft_cd(t_ht_tab *env, char **argv);
 int				ft_pwd(t_process *p);
 
 // signals

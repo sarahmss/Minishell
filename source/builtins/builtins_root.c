@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins_root.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 13:57:56 by smodesto          #+#    #+#             */
-/*   Updated: 2022/01/04 21:18:13 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/03/01 23:26:20 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	run_builtins(t_cmd_tab *tb)
 	if (ft_strcmp("echo", command))
 		s->errcd = ft_echo(p->argv);
 	if (ft_strcmp("exit", command))
-		ft_exit(tb, s, p);
+		s->errcd = ft_exit(tb, s, p);
 	if (ft_strcmp("env", command))
 		s->errcd = ft_env(s, s->env);
 	if (ft_strcmp("export", command))
@@ -34,7 +34,9 @@ int	run_builtins(t_cmd_tab *tb)
 	if (ft_strcmp("pwd", command))
 		s->errcd = ft_pwd(s->process_lst);
 	if (ft_strcmp("cd", command))
-		s->errcd = ft_cd(s->process_lst, s->env);
+		s->errcd = ft_cd(s->env, s->process_lst->argv);
 	s->stat = 0;
+	if (s->errcd)
+		s->stat = 1;
 	return (s->errcd);
 }

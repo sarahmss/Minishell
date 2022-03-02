@@ -49,7 +49,7 @@ t_ht_item	*set_value(t_ht_tab *env, char *str, int mood)
 		variable->value = ft_strdup(var_split[1]);
 		if (mood)
 			variable->is_env = true;
-		else
+		else if (variable->is_env != true)
 			variable->is_env = false;
 	}
 	else

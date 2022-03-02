@@ -96,7 +96,7 @@ static char	**ft_alocate(t_positions p, char sep)
 		if (*p.stemp)
 			p.stemp++;
 	}
-	splitted_matrix = (char **)ft_calloc((p.k + 1), sizeof(char *));
+	splitted_matrix = (char **)ft_calloc((p.k + 2), sizeof(char *));
 	if (!splitted_matrix)
 		return (NULL);
 	return (splitted_matrix);

@@ -12,6 +12,26 @@
 
 #include "../includes/Minishell.h"
 
+int	check(t_file *file[], t_session *s)
+{
+	int			i;
+	struct stat	buffer;
+
+	i = 0;
+	while (file[i])
+	{
+		if (stat(file[i]->path, &buffer) != 0)
+		{
+			s->stat = 1;
+			s->errcd = 1;
+			printf("minshell - No such file or directory\n");
+			return (0);
+		}
+		i++;
+	}
+	return (1);
+}
+
 static t_file	*def_file(t_session *s)
 {
 	int			i;

@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 10:17:15 by smodesto          #+#    #+#             */
-/*   Updated: 2022/01/17 13:48:57 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/03/01 21:34:24 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,20 @@ int	token_error(t_cmd_tab *tb)
 	if (tb->simple_cmd != NULL)
 	{
 		if (validate_tokens(tb->simple_cmd) == -1)
+		{
+			tb->session->stat = 2;
 			return (ft_check_error(ESYNTAX, "bad syntax", NULL));
+		}
 	}
 	else if (tb->piped_cmd != NULL)
 	{
 		while (tb->piped_cmd[i] != NULL)
 		{
 			if (validate_tokens(tb->piped_cmd[i]) == -1)
+			{
+				tb->session->stat = 2;
 				return (ft_check_error(ESYNTAX, "bad syntax", NULL));
+			}
 			i++;
 		}
 	}

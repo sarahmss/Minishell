@@ -45,7 +45,7 @@ int	valid_piped(char *str)
 	pipe = ft_strchr(str, C_PIPE);
 	if (ft_strlen(pipe) <= 1)
 		return (0);
-	if ((*(pipe + 2) == '|' && *(pipe + 1) == '|') || !no_only_c(pipe + 1, ' '))
+	if ((*(pipe + 2) == '|' || *(pipe + 1) == '|') || !no_only_c(pipe + 1, ' '))
 		return (0);
 	return (1);
 }

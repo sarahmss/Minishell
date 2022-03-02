@@ -6,7 +6,7 @@
 /*   By: smodesto <smodesto@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/28 08:51:20 by kde-oliv          #+#    #+#             */
-/*   Updated: 2022/02/17 22:52:14 by smodesto         ###   ########.fr       */
+/*   Updated: 2022/03/01 21:28:40 by smodesto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ static int	valid_input(t_session *s)
 	{
 		while (s->process_lst->input_file[i + 1])
 			i++;
-		if (s->process_lst->input_file[i]->fd < 0)
+		if (s->process_lst->input_file[i]->fd < 0
+			|| !check(s->process_lst->input_file, s))
 		{
 			invalid_fd++;
 			return (0);
@@ -44,7 +45,7 @@ void	run_command(t_session *s, t_cmd_tab *tb)
 
 	if (tk_builtin(s->process_lst->command))
 		return ((void)run_builtins(tb));
-	if (!valid_input(s))
+	if (!valid_input(s) || (!s->process_lst->command))
 		return ;
 	envp = s->child_envp;
 	full_path = get_fullpath(s, s->process_lst->command);

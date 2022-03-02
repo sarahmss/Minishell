@@ -12,7 +12,7 @@
 
 #ifndef ENVIRONMENT_H
 # define ENVIRONMENT_H
-# define HT_SIZE_ENV 1031
+# define HT_SIZE_ENV 10000
 # include "./Minishell.h"
 
 //	env_variables
